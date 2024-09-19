@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: grid;
+            grid-template-rows: 0.7fr 3fr 3fr 1fr;
+            height: 100vh;
+        }
+
+        .headermenu {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+        }
+
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header, nav, .hero, Main, .image, .extra, .banner {
+            color: white;
+        }
+
+        .header {
+            background-color: rgb(11, 11, 36);
+        }
+
+        nav {
+            background-color: rgb(216, 65, 65);
+        }
+
+        .hero {
+            background-color: rgb(51, 113, 180);
+        }
+
+        Main {
+            background-color: rgb(29, 29, 58);
+        }
+
+        .image {
+            background-color: rgb(158, 207, 202);
+            color: black;
+        }
+
+        .extra {
+            background-color: rgb(74, 159, 89);
+            color: black;
+        }
+
+        .banner {
+            background-color: rgb(255, 239, 59);
+            color: black;
+        }
+
+        .middle {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .middle-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .imageextra {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-column: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="headermenu">
+            <div class="header flex-center">HEADER</div>
+            <nav class="flex-center">MENU</nav>
+        </div>
+        <div class="hero flex-center">HERO</div>
+        <div class="middle">
+            <main class="flex-center">MAIN</main>
+            <div class="middle-right">
+                <div class="imageextra">
+                    <div class="image flex-center">IMAGE</div>
+                    <div class="extra flex-center">EXTRA</div>
+                </div>
+            </div>
+        </div>
+        <div class="banner flex-center">BANNER</div>
+    </div>
+</body>
+</html>
