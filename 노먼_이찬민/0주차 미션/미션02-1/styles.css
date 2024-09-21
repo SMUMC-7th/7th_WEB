@@ -1,0 +1,32 @@
+body {
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+#Container{
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 10vh;
+  border-bottom : 1px solid black
+}
+
+#LeftBox{
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#RightBox{
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  @media (max-width: 768px) {
+    width : 75%;
+  }
+}
+.RightBoxItem{
+
+}
