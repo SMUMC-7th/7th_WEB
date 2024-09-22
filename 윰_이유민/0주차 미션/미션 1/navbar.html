@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>smumc navbar</title>
+  <style>
+    button {
+      border: 0;
+      background-color: transparent;
+    }
+
+    a {
+      text-decoration: none;
+    }
+    a:link {
+      color: black;
+    }
+    a:visited {
+      color: black;
+    }
+    a:active {
+      color: black;
+    }
+    
+    .container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      top: 0;
+      left: 0;
+      color: black;
+    }
+
+    .logoContainer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 20px;
+    }
+
+    .logoContainer > img {
+      width: 40px;
+      height: 30px;
+    }
+    .logoContainer > p {
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .navContainer {
+      width: 25%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-right: 20px;
+      font-size: 14px;
+    }
+    .navContainer > img {
+      width: 30px;
+      height: 40px;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <a href="">
+      <div class="logoContainer">
+        <img src="https://www.smumc.co.kr/_next/image?url=%2Fimages%2Fmain-light-logo.webp&w=48&q=75" alt="로고">
+        <p>SMUMC</p>
+      </div>
+    </a>
+    <nav class="navContainer">
+      <button>
+        <a href="">PROJECTS</a>
+      </button>
+      <button>
+        <a href="">MEMBERS</a>
+      </button>
+      <button>
+        <a href="">NOTICE</a>
+      </button>
+      <button>
+        <a href="">
+          <img src="https://i.ibb.co/mHFLtqJ/free-icon-sun-7712166.png" alt="free-icon-sun-7712166" border="0" width="20px" height="20px">
+        </a>
+      </button>
+    </nav>
+  </div>
+</body>
+</html>
