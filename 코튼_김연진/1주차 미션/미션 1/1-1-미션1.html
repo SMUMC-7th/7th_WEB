@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(240, 244, 255);
+        }
+        .title, .header, main, .lists {
+            display: grid;
+            place-items: center;
+        }
+
+        .lists {
+            width: 80%;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        .todolists, .donelists {
+            min-width: 300px;
+            max-width: 300px;
+            min-height: 300px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .container {
+            height: 100%;
+            width: 100%;
+        }
+
+        .title {
+            margin-top: 80px;
+            margin-bottom: 80px;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 500px;
+            height: 30px;
+            margin-bottom: 30px;
+            border-color: black;
+            padding: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            display: flex; 
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .listcontent {
+            flex-grow: 1; 
+            text-align: left; 
+            flex-wrap:wrap;
+            word-break: break-word;
+        }
+
+        button {
+            flex-shrink: 0; 
+            width: 40px;
+            height: auto;
+            margin-left: 10px;
+        }
+
+        main {
+            padding-top: 50px;
+        }
+        hr {
+            width: 80%;
+            color: #ddd
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <p class="title">UMC Study Plan</p>
+        </div>
+        <hr>
+        <main>
+            <div> 
+                <input type="text" placeholder="스터디 계획을 작성해보세요" id="textInput">
+            </div>
+
+            <div class="lists">
+                <div class="todolists">
+                    <h4 style="font-weight: bold;">해야 할 일</h4>
+                    <ul id="todoList">
+                        <!-- 할 일 목록 -->
+                    </ul>
+                </div>
+                <div class="donelists">
+                    <h4 style="font-weight: bold;">해낸 일</h4>
+                    <ul id="doneList">
+                        <!-- 해낸 일 목록 -->
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const input = document.getElementById('textInput');
+        const todoList = document.getElementById('todoList');
+
+        input.addEventListener('keypress', function(event){
+            if (event.key === 'Enter') {
+                const text = input.value.trim();
+                if (text) {
+                    const listItem = document.createElement('li');
+                    const listText = document.createElement('p');
+                    listText.textContent = text;
+                    listText.className = 'listcontent';
+
+                    const button = document.createElement('button');
+                    button.textContent = '완료';
+
+                    listItem.appendChild(listText);
+                    listItem.appendChild(button);
+
+                    todoList.appendChild(listItem);
+                    input.value = '';
+
+                    button.addEventListener('click', function() {
+                        document.getElementById('doneList').appendChild(listItem); // appendChild 메서드는 DOM에서 요소를 이동시키기때문에 따로 삭제X
+                        button.textContent = '삭제';
+                        button.addEventListener('click', function() {
+                            listItem.remove();
+                        });
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
