@@ -10,6 +10,7 @@
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  background-color: #ebf9f5;
 }
 
 header{
@@ -45,6 +46,11 @@ main input {
   margin-bottom: 20px;
   outline-color: skyblue;
 }
+main input::placeholder {
+  color: #abb4bd;
+  font-style: italic;
+}
+
 
 .TodoBoxContainer{
   width: 90%;
@@ -58,7 +64,7 @@ main input {
 .TodoBox{
   width: 40%;
   height: 90%;
-  border : 2px solid #AAAAAA;
+  /* border : 2px solid #AAAAAA; */
   display: flex;
   flex-direction: column;
   /* justify-content: space-around; */
@@ -85,14 +91,15 @@ main input {
 }
 
 .TodoItem{
-  width: 90%;
+  width: 80%;
   height: 50px;
   margin-bottom: 10px;
   padding: 10px;
-  border: 1px solid #cccccc;
+  border-bottom: 2px solid #AAAAAA;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color:#ebf9f5
 }
 
 .TodoItem button{
@@ -102,4 +109,5 @@ main input {
   border: none;
   background-color: grey;
   cursor: pointer;
+  margin: 0
 }

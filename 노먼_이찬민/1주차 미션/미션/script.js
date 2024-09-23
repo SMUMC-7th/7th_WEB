@@ -5,6 +5,8 @@ const todoInput = document.getElementById("TodoInput");
 
 todoForm.addEventListener("submit", addTodoItem);
 
+// let index = 0;
+
 function addTodoItem(e) {
   e.preventDefault();
   const todoText = todoInput.value.trim();
@@ -14,6 +16,7 @@ function addTodoItem(e) {
   }
 
   const todoItem = document.createElement("li");
+  // todoItem.id = "Todoitem" + index++;
   todoItem.classList.add("TodoItem");
   todoItem.textContent = todoText;
 
@@ -23,11 +26,14 @@ function addTodoItem(e) {
 
   todoItem.appendChild(completeButton);
   todoList.appendChild(todoItem);
+
+  todoInput.value = "";
+  console.log(todoItem);
 }
 
 function completeTodoItem(e) {
   const todoItem = e.target.parentElement;
-  // console.log(todoItem.children[0]);
+  console.log(todoItem);
   // 기존 버튼 삭제
   todoItem.children[0].remove();
 
@@ -39,7 +45,6 @@ function completeTodoItem(e) {
 
   // 위치 이동
   completeList.appendChild(todoItem);
-  todoList.remove(todoItem);
 }
 
 function removeTodoItem(e) {
