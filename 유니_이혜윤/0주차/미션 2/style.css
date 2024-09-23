@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    font-size: 23px;
+    color: white;
+}
+
+nav {
+    height: 10vh;
+    display: flex;
+
+    .header {
+        width: 20%;
+        background-color: #0F1629;
+        padding: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu {
+        width: 80%;
+        background-color: #ED3D4F;
+        padding: 20px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+.hero {
+    height: 40vh;
+    background-color: #4C86C4;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    height: 40vh;
+
+    .main {
+        width: 50%;
+        background-color: #23344B;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        display: grid;
+        width: 50%;
+        grid-template-areas: 
+            ". image"
+            ". extra";
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        color: black;
+    }
+}
+
+.image {
+    grid-area: image;
+    background-color: #C2E4E7;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.extra {
+    grid-area: extra;
+    background-color: #4EBC97;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    height: 10vh;
+    background-color: #FFD16B;
+    color: black;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
