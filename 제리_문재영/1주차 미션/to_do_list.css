@@ -1,0 +1,58 @@
+html, body{
+    margin: 10% 10%;
+    background-color: rgb(206, 255, 255);
+    height: 100%;
+}
+
+button{
+    background-color: rgb(54, 196, 252);
+    color: rgb(0, 0, 0);
+    border: 0;
+    border-radius: 7%;
+}
+
+header{
+    text-align: center;
+    margin: 5% 0;
+    padding: 3%;
+}
+
+.input_con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+
+}
+input{
+    margin: 0 2%;
+    width: 90%;
+    padding: 1%;
+    border: 2px solid black;
+}
+
+article{
+    display: flex;
+    align-content: space-around;
+    margin: 3%;
+}
+h3{
+    text-align: center;
+}
+.ing, .ed{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.ing_list_box, .ed_list_box{
+    width: 80%;
+
+}
+.list{
+    display: flex;
+    justify-content: space-between;
+    margin: 10% 1%;
+    padding: 3%;
+    border-bottom: 2px solid blue;/* solid가 아닌 일반 rgb값넣으면 색이 안 보임 */
+}
