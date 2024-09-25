@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="script.js" defer></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="Container">
+    <header>
+      <h1>UMC Study Plan</h1>
+    </header>
+    <main>
+
+      <form id="TodoForm">
+        <input type="text" placeholder="스터디 계획을 작성해보세요!" id="TodoInput" autofocus = "true">
+      </form>
+      <div class="TodoBoxContainer" >
+        <div class="TodoBox">
+          <span>해야 할 일</span>
+          <ul id="TodoList">
+            <!-- 여기에 추가됨 -->
+          </ul>
+        </div>
+        <div class="TodoBox" >
+          <span>해낸 일</span>
+          <ul id="CompleteList">
+            <!-- 여기에 추가됨 -->
+          </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
