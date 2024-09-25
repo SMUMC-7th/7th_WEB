@@ -1,0 +1,56 @@
+button {
+  border: 0;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+a:link {
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:active {
+  color: black;
+}
+
+.header {
+  width: 100%;
+  top: 0;
+  left: 0;
+  color: black;
+}
+
+.logoContainer {
+  gap: 8px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.logoContainer > img {
+  width: 40px;
+  height: 30px;
+}
+.logoContainer > p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.navContainer {
+  width: 25%;
+  margin-right: 20px;
+  font-size: 14px;
+}
+.navContainer > img {
+  width: 30px;
+  height: 40px;
+}
+
+.flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
