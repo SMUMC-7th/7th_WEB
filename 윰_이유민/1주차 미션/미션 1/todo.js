@@ -1,4 +1,5 @@
-const todoList = document.querySelector(".todoList");    const doneList = document.querySelector(".doneList");
+const todoList = document.querySelector(".todoList");    
+const doneList = document.querySelector(".doneList");
     
 function addTodo(){
   const txt = document.getElementById("inputTodo").value;
@@ -24,6 +25,7 @@ function addTodo(){
       todoList.appendChild(todo);
 
       document.getElementById("inputTodo").value = "";
+      todoList.scrollTop = todoList.scrollHeight;
     }
 }
 
@@ -45,6 +47,7 @@ function completeTodo(txt) {
   done.appendChild(deleteBtn);
 
   doneList.appendChild(done);
+  doneList.scrollTop = doneList.scrollHeight;
 }
 
 function byEnter(e) {
