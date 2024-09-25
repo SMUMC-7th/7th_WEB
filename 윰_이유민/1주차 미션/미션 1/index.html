@@ -7,19 +7,29 @@
   <link rel="stylesheet" href="./style.css">
   <script src="./todo.js" defer></script>
 </head>
+<style>
+</style>
 <body>
   <div class="container">
-    <h1>UMC Study Plan</h1>
-    <input id="inputTodo" type="text" placeholder="스터디 계획을 작성해보세요!" onkeypress="addTodo(event)" />
+    <header class="header borderBottom">
+      <h1>UMC Study Plan</h1>
+    </header>
+
+    <input id="inputTodo" type="text" placeholder="스터디 계획을 작성해보세요!" onkeypress="addTodoEnter(event)" />
+
     <div class="contentContainer">
       <div>
         <h4 class="borderBottom">해야 할 일</h4>
-        <div class="todoList"></div>
+        <ul class="todoList">
+          <!-- 해야 할 일 목록 -->
+        </ul>
       </div>
 
       <div>
         <h4 class="borderBottom">해낸 일</h4>
-        <div class="doneList"></div>
+        <ul class="doneList">
+          <!-- 해낸 일 목록 -->
+        </ul>
       </div>
     </div>
   </div>
