@@ -1,9 +1,7 @@
 const todoList = document.querySelector(".todoList");    const doneList = document.querySelector(".doneList");
     
-function addTodo(e){
-  const code = e.code;
-  if(code == "Enter"){
-    const txt = document.getElementById("inputTodo").value;
+function addTodo(){
+  const txt = document.getElementById("inputTodo").value;
     if (txt.trim() !== ""){
       const todo = document.createElement("div");
       todo.className = 'todo borderBottom';
@@ -27,7 +25,6 @@ function addTodo(e){
 
       document.getElementById("inputTodo").value = "";
     }
-  }
 }
 
 function completeTodo(txt) {
@@ -48,4 +45,11 @@ function completeTodo(txt) {
   done.appendChild(deleteBtn);
 
   doneList.appendChild(done);
+}
+
+function byEnter(e) {
+  const code = e.code;
+  if(code == "Enter"){
+    addTodo();
+  }
 }
