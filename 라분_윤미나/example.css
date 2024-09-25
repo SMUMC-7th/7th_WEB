@@ -1,0 +1,64 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body{
+  text-align: center;
+}
+
+header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header>h1{
+  margin: 50px;
+}
+
+hr{
+  width : 85%;
+  margin: 20px;
+}
+
+input{
+  width: 70%;
+  height: 35px;
+  margin : 0 15% 20px 15%;
+}
+ins{
+  text-decoration-color: #cccccc;
+  text-decoration-thickness: 2px;
+}
+
+.lists{
+  display: flex; 
+  justify-content: center;
+  gap: 300px;
+}
+
+.todo-section, .done-section{
+  width: 250px;
+}
+
+
+p{
+  display: flex;
+  justify-content :space-between;
+  align-items: center;
+  border-bottom: 2px solid  #cccccc;
+  
+  
+}
+
+
+button{
+  width: 40px;
+  height: 20px;
+  background-color: rgb(211, 242, 255);
+  border: none;
+  cursor: pointer;
+}

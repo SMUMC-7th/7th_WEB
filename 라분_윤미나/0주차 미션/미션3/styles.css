@@ -83,7 +83,3 @@
     align-items: center;
     justify-content: center;
 }
-.gap{
-    grid-area: gap;
-    display: flex;
-}
