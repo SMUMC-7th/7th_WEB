@@ -1,14 +1,18 @@
 html, body{
-    margin: 10% 10%;
+    margin: 5% 10%;
     background-color: rgb(206, 255, 255);
     height: 100%;
 }
 
 button{
-    background-color: rgb(54, 196, 252);
+    background-color: rgb(158, 227, 255);
     color: rgb(0, 0, 0);
     border: 0;
     border-radius: 7%;
+}
+button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 header{
@@ -43,11 +47,13 @@ h3{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 70%;
+    max-width: 400px;
+    max-height: 400px;
 }
 .ing_list_box, .ed_list_box{
     width: 80%;
-
+    overflow: auto;
 }
 .list{
     display: flex;
@@ -55,4 +61,12 @@ h3{
     margin: 10% 1%;
     padding: 3%;
     border-bottom: 2px solid blue;/* solid가 아닌 일반 rgb값넣으면 색이 안 보임 */
+    /* cursor: pointer; */
+}
+.textInput{
+    border: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 80%;
 }
