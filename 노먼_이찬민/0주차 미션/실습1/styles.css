@@ -1,0 +1,26 @@
+body {
+  margin: 0 auto;
+  background-color: #FFFF99;
+}
+
+.block{
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid black;
+}
+.inline{
+  display: inline;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid black;
+}
+.inlineBlock{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid black;
+}

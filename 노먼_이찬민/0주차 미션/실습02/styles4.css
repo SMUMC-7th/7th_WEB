@@ -1,0 +1,21 @@
+body{
+  margin : 10vh 10vw;
+  box-sizing : border-box;
+}
+
+@keyframes upAndDown{
+  0% { top: 0; left: 0; }
+  30% { top: 50px; transform: scaleX(1.02);}
+  70% { top: 150px; transform: scaleX(1.04);}
+  100% { top: 400px; transform: scaleX(1.09); }
+}
+
+.ball {
+  width : 150px;
+  height : 150px;
+  margin : 62px;
+  border-radius : 50%;
+  position : relative;
+  background-color: #ff99ee;
+  animation: upAndDown 1s linear alternate infinite
+}

@@ -1,0 +1,18 @@
+body{
+  margin : 10vh 10vw;
+  box-sizing : border-box;
+}
+
+.box {
+  width : 150px;
+  height : 150px;
+  transform: rotate(45deg);
+  border: 1px solid black;
+  margin : 62px;
+  background-color: #ff99ee;
+  
+  &:hover{
+    background-color: #ff6699;
+    transition : background-color 1s;
+  }
+}
