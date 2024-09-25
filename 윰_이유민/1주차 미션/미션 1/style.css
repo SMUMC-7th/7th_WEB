@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: aliceblue;
 }
@@ -8,20 +14,19 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 30px;
 }
 
-.container > h1 {
+.header {
   width: 80%;
   height: 180px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: solid lightblue 2px;
 }
 
 #inputTodo {
-  width: 60%;
+  width: 40%;
   height: 40px;
   padding-left: 10px;
   font-size: 16px;
@@ -33,7 +38,8 @@ body {
 .contentContainer {
   width: 60%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 80px;
 }
 
 .contentContainer > div {
@@ -41,22 +47,32 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center; 
+  gap: 20px;
 }
 
 .todoList, .doneList {
-  width: 140px;
+  width: 160px;
+  height: 260px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
 }
 
 .todo, .done {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 4px;
 }
 
 .todo > p, .done > p {
+  width: 96px;
   font-weight: bold;
+  padding-bottom: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #complete, #delete {
