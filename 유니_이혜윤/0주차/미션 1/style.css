@@ -25,11 +25,14 @@ header {
 
 .button {
     display: flex;
+    align-items: center;
+    
     gap: 20px;
 
-    button {
+    li {
         border: none;
         background-color: white;
+        list-style: none;
     }
 
     a {

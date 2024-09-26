@@ -3,6 +3,12 @@
     box-sizing: border-box;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 body {
     width: 100%;
     min-height: 100vh;
@@ -22,20 +28,12 @@ nav {
         width: 20%;
         background-color: #0F1629;
         padding: 20px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .menu {
         width: 80%;
         background-color: #ED3D4F;
         padding: 20px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 }
 
@@ -44,10 +42,6 @@ nav {
     height: 40vh;
     background-color: #4C86C4;
     padding: 20px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 section {
@@ -57,10 +51,6 @@ section {
     .main {
         width: 50%;
         background-color: #23344B;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     .container {
@@ -79,19 +69,11 @@ section {
 .image {
     grid-area: image;
     background-color: #C2E4E7;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .extra {
     grid-area: extra;
     background-color: #4EBC97;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 footer {
@@ -99,8 +81,4 @@ footer {
     background-color: #FFD16B;
     color: black;
     padding: 20px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
