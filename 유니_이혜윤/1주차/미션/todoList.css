@@ -1,0 +1,91 @@
+body {
+    width: 100%;
+    height: 100vh;
+
+    background-color: aliceblue;
+    margin: 50px 30px;
+
+    h1 {
+        padding: 10px 0 50px;
+    }
+}
+
+.container {
+    width: 80%;
+    border-top: 1px solid grey;
+}
+
+
+#todoInput {
+    width: 400px;
+    height: 30px;
+
+    padding-left: 7px;
+    margin: 20px 0;
+}
+
+.content {
+    width: 600px;
+
+    display: flex;
+    justify-content: center;
+    gap: 100px; /* gap으로 사이 간격주기 */
+    
+    p {
+        font-weight: bold;
+        gap: 250px;
+    }
+}
+
+.todo-container, .done-container {
+    padding: 15px;
+}
+
+.todo, .done {
+    width: 120px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.todo-item {
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin-bottom: 20px;
+    border-bottom: 1.5px solid grey;
+
+    span {
+        display: inline-block;
+        max-width: 90px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    button {
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        padding: 5px;
+
+        &:hover {
+            transform: scale(0.9);
+        }
+    }
+}
+
+.inputBox {
+    border: none;
+    background-color: aliceblue;
+    width: 120px;
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
