@@ -28,7 +28,7 @@ body {
 
     display: flex;
     justify-content: center;
-    gap: 200px; /* gap으로 사이 간격주기 */
+    gap: 100px; /* gap으로 사이 간격주기 */
     
     p {
         font-weight: bold;
@@ -36,8 +36,15 @@ body {
     }
 }
 
+.todo-container, .done-container {
+    padding: 15px;
+}
+
 .todo, .done {
     width: 120px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 15px;
 }
 
 .todo-item {
@@ -45,9 +52,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
     border-bottom: 1.5px solid grey;
+
+    span {
+        display: inline-block;
+        max-width: 90px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 
     button {
         border: none;

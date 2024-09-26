@@ -22,12 +22,14 @@ todoInput.addEventListener('keyup', (e) => {
                 newTodo.remove();
                 deleteBtn.textContent = '삭제'
                 doneContainer.appendChild(newTodo); // done으로 옮겨
+                doneContainer.scrollTop = doneContainer.scrollHeight; // 추가한 항목 바로 보이게
             });
 
             newTodo.appendChild(todoContent);
             newTodo.appendChild(deleteBtn);
 
             todoContainer.appendChild(newTodo);
+            todoContainer.scrollTop = todoContainer.scrollHeight; // 추가한 항목 바로 보이게
 
             todoInput.value = '';
         }
