@@ -47,7 +47,7 @@ ins{
 
 #todo-list, #done-list{
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content :space-between;
   padding: 10px;
 
@@ -88,4 +88,12 @@ button{
 }
 button:hover{
   background-color: rgb(105, 210, 255);
+}
+
+.inputItem{
+  cursor: pointer;
+}
+
+.edit-input{
+  border-width: 0;
 }
