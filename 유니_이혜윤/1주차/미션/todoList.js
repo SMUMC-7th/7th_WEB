@@ -16,6 +16,30 @@ todoInput.addEventListener('keyup', (e) => {
 
             const deleteBtn = document.createElement('button');
             deleteBtn.textContent = '완료';
+
+            // 수정기능 추가
+            todoContent.addEventListener('click', () => {
+                const input = document.createElement('input');
+                input.classList.add('inputBox');
+                input.type = 'text';
+                input.value = '';
+                newTodo.replaceChild(input, todoContent);
+
+                deleteBtn.style.display = 'none';
+                input.focus();
+
+                input.addEventListener('keyup', (e) => {
+                    if (e.key === 'Enter') {
+                        if (input.value.trimEnd() !== '') {
+                            todoContent.textContent = input.value;
+                            newTodo.replaceChild(todoContent, input);
+                            deleteBtn.style.display = 'inline';
+                        } else {
+                            alert('수정할 내용을 입력해주세요 !!');
+                        }
+                    }
+                })
+            })
             
             // 완료버튼을 눌렀을 때
             deleteBtn.addEventListener('click', () => {
