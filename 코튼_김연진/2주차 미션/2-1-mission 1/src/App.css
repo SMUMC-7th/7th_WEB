@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 100px
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.todoAddInput {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-bottom: 20px
+}
+
+.todolists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  max-height: 400px;
+}
+
+.submitBtn {
+  margin-left: 10px; 
+  border: none;
+  height: 20;
+  background-color: rgb(162, 215, 233);
+  border-radius: 5%;
+}
+
+.todolists--item{
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todolists--item__info{
+  max-width: 330px;
+}
+
+p {
+  max-width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
