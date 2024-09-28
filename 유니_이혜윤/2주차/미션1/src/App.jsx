@@ -79,13 +79,16 @@ function App() {
                 />
               </div>
             )}
-            <Button onClick={() => deleteTodo(todo.id)} label="삭제"></Button>
 
-            {editingId === todo.id ? (
-              <Button onClick={() => updateTodo(editingId, editText)} label="수정완료"></Button>
-            ) : (
-              <Button onClick={() => setEditingId(todo.id)} label="수정"></Button>
-            )}
+            <div className='buttons'>
+              <Button onClick={() => deleteTodo(todo.id)} label="삭제"></Button>
+
+              {editingId === todo.id ? (
+                <Button onClick={() => updateTodo(editingId, editText)} label="수정완료"></Button>
+              ) : (
+                <Button onClick={() => setEditingId(todo.id)} label="수정"></Button>
+              )}
+            </div>
           </div>
         ))}
       </div>
