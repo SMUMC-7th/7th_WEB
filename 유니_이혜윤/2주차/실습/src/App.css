@@ -50,6 +50,7 @@ form {
         border: none;
         border-radius: 30px;
         height: 20px;
+        cursor: pointer;
     }
 }
 

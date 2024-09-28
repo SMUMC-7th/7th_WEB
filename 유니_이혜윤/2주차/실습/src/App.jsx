@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import Button from './components/Button';
+import Input from './components/Input';
 
 function App() {
   // 화면에 출력되는 투두리스트
@@ -16,6 +18,7 @@ function App() {
   const addTodo = () => {
     if (text.trim().length === 0) {
       alert('내용을 입력하세요!');
+      return;
     }
     setTodos((prev) => [
       ...prev,
@@ -38,6 +41,7 @@ function App() {
     setTodos((prev) => 
       prev.map((item) => item.id === id ? {...item, task: text} : item));
     setEditingId('');
+    setEditText('');
   }
 
   // 렌더링 방지
@@ -49,9 +53,11 @@ function App() {
     <div className='container'>
       <h1>🍀 Todo List 🍀</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={text} 
-          onChange={(e) =>setText(e.target.value)}/>
-        <button onClick={() => addTodo()} type="submit">할 일 등록</button>
+        <Input value={text} 
+          onChange={(e) =>setText(e.target.value)}
+          placeholder="할 일을 입력하세요 :)"/>
+        
+        <Button onClick={addTodo} type="submit" label="등록"></Button>
       </form>
       <div className='todoList'>
         {todos.map((todo) => (
@@ -68,17 +74,17 @@ function App() {
             {editingId === todo.id && (
               <div className='list'>
                 <p>{todo.id}.</p>
-                <input defaultValue={todo.task}
+                <Input value={editText}
                   onChange={(e) => setEditText(e.target.value)}
                 />
               </div>
             )}
-            <button onClick={() => deleteTodo(todo.id)}>삭제</button>
+            <Button onClick={() => deleteTodo(todo.id)} label="삭제"></Button>
 
             {editingId === todo.id ? (
-              <button onClick={() => updateTodo(editingId, editText)}>수정완료</button>
+              <Button onClick={() => updateTodo(editingId, editText)} label="수정완료"></Button>
             ) : (
-              <button onClick={() => setEditingId(todo.id)}>수정</button>
+              <Button onClick={() => setEditingId(todo.id)} label="수정"></Button>
             )}
           </div>
         ))}
