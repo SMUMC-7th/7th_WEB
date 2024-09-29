@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+button {
+  border-radius: 20px;
+  cursor: pointer;
+  border: solid 1px #dfdfdf;
+}
+
+input {
+  border: solid 1px #dfdfdf;
+}
+
+.container {
+  backgroud-color: white;
+  max-width: 800px;
+  min-height: 100vh;
+  margin: 0 auto;
+  backgroud-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header{
+  margin: 40px 10px 20px;
+}
+
+.submitForm {
+   width: 600px;
+   height: 40px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   gap: 20px;
+}
+
+.submitForm > input {
+  width: 80%;
+}
+
+.submitForm > button {
+  width: 20%;
+  background-color: #7EA2EE;
+  color: white;
+}
+
+.submitForm > button:hover {
+  background-color: #5383E8;
+}
+
+.todoList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.todos {
+  width: 80%;
+  display: flex;
+  gap: 20px;
+}
+
+.todo {
+  width: 100%;
+  display: flex;
+  gap: 14px;
+}
+
+.todo__id {
+  width: 40px;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.btnContainer > button {
+  width: 80px;
+  height: 30px;
+}
+
+#delete {
+  background-color: #fff;
+  color: #E84057;
+}
+
+#delete:hover {
+  background-color: #E84057;
+  color: white;
+}
+
+#update {
+  color: #484848;
+}
+
+#update:hover {
+  background-color: #484848;
+  color: white;
+}
