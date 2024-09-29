@@ -10,5 +10,6 @@
 
 .buttons {
     display: flex;
-    margin: auto 0
+    margin: auto 0;
+    align-content: flex-end;
 }

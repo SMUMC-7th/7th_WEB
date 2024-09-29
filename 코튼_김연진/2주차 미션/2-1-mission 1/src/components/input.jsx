@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Input({ id, editingId, defaultValue, setEditText}) {
   return (
     <div style={{display:'flex'}}>

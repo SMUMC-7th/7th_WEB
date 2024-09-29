@@ -39,7 +39,7 @@ function App() {
   };
 
   return (
-    <div className="container"> {/* className 추가 */}
+    <div className="container"> 
       <h1>React TodoList</h1>
       <form onSubmit={handleSubmit}>
         <input

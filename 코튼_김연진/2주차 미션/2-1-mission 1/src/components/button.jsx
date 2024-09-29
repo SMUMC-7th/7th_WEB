@@ -1,8 +1,6 @@
-import React from 'react';
-
 function Button({ id, editingId, deleteTodo, updateTodo, setEditingId, editText, setEditText }) {
   return (
-    <div style={{ display: 'flex', alignContent:'flex-end' }} className='buttons'>
+    <div className='buttons'>
       <button onClick={() => deleteTodo(id)} className="deleteBtn">삭제하기</button>
       {editingId === id ? (
         <button onClick={() => updateTodo(id, editText)} className="editComplete">수정 완료</button>
