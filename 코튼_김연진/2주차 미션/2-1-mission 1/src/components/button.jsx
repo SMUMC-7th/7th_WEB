@@ -1,6 +1,6 @@
 function Button({ id, task, editingId, deleteTodo, updateTodo, setEditingId, editText, setEditText }) {
   return (
-    <div style={{ display: 'flex', alignContent:'flex-end' }} className='buttons'>
+    <div  className='buttons'>
 
       <button onClick={() => deleteTodo(id)} className="deleteBtn">삭제하기</button>
 

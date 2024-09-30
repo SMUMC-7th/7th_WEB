@@ -56,17 +56,17 @@ function App() {
       </form>
       <div className='todolists'>
         {todos.map((todo) => (
-          <div className='todolists--item' style={{ display: 'flex', gap: '20px', marginTop: '10px' }} key={todo.id}>
+          <div className='todolists--item' key={todo.id}>
             {/* 수정이 아닐 때 */}
             {editingId !== todo.id && (
-              <div className='todolists--item__info' style={{ display: 'flex', gap: '5px' }}>
+              <div className='todolists--item__info' >
                 <p>{todo.id}. </p>
                 <p> {todo.task}</p>
               </div>
             )}
             {/* 수정 중 상태일 때 */}
             {editingId === todo.id && (
-              <div className='todolists--item__info' style={{ display: 'flex', gap: '5px' }}>
+              <div className='todolists--item__info'>
                 <p>{todo.id}.</p>
                 <Input 
                   defaultValue={todo.task} 

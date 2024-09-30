@@ -1,10 +1,6 @@
-function Input(props) {
-  const {defaultValue, onChange} =props;
-  console.log(defaultValue, onChange);
-  const text = {onChange}
-  console.log(text);
+function Input({defaultValue, onChange}) {
   return (
-    <div style={{display:'flex'}}>
+    <div className="container">
         <input 
           defaultValue={defaultValue}
           onChange={onChange}
