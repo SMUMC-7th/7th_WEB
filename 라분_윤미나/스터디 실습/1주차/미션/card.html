@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: skyblue;
+        border-radius: 15px;
+        margin: 0 35%;
+      }
+      .container > img {
+        width: 200px;
+        margin-top: 10px;
+        border-radius: 10px;
+      }
+      .container__title {
+        color: blueviolet;
+      }
+      .container__descript {
+        color: green;
+      }
+      .container__button {
+        width: 80px;
+        height: 35px;
+        background-color: pink;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .container__button:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="container">
+      <img src="images/smu.jpg" />
+      <h2 class="container__title">고구마 카드</h2>
+      <p class="container__descript">
+        <strong>고구마 고구마 구마고구마</strong>
+      </p>
+      <button class="container__button">먹어보실?</button>
+    </section>
+  </body>
+</html>
