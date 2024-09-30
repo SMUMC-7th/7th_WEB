@@ -1,12 +1,14 @@
-function Input({ id, editingId, defaultValue, setEditText}) {
+function Input(props) {
+  const {defaultValue, onChange} =props;
+  console.log(defaultValue, onChange);
+  const text = {onChange}
+  console.log(text);
   return (
     <div style={{display:'flex'}}>
-      {id === editingId ? (
         <input 
           defaultValue={defaultValue}
-          onChange={(e) => setEditText(e.target.value)} 
+          onChange={onChange}
         />
-      ) : null}
     </div>
   );
 }

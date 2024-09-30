@@ -19,10 +19,12 @@ function App() {
   };
 
   const addTodo = () => {
-    setTodos((prev) => [
-      ...prev,
-      { id: Math.floor(Math.random() * 100) + 2, task: text },
-    ]);
+    if (text !== '') {
+      setTodos((prev) => [
+        ...prev,
+        { id: Math.floor(Math.random() * 100) + 2, task: text },
+      ]);
+    }
     setText('');
   };
 
@@ -32,10 +34,12 @@ function App() {
 
   const updateTodo = (id, text) => {
     setTodos((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, task: text } : item))
+      prev.map((item) => 
+        item.id === id ? { ...item, task: text !== '' ? text : item.task } : item // 수정하지 않은 경우 기존 값을 유지하도록 조건 추가
+      )
     );
-    setText('');
     setEditingId('');
+    setEditText(''); // 수정 완료 후 입력 필드를 초기화
   };
 
   return (
@@ -65,22 +69,22 @@ function App() {
               <div className='todolists--item__info' style={{ display: 'flex', gap: '5px' }}>
                 <p>{todo.id}.</p>
                 <Input 
-                  id={todo.id} 
-                  editingId={editingId} 
                   defaultValue={todo.task} 
-                  setEditText={setEditText}
+                  onChange={(e) => setEditText(e.target.value)} 
                 />
               </div>
             )}
+            
             <Button
               id={todo.id}
+              task = {todo.task}
               editingId={editingId}
               deleteTodo={deleteTodo}
               updateTodo={updateTodo}
               setEditingId={setEditingId}
               editText={editText}
-              setEditText={setEditText}
-            />
+              setEditText={setEditText} 
+            /> 
           </div>
         ))}
       </div>
