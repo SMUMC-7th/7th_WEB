@@ -1,12 +1,11 @@
-import { useState } from 'react';
-import Movie from './components/movie'; 
+import MovieList from './components/movieList'; 
 
 function App() {
   
   return (
-    <>
-      <Movie></Movie>
-    </>
+    <div>
+      <MovieList></MovieList>
+    </div>
   );
 }
 

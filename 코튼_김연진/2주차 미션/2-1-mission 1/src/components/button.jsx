@@ -1,20 +1,15 @@
-function Button({ id, task, editingId, deleteTodo, updateTodo, setEditingId, editText, setEditText }) {
+import PropTypes from 'prop-types';  // PropTypes 추가
+
+function Button(props) {
+  const { text, onClick } = props;
   return (
-    <div  className='buttons'>
-
-      <button onClick={() => deleteTodo(id)} className="deleteBtn">삭제하기</button>
-
-      {editingId === id ? (
-        <button onClick={() => updateTodo(editingId, editText)} className="editComplete">수정 완료</button>
-      ) : (
-        <button onClick={() => {
-          setEditText(editText || task); //editText가 없으면 task 값이 입력되도록
-          setEditingId(id); 
-        }}
-          className="editStart">수정 진행</button>
-      )}
-    </div>
+    <button onClick={onClick} className="button">{text}</button>
   );
 }
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,  // props validation 추가
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Button;

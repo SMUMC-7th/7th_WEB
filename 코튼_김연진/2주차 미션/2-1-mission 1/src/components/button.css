@@ -1,13 +1,7 @@
-.deleteBtn, .editComplete, .editStart {
+.button {
     background-color: skyblue;
     border: none;
-    border-radius: 5%;
+    border-radius: 5px;
     height: 25px;
-    margin-right: 10px;   
-}
-
-.buttons {
-    display: flex;
-    align-content:flex-end;
-    margin: auto 0
+    min-width: 65px;
 }

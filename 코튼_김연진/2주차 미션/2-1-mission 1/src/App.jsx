@@ -59,32 +59,49 @@ function App() {
           <div className='todolists--item' key={todo.id}>
             {/* 수정이 아닐 때 */}
             {editingId !== todo.id && (
-              <div className='todolists--item__info' >
-                <p>{todo.id}. </p>
-                <p> {todo.task}</p>
-              </div>
+              <>
+                <div className='todolists--item__info' >
+                  <p>{todo.id}. </p>
+                  <p> {todo.task}</p>
+                </div>
+                <div className='todolists--item__buttons'>
+                  <Button 
+                    text={'수정하기'} 
+                    onClick={() => {setEditText(editText || todo.task);  setEditingId(todo.id); }}
+                    className="editStart">
+                  </Button>
+                  <Button 
+                    text={'삭제하기'}
+                    onClick={() => deleteTodo(todo.id)} className="deleteBtn">
+                  </Button>
+                </div>
+                
+              </>
+              
             )}
             {/* 수정 중 상태일 때 */}
             {editingId === todo.id && (
-              <div className='todolists--item__info'>
-                <p>{todo.id}.</p>
-                <Input 
-                  defaultValue={todo.task} 
-                  onChange={(e) => setEditText(e.target.value)} 
-                />
-              </div>
+              <>
+                <div className='todolists--item__info'>
+                  <p>{todo.id}.</p>
+                  <Input 
+                    defaultValue={todo.task} 
+                    onChange={(e) => setEditText(e.target.value)} 
+                    />
+                </div>
+                <div className='todolists--item__buttons'>
+                  <Button 
+                    text={'수정 완료'}
+                    onClick={() => updateTodo(editingId, editText)} className="editComplete">
+                  </Button>
+                  <Button 
+                    text={'삭제하기'}
+                    onClick={() => deleteTodo(todo.id)} className="deleteBtn">
+                  </Button>
+                </div>
+              </>
+              
             )}
-            
-            <Button
-              id={todo.id}
-              task = {todo.task}
-              editingId={editingId}
-              deleteTodo={deleteTodo}
-              updateTodo={updateTodo}
-              setEditingId={setEditingId}
-              editText={editText}
-              setEditText={setEditText} 
-            /> 
           </div>
         ))}
       </div>
