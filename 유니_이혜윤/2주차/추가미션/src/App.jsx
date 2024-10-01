@@ -64,7 +64,7 @@ function App() {
   return (
     <Container>
       <Header />
-      <Content>
+      <Content id='modal-root'>
         <SidebarContainer>
           <Sidebar />
         </SidebarContainer>

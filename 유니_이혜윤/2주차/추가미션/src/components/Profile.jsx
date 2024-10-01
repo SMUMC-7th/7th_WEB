@@ -1,5 +1,7 @@
+import { useState } from "react";
 import styled from "styled-components";
 import ProfileImg from '../assets/ProfileImg.jpeg';
+import Modal from "./Modal";
 
 const Container = styled.div`
     display: flex;
@@ -36,12 +38,23 @@ const Container = styled.div`
 `;
 
 const Profile = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setModalOpen(false);
+    };
+
     return (
         <Container>
             <img src={ProfileImg} />
             <h3>아자핑</h3>
             <h6>아자아자 아자핑⭐️</h6>
-            <button>오늘의 운세 🍀</button>
+            <button onClick={handleOpenModal}>오늘의 운세 🍀</button>
+            {modalOpen && <Modal onClose={handleCloseModal} />}
         </Container>
     )
 }
