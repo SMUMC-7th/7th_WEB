@@ -1,0 +1,15 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+    gap: 30px;
+}
+.movieCard{
+    border-radius: 5%;
+}
+.movieCard:hover{
+    cursor: pointer;
+    filter: brightness(0.5);
+}
+img{
+    border-radius: 5%;
+}
