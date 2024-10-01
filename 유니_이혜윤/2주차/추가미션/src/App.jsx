@@ -1,5 +1,6 @@
 import './App.css'
 import styled from 'styled-components';
+import { FaGithub } from "react-icons/fa6";
 
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
@@ -42,6 +43,21 @@ const FooterWrapper = styled.footer`
   padding: 10px;
 `;
 
+const FixedIcon = styled.a`
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+
+  &:hover {
+    color: black;
+  }
+`;
+
+const Icon = styled(FaGithub)`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+`;
 
 function App() {
 
@@ -59,6 +75,9 @@ function App() {
       <FooterWrapper>
         <Footer />
       </FooterWrapper>
+      <FixedIcon href="https://github.com/hyeyoon23" target="_blank">
+        <Icon />
+      </FixedIcon>
     </Container>
   )
 }
