@@ -8,7 +8,6 @@ import Footer from './components/Footer/footer.jsx';
 function App() {
   return (
     <>
-      <div id='modal-root'></div>
       <div className='Container'>
         <Header />
         <div className='main'>
