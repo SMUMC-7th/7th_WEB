@@ -1,5 +1,4 @@
 import * as S from './card.style'
-import PropTypes from 'prop-types';  // PropTypes 추가
 
 function Card(props) {
 
@@ -18,13 +17,6 @@ function Card(props) {
         </S.Container>
     );
 }
-
-Card.propTypes = {
-    image_path: PropTypes.string.isRequired, 
-    title: PropTypes.string.isRequired, 
-    content: PropTypes.string.isRequired, 
-    date: PropTypes.string.isRequired
-};
 
 export default Card;
 

@@ -1,5 +1,4 @@
 import * as S from './luckycard.style';
-import PropTypes from 'prop-types';  
 import { useEffect } from 'react';
 
 function LuckyCard(props) {
@@ -24,11 +23,5 @@ function LuckyCard(props) {
     );
 }
 
-LuckyCard.propTypes = {
-    content: PropTypes.string.isRequired,  
-    isClicked: PropTypes.bool.isRequired, 
-    onClick: PropTypes.func.isRequired,    
-    onClose: PropTypes.func.isRequired
-};
 
 export default LuckyCard;
