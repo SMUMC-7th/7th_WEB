@@ -50,7 +50,6 @@ const MovieImage = styled.img`
 `;
 
 function App() {
-  const [count, setCount] = useState(0);
   const imgUrlPrefix = "https://image.tmdb.org/t/p/w500";
 
   return (
