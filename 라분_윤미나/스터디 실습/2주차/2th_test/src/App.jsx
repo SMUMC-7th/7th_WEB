@@ -1,4 +1,4 @@
-import Movie from './components/MovieList/MovieList.jsx'
+import MovieList from './components/movieList/movieLIst'
 
 //import { useState } from 'react'
 
@@ -9,7 +9,7 @@ function App() {
  
   return (
     <>
-      <Movie></Movie>
+      <MovieList></MovieList>
     </>
   )
 }
