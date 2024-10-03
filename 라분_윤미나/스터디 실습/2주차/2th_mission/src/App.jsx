@@ -1,27 +1,38 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import Cards from './components/Cards/Cards';
-import Sidebar from './components/Sidebar/Sidebar';
-import Footer from './components/Footer/Footer';
+import HomePage from './pages/home';
+import DetailedPage from './pages/detailed';
+import NotFound from './pages/not-found';
+import RosePage from './pages/rose';
 
-import { FaGithub } from 'react-icons/fa';
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './layout/root-layout';
 import './App.css';
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+
+    element: <RootLayout />,
+    errorElement: <NotFound />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: '/detailed/:id',
+        element: <DetailedPage />,
+      },
+      {
+        path: '/rose',
+        element: <RosePage />,
+      },
+    ],
+  },
+]);
+
 function App() {
-  return (
-    <div>
-      <Header />
-      <section>
-        <Sidebar />
-        <Cards />
-        <a className="gitIcon" href="https://github.com/202110861">
-          <FaGithub size="30px" />
-        </a>
-      </section>
-      <Footer />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

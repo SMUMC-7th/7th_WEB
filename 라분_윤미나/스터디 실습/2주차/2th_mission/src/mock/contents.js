@@ -7,7 +7,7 @@ export const contents = [
     image:
       'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEyMTdfOTQg%2FMDAxNjM5NzI5MTAzODIw.S2yTMwOhKZyrsMLs9UPWoSlREuzg7jYPrUGQ1HMfb9gg.Qq0WenbyoT0zZr2ZZXsWyduKy2L1imSXGvblXKHOrjMg.JPEG.my_epi%2FIMG_2399.jpg&type=sc960_832',
     date: '2024-10-15',
-    category: 'umc',
+    category: 'rose',
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const contents = [
     image:
       'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA4MjRfMjA1%2FMDAxNjI5Nzg5OTE5MzMx.FX7PeSZqRZsDZd8gL1NA4SXF-4MCsJEuh1oVt_Nvt9Yg.BWoll2yXe_21TVahvD_a6F6Ba2tOMlb86ScTrk64BGYg.JPEG.shinsoosooo%2FIMG_3240.jpg&type=sc960_832',
     date: '2024-10-15',
-    category: 'umc',
+    category: 'rose',
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const contents = [
     image:
       'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA3MTVfMTUx%2FMDAxNjg5NDI3ODE5MDYy.AxTo2eqOwg_3EUJz8uK2dJbsHgzToIGDH42SvkB6B28g.JEX-w-NC1xv4s2bNOgiCzCaC5loQKclzvWPZbeMfx1Yg.JPEG.kuyu1220%2FIMG_4986.jpg&type=sc960_832',
     date: '2024-10-15',
-    category: 'umc',
+    category: 'rose',
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export const contents = [
     image:
       'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA3MjJfMTcy%2FMDAxNzIxNjQwNDMzNjgx.27ZFesxw73q2YA6LnuqmJ3l6nVn4-1M3lOQaHk0DrvEg.X1jzNmjHCkJKcFBG8vjIl_wPOpb5AqUZUyFqa1A6yeog.JPEG%2FIMG_7548.JPG&type=sc960_832',
     date: '2024-10-15',
-    category: 'umc',
+    category: 'rose',
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ export const contents = [
     image:
       'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA3MTNfMTMw%2FMDAxNTYzMDI2OTQyNzMy.Yslx5dcR2F5dUled0RnRvrEp_MkxHvNpxguwJI931kUg.JZnruZl8eWlu-YK8oEwYpYuXg7XZPyTO3hOfe3QoNSQg.JPEG.danmi1007%2F2019-06-19-18-57-41.jpg&type=sc960_832',
     date: '2024-10-15',
-    category: 'umc',
+    category: 'food',
   },
   {
     id: 6,
@@ -57,6 +57,6 @@ export const contents = [
     image:
       'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMDlfNzQg%2FMDAxNjc1OTE2MTY1NzI4.5OqKKe6061lAC-6wDW5XmOCcD6r_BtUsZ9s_zitQ8vcg.hkRd6PeswqU4C2ceE92BZgydU5MJEgbBaMezc6F5a2Yg.JPEG.eksk2371%2FIMG_9614.jpg&type=sc960_832',
     date: '2024-10-15',
-    category: 'umc',
+    category: 'rose',
   },
 ];

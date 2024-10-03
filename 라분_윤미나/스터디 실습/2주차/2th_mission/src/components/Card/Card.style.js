@@ -8,6 +8,7 @@ const Container = styled.article`
 
   display: flex;
   align-items: center;
+  color: black;
 
   img {
     width: 150px;
