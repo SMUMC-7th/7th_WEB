@@ -1,0 +1,42 @@
+
+.title{
+  height: 80px;
+  text-decoration: solid;
+  font-size: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+form>input{
+  width: 50%;
+  height: 35px;
+}
+
+.lists{
+  margin: 0 30%;
+  width: 60%;
+}
+.lists>div{
+  height: 35px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+button{
+  width: 80px;
+  height: 35px;
+  background-color: skyblue;
+  border-radius: 5px;
+  border: none;
+
+}
+  
