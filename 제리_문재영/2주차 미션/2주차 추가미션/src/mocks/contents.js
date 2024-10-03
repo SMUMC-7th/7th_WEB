@@ -1,4 +1,4 @@
-export const content = [
+const content = [
     {
       "id": 1,
       "title": "랫풀다운",
@@ -42,4 +42,5 @@ export const content = [
       "tips": "허리를 굽히지 않도록 주의하고, 항상 적절한 중량으로 시작하세요."
     }
   ]
+  export default content;
   

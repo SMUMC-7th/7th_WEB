@@ -1,3 +1,5 @@
+import '../Header/Header.css'
+
 function Header() {
     console.log("2");
     

@@ -1,15 +1,15 @@
 import Navbar from "./Navbar";
 import Profile from "./Profile";
+import "./Sidebar.css"
 
 function Sidebar(){
     console.log("sidebar");
     
     return (
-        <>
+        <div className="sidebar">
             <Profile/>
-            <h1>"사이드바"</h1>
             <Navbar/>
-        </>
+        </div>
     )
 }
 export default Sidebar;

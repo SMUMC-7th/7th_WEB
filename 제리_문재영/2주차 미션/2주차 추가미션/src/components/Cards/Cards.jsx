@@ -1,5 +1,7 @@
 import Card from "./Card";
-import contents from "../mocks/contents";
+// import {contents} from "../mocks/contents";
+import contents from "../../mocks/contents"
+import "./Cards.css"
 
 function Cards(){
     return(
