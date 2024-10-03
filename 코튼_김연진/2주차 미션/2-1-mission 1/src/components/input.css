@@ -1,0 +1,12 @@
+input {
+    border-radius: 5px;
+    border-color: rgb(131, 131, 131);
+    border-width: 1px;
+    padding: 8px;
+    width: 280px;
+    margin: auto 0
+}
+
+.container {
+    display: flex;
+}
