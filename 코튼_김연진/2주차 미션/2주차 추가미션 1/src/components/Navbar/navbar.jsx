@@ -11,8 +11,8 @@ function Navbar() {
             </S.Toggle>
             {IsClick && ( 
                 <S.DropdownContent>
-                    <S.Button>→ UMC-WEB</S.Button>
-                    <S.Button>→ 백준</S.Button>
+                    <S.Button to={'/umc'}>→ UMC-WEB</S.Button>
+                    <S.Button to={'/baekjoon'}>→ 백준</S.Button>
                 </S.DropdownContent>
             )}
         </S.Container>
