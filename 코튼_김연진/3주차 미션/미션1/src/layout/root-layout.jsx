@@ -8,10 +8,10 @@ const RootLayout = () => {
     return (
         <S.Container>
             <Navbar/>
-            <main style={{display:'flex', flex: '1'}}>
+            <S.Main>
                 <Sidebar/>
                 <Outlet/>
-            </main>
+            </S.Main>
         </S.Container>
     );
 };
