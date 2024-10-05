@@ -10,17 +10,21 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 2rem;
   height: 10%;
+  margin-top: 20px;
+  margin-left: 20px;
 `;
 
 const CategoryBox = styled.div`
   display: flex;
   flex-wrap: wrap;
+  margin-left: 20px;
 `;
 
 const Category = styled.div`
   flex: 1;
   width: 30%;
-  min-width: 200px; /* 최소 크기 설정 */
+  min-width: 280px; /* 최소 크기 설정 */
+  max-width: 280px;
   height: 100px;
   margin: 10px;
   cursor: pointer;
