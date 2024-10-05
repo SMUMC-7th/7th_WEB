@@ -25,6 +25,7 @@ function MovieCard(props) {
 
 MovieCard.PropTypes = {
   poster_path: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default MovieCard;

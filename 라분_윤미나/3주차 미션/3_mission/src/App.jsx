@@ -8,6 +8,10 @@ import NotFound from "./pages/not-found";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layout/root-layout";
+import NowPlaying from "./pages/now-playing";
+import Popular from "./pages/popular";
+import TopRated from "./pages/top-rated";
+import UpComing from "./pages/up-coming";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +38,22 @@ const router = createBrowserRouter([
       {
         path: "category",
         element: <CategoryPage />,
+      },
+      {
+        path: "/movies/now-playing",
+        element: <NowPlaying />,
+      },
+      {
+        path: "/movies/popular",
+        element: <Popular />,
+      },
+      {
+        path: "/movies/top-rated",
+        element: <TopRated />,
+      },
+      {
+        path: "/movies/up-coming",
+        element: <UpComing />,
       },
     ],
   },
