@@ -37,6 +37,7 @@ const Button = styled(Link)`
 const Buttons = styled.div`
     display: flex;
     margin-right: 10px;
+    gap: 10px;
 `
 
 export {Nav, StyledLink, Button, Buttons}

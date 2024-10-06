@@ -9,7 +9,7 @@ const HomePage = () => {
 
     useEffect(() => {
         const getMovies = async () => {
-            const movies = await axios.get(`/api/3/movie/popular?language=en-US&page=1`, { //CORS 문제 해결
+            const movies = await axios.get(`/api/3/movie/popular?language=ko&page=1`, { //CORS 문제 해결
                 headers: {
                     Authorization:'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmRjODM2Y2I2NDkzODI1ZTY3NTE4YWM2YzIyZTk0ZCIsIm5iZiI6MTcyNzkzMzY1OS45NzAzMDksInN1YiI6IjY2ZmUyNmY3Zjg3OGFkZmVkMDg0ZDE0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xJQF-PgzAhlQIKZPUssGvkFViuKZ5zmz_gQP-A2PuF0'
                 } 
