@@ -12,7 +12,7 @@ const Router = [
         element: <MainPage />,
       },
       {
-        index: "/content/:id",
+        path: "/content/:id",
         element: <ContentPage />,
       },
     ],

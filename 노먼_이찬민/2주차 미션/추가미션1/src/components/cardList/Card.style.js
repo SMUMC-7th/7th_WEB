@@ -5,6 +5,7 @@ const Container = styled.div`
   height: 20vh;
   display: flex;
   border: 1px solid black;
+  cursor: pointer;
 `;
 const Image = styled.div`
   width: 20%;

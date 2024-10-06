@@ -1,12 +1,15 @@
 import React from "react";
 import * as S from "./Navbar.style";
 
-function Navbar() {
+function Navbar(props) {
+  const { setCurrentCategory } = props;
   return (
     <S.Container>
       <ul>
-        <li>{"-> UMC-WEB"}</li>
-        <li>{"-> 백준"}</li>
+        <li onClick={() => setCurrentCategory("awesome")}>{"→ awesome"}</li>
+        <li onClick={() => setCurrentCategory("somethings")}>
+          {"→ somethings"}
+        </li>
       </ul>
     </S.Container>
   );
