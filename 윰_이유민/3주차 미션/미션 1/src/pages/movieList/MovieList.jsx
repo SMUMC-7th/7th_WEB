@@ -7,12 +7,13 @@ import axios from "axios";
 
 const MoviesPage = ({category}) => {
     const [movies, setMovies] = useState([])
+    const token = import.meta.env.VITE_API_KEY
 
     useEffect(() => {
         const getMovies = async () => {
             const movies = await axios.get(`https://api.themoviedb.org/3/movie/${category}?language=ko&page=1`, {
                 headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNTNkYWIyMDkxMzI2Y2Y3NTkwNTAwYjQyODNkNjZkNyIsIm5iZiI6MTcyNjE0MTU3Ny42MDM2ODcsInN1YiI6IjY0MzVmY2Y2NjUxZmNmMDBkM2RhYzNmNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cFPsPRHPidq2OnJ3U-3wHJYhnGajDFqUsM8XJ_a_0bw`
+                    Authorization: `Bearer ${token}`
                 }
             })
             setMovies(movies);
