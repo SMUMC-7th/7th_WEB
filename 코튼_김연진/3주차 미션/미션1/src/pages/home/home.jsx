@@ -9,7 +9,7 @@ const HomePage = () => {
 
     useEffect(() => {
         const getMovies = async () => {
-            const movies = await axios.get(`/api/3/movie/popular?language=ko&page=1`, { //CORS 문제 해결
+            const movies = await axios.get(`https://api.themoviedb.org/3/movie/popular?language=ko&page=1`, { //CORS 문제 해결
                 headers: {
                     Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`
                 } 
