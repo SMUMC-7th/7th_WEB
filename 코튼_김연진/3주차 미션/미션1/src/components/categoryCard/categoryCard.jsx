@@ -9,7 +9,7 @@ function categoryCard(props){
                 <S.Text>{text}</S.Text>
                 <img src={`${img_path}`}  alt="" />
         </S.Container>
-   </S.StyledLink>
+    </S.StyledLink>
 }
 
 

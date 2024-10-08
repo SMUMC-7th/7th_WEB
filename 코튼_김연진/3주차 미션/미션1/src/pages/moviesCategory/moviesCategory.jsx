@@ -12,7 +12,7 @@ const MoviesCategory = () => {
             try {
                 const response = await axios.get(`https://api.themoviedb.org/3/movie/${category}?language=ko&page=1`, {
                     headers: {
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYmRjODM2Y2I2NDkzODI1ZTY3NTE4YWM2YzIyZTk0ZCIsIm5iZiI6MTcyNzkzMzY1OS45NzAzMDksInN1YiI6IjY2ZmUyNmY3Zjg3OGFkZmVkMDg0ZDE0ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xJQF-PgzAhlQIKZPUssGvkFViuKZ5zmz_gQP-A2PuF0'
+                        Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`
                     }
                 });
                 setMovies(response.data.results); // 응답 데이터의 results만 저장

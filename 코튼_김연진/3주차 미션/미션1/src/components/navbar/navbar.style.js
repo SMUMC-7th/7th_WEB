@@ -15,6 +15,7 @@ const StyledLink = styled(Link)`
     text-decoration-line: none;
     font-size: 23px;
     margin-left: 20px;
+    font-weight: bold;
 `
 
 const Button = styled(Link)`
