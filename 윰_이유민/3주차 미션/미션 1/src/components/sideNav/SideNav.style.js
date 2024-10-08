@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -9,7 +10,7 @@ const Container = styled.div`
   color: white;
 `
 
-const Item = styled.a`
+const Item = styled(Link)`
   display: flex;
   flex-direction: row;
   gap: 10px;

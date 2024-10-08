@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Nav = styled.nav`
   height: 50px;
@@ -8,7 +9,7 @@ const Nav = styled.nav`
   margin: 0 10px;
 `
 
-const Logo = styled.a`
+const Logo = styled(Link)`
   color: red;
   cursor: pointer;
   text-decoration: none;
@@ -37,7 +38,7 @@ const BtnContainer = styled.div`
   }
 `
 
-const Login = styled.a`
+const Login = styled(Link)`
   background-color: black;
 
   &:hover {
@@ -46,7 +47,7 @@ const Login = styled.a`
   }
 `
 
-const Signup = styled.a`
+const Signup = styled(Link)`
   background-color: black;
 
   &:hover {

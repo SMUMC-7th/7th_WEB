@@ -5,11 +5,11 @@ import { MdMovie } from "react-icons/md";
 function SideNav() {
 
   return <S.Container>
-    <S.Item href="/search">
+    <S.Item to="/search">
       <IoSearch color="white" />
       <p>찾기</p>
     </S.Item>
-    <S.Item href="/movies">
+    <S.Item to="/movies">
       <MdMovie color="white" />
       <p>영화</p>
     </S.Item>
