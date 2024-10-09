@@ -13,8 +13,8 @@ const CategoryList = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
-    margin-left: 20px
-    
+    margin-left: 20px;
+    flex-wrap: wrap;
 `
 
 export {Container, Text, CategoryList}

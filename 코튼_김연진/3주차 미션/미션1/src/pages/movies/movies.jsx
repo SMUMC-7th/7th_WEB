@@ -1,14 +1,14 @@
 import * as S from './movies.style';
 import CategoryCard from '../../components/categoryCard/categoryCard';
-import categoryData from "../../mocks/category"; 
+import CategoryData from "../../constants/category"
 
 const Movie = () => {
     return (
         <S.Container>
             <S.Text>카테고리</S.Text>
             <S.CategoryList>
-                {categoryData.results.map((item) => { 
-                    return <CategoryCard key={item.id} {...item} />;
+                {CategoryData.map((item, idx) => { 
+                    return <CategoryCard key={idx} {...item} />
                 })}
             </S.CategoryList>
         </S.Container>
