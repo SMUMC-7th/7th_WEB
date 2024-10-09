@@ -1,15 +1,34 @@
 import * as S from "./MovieLIst.style.js";
-import { MOVIES } from "../../mocks/movies.js";
-import MovieCard from "../Moviecard/MovieCard.jsx";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const Movie = () => {
+import MovieCard from "../../components/MovieCard/MovieCard";
+
+const MovieList = ({ category }) => {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const getMovies = async () => {
+      const movies = await axios.get(
+        `https://api.themoviedb.org/3/movie/${category}?language=ko&page=1`,
+        {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
+          },
+        }
+      );
+      setMovies(movies);
+    };
+    getMovies();
+  }, [category]);
+
   return (
     <S.Container>
-      {MOVIES.results.map((movie) => (
+      {movies.data?.results.map((movie) => (
         <MovieCard key={movie.id} {...movie} />
       ))}
     </S.Container>
   );
 };
 
-export default Movie;
+export default MovieList;

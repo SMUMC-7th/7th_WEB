@@ -14,7 +14,17 @@ const Nav = styled.nav`
     width: 90px;
     height: 40px;
     border: none;
+
+    &: hover {
+      background-color: rgb(255, 0, 119);
+      border-radius: 10px;
+    }
   }
 `;
-
-export default Nav;
+/*
+const LinkLink = styled.Link`
+  color: "white";
+  fontsize: "17px";
+`;
+*/
+export { Nav };

@@ -2,9 +2,11 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/NavBar/NavBar";
 import SideBar from "../components/SideBar/SideBar";
 
+//import * as S from "./root-layout.style";
+
 const RootLayout = () => {
   return (
-    <div style={{ margin: "0 15%" }}>
+    <div>
       <Navbar />
       <div style={{ display: "flex" }}>
         <SideBar />

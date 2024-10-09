@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 150px;
-  height: 100vh;
-
-  margin-top: 10px;
-
+  width: 100vh;
   display: flex;
   flex-direction: column;
-
-  gap: 10px;
+  margin-left: 20px;
 `;
 
-export default Container;
+const H3 = styled.h3`
+  color: white;
+`;
+export { Container, H3 };
