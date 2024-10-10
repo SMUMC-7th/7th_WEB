@@ -1,8 +1,15 @@
+import { Link } from "react-router-dom";
+import Container from "./Header.style";
+import { SiApplemusic } from "react-icons/si";
+
 const Header = () => {
   return (
-    <header>
-      <h2>raboontify</h2>
-    </header>
+    <Link to={"/"} style={{ textDecoration: "none" }}>
+      <Container>
+        <SiApplemusic size="20px" />
+        <p>raboontify</p>
+      </Container>
+    </Link>
   );
 };
 
