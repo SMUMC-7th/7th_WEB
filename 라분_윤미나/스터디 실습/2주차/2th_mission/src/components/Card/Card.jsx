@@ -1,6 +1,7 @@
 import { Container } from '../Card/Card.style';
 import PropTypes from 'prop-types';
 import React from 'react';
+
 const Card = (props) => {
   const { title, content, image, date } = props;
 
