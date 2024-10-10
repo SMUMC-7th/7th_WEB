@@ -28,16 +28,18 @@ const Button = styled(Link)`
     align-items: center;
     justify-content: center;
     text-decoration-line: none;
-    background-color: black;
+    background-color: ${(props) => (props.signup ? "#FF1E9D" : "black")};
     &: hover {
         background-color: white;
         color: black;
     }
 `
 
+
 const Buttons = styled.div`
     display: flex;
     margin-right: 10px;
+    gap: 10px;
 `
 
 export {Nav, StyledLink, Button, Buttons}
