@@ -1,28 +1,13 @@
 
-import axios from "axios";
+
 import * as S from "../movieList/MovieList.style";
-import { useEffect, useState } from "react";
 import MovieCard from "../../components/movieCard/MovieCard";
+import useCustomFetch from "../../hooks/useCustomFetch";
 
 const HomePage = () => {
-  const [movies, setMovies] = useState([]);
-  const token = import.meta.env.VITE_TMDB_TOKEN;
-  const api = import.meta.env.VITE_MOVIE_API_URL
+  const {data: movies, isLoading, isError} = useCustomFetch(`/movie/popular?language=ko-kr`);
+  
 
-  useEffect(() => {
-    const getMovies = async () => {
-      const movies = await axios.get(
-        `${api}/movie/popular?language=ko&page=1`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      setMovies(movies);
-    };
-    getMovies();
-  }, []);
 
   return (
     <S.Container>
