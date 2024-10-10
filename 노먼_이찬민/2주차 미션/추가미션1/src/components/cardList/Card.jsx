@@ -2,10 +2,9 @@ import React from "react";
 import * as S from "./Card.style";
 
 function Card(props) {
-  const { item } = props;
-  console.log(item);
+  const { item, onClick } = props;
   return (
-    <S.Container>
+    <S.Container onClick={onClick}>
       <S.Image url={item.image} />
       <S.RightBox>
         <S.Title>{item.title}</S.Title>

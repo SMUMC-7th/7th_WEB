@@ -69,7 +69,7 @@ export const somethings = [
     content: "내용9",
     image: "/bread.jpg",
     date: "2024-10-23",
-    category: "somethings",
+    category: "awesome",
   },
   {
     id: 10,
@@ -77,6 +77,6 @@ export const somethings = [
     content: "내용10",
     image: "/bread.jpg",
     date: "2024-10-24",
-    category: "somethings",
+    category: "awesome",
   },
 ];

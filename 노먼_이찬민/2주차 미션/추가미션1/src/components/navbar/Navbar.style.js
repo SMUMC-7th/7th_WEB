@@ -7,6 +7,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  li {
+    cursor: pointer;
+  }
 `;
 
 export { Container };

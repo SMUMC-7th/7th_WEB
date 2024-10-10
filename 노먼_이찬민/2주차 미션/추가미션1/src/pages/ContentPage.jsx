@@ -1,7 +1,7 @@
 import React from "react";
 
 function ContentPage() {
-  return <div></div>;
+  return <div>content</div>;
 }
 
 export default ContentPage;
