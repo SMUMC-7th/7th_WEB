@@ -6,7 +6,8 @@ const Container = styled.div`
   width: 200px;
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
+  gap: 20px;
+  padding-left: 10px;
   color: white;
 `
 
@@ -17,6 +18,11 @@ const Item = styled(Link)`
   align-items: center;
   cursor: pointer;
   text-decoration: none;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 
   &:visited {
     color: white;

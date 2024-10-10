@@ -6,7 +6,7 @@ const Nav = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 10px;
+  padding: 16px 14px;
 `
 
 const Logo = styled(Link)`
@@ -31,7 +31,6 @@ const BtnContainer = styled.div`
     height: 30px;
     border: none;
     border-radius: 5px;
-    color: white;
     text-decoration: none;
     text-align: center;
     padding-top: 8px;
