@@ -5,13 +5,13 @@ import * as S from "./root-layout.style.js"
 
 const RootLayout = () => {
     return (
-        <>
+        <S.Container1>
             <Navbar/>
-            <S.Container>
+            <S.Container2>
                 <SideNav />
                 <Outlet/>
-            </S.Container>
-        </>
+            </S.Container2>
+        </S.Container1>
     );
 };
 
