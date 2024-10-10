@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     display: flex;
@@ -27,10 +28,12 @@ const Toggle = styled.div`
     gap: 10px;
     font-weight: bold;
 `
-const Button = styled.a`
+const Button = styled(Link)`
     border: none;
     background-color: white;
     width: 100px;
+    text-decoration-line: none;
+    color: black;
     cursor: pointer;
     &:hover {
         background-color: #f1f1f1;

@@ -2,11 +2,11 @@ import * as S from './card.style'
 
 function Card(props) {
 
-    const { image_path , title, content, date} = props;
+    const { id, image_path , title, content, date} = props;
     console.log(props);  
     return (
-        <S.Container>
-            <img src= {image_path} alt="" />  {/* image_path를 직접 사용 */}
+        <S.Container to={`/content/${id}`}>
+            <img src= {image_path} alt="" />  
             <div style={{display:'flex',flexDirection:'column', height:'150px', marginLeft: '10px',justifyContent: 'space-between'}}>
                 <S.Text>  
                     <S.Title>{title}</S.Title>
