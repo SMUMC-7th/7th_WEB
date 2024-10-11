@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Container = styled.div`
     flex: 1;
@@ -6,7 +6,7 @@ const Container = styled.div`
     position: relative;
     flex-direction: column;
     margin: 20px;
-`
+`;
 
 const Member = styled.div`
     display: flex;
@@ -15,7 +15,7 @@ const Member = styled.div`
     font-size: 12px;
     flex-wrap: wrap;
     gap: 10px;
-`
+`;
 
 const Title = styled.div`
     margin: 25px;
@@ -27,7 +27,7 @@ const Title = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-`
+`;
 
 const Alert = styled.div`
     display: flex;
@@ -38,6 +38,6 @@ const Alert = styled.div`
     color: white;
     align-items: center;
     justify-content: center;
-`   
+`;
 
-export {Container, Title, Member, Alert}
+export { Container, Title, Member, Alert };

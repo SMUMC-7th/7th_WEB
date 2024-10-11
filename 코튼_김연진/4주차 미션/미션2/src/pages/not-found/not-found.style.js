@@ -1,6 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
 
 const Container = styled.div`
     display: flex;
@@ -12,7 +11,7 @@ const Container = styled.div`
     height: 100vh;
     font-size: 30px;
     background-color: black;
-`
+`;
 
 const Button = styled(Link)`
     display: flex;
@@ -24,8 +23,8 @@ const Button = styled(Link)`
     align-items: center;
     justify-content: center;
     text-decoration-line: none;
-    background-color: #FF1E9D;
+    background-color: #ff1e9d;
     font-size: 20px;
-`
+`;
 
-export {Container, Button}
+export { Container, Button };

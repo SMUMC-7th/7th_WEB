@@ -1,4 +1,4 @@
-import * as S from './not-found.style'
+import * as S from './not-found.style';
 
 const NotFound = () => {
     return (

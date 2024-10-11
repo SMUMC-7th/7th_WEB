@@ -1,4 +1,4 @@
-import * as S from './search.style'
+import * as S from './search.style';
 
 const Search = () => {
     return (

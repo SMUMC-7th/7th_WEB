@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import {Link} from "react-router-dom"
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     height: 300px;
@@ -18,7 +18,13 @@ const Backdrop = styled.div`
     left: 0;
     width: 100%;
     /* 왼쪽은 검정색 불투명, 오른쪽은 투명 */
-    background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 1),
+        rgba(0, 0, 0, 0.7) 50%,
+        rgba(0, 0, 0, 0.5) 70%,
+        rgba(0, 0, 0, 0) 100%
+    );
     z-index: 1;
 `;
 
@@ -62,7 +68,6 @@ const Tagline = styled.div`
     font-style: italic;
 `;
 
-
 const Alert = styled.div`
     display: flex;
     text-align: center;
@@ -72,12 +77,12 @@ const Alert = styled.div`
     color: white;
     align-items: center;
     justify-content: center;
-`   
+`;
 const Button = styled(Link)`
     text-decoration: none;
     border-radius: 10px;
     width: 60px;
     height: 20px;
     background-color: purple;
-`
+`;
 export { Container, Title, Texts, Backdrop, Text, Tagline, Alert, Button };

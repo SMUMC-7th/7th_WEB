@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
@@ -23,6 +23,6 @@ const Text = styled.div`
 
 const StyledLink = styled(Link)`
     display: flex;
-`
+`;
 
-export { Container, Text, StyledLink};
+export { Container, Text, StyledLink };

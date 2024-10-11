@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { axiosInstance } from '../apis/axios-instance';
 
 const useCustomFetch = (url) => {
@@ -10,18 +10,18 @@ const useCustomFetch = (url) => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const response = await axiosInstance.get(url)
-                setData(response)
+                const response = await axiosInstance.get(url);
+                setData(response);
             } catch (error) {
                 console.log(error);
                 setIsError(true);
             } finally {
                 setIsLoading(false);
             }
-        }
+        };
         fetchData();
     }, [url]);
-    return {data, isLoading, isError}
-}
+    return { data, isLoading, isError };
+};
 
 export default useCustomFetch;

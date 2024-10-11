@@ -1,6 +1,4 @@
-import * as S from './login.style'
-
-
+import * as S from './login.style';
 
 const LogIn = () => {
     return (

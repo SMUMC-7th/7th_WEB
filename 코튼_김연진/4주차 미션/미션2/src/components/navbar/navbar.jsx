@@ -1,4 +1,4 @@
-import * as S from './navbar.style'
+import * as S from './navbar.style';
 
 const Navbar = () => {
     return (
@@ -6,7 +6,9 @@ const Navbar = () => {
             <S.StyledLink to={'/'}>CATFLIX</S.StyledLink>
             <S.Buttons>
                 <S.Button to={'/login'}>로그인</S.Button>
-                <S.Button to={'/signup'} signup='true' >회원가입</S.Button> 
+                <S.Button to={'/signup'} signup="true">
+                    회원가입
+                </S.Button>
             </S.Buttons>
         </S.Nav>
     );

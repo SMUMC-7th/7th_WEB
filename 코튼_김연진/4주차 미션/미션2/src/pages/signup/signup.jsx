@@ -1,4 +1,4 @@
-import * as S from './signup.style'
+import * as S from './signup.style';
 
 const SignUp = () => {
     return (
@@ -7,6 +7,5 @@ const SignUp = () => {
         </S.Container>
     );
 };
-
 
 export default SignUp;

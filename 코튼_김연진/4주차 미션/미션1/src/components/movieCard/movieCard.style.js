@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Container = styled.div`
     width: 140px;
@@ -10,7 +10,7 @@ const Container = styled.div`
         height: 200px;
         border-radius: 10px;
     }
-`
+`;
 
 const Backdrop = styled.div`
     width: 140px;
@@ -20,7 +20,7 @@ const Backdrop = styled.div`
     top: 0;
     left: 0;
     opacity: 0.5;
-`
+`;
 
 const Title = styled.div`
     display: block;
@@ -31,12 +31,12 @@ const Title = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-`
+`;
 
 const Release = styled.div`
     display: flex;
     color: white;
     font-size: 10px;
-`
+`;
 
-export {Container, Backdrop, Title, Release}
+export { Container, Backdrop, Title, Release };

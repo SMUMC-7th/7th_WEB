@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const Sidebar = styled.nav `
+const Sidebar = styled.nav`
     display: flex;
     flex-direction: column;
     width: 200px;
-    gap: 10px;  
+    gap: 10px;
     background-color: #1e1e1e;
-`
+`;
 const StyledLink = styled(Link)`
     margin-top: 10px;
     margin-left: 20px;
@@ -17,7 +17,7 @@ const StyledLink = styled(Link)`
     font-size: 15px;
     display: flex;
     align-items: center;
-    gap: 10px
-`
+    gap: 10px;
+`;
 
-export {Sidebar, StyledLink}
+export { Sidebar, StyledLink };
