@@ -3,14 +3,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import RootLayout from "./layout/root-layout";
 import Movies from "./components/Movies";
-import Login from "./pages/Login/Login";
-import Signup from "./pages/Signup/Signup";
-import SearchPage from "./pages/SearchPage";
-import Category from "./pages/MovieCategory";
-import NowPlaying from "./pages/NowPlaying";
-import Popular from "./pages/Popular";
-import TopRated from "./pages/TopRated";
-import UpComing from "./pages/UpComing";
+import {
+  Login,
+  Signup,
+  SearchPage,
+  MovieCategory,
+  NowPlaying,
+  Popular,
+  TopRated,
+  UpComing,
+} from "./pages/index";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "category",
-        element: <Category />,
+        element: <MovieCategory />,
       },
       {
         path: "movies/now-playing",
