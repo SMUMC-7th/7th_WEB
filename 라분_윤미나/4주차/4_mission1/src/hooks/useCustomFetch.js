@@ -3,12 +3,12 @@ import { axiosInstance } from "../apis/axios-instance";
 
 const useCustomFetch = (url) => {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoding] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoding(true); //처음에는 항상 로딩이 true
+      setIsLoading(true); //처음에는 항상 로딩이 true
       try {
         const response = await axiosInstance.get(url);
         setData(response);
@@ -16,7 +16,7 @@ const useCustomFetch = (url) => {
         console.error("Error fetching data:", error);
         setIsError(true);
       } finally {
-        setIsLoding(false);
+        setIsLoading(false);
       }
     };
     fetchData();

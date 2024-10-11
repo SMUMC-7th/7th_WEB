@@ -1,9 +1,5 @@
-//import { useEffect, useState } from "react";
-//import axios from "axios";
-
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { Container } from "../../components/MovieList/MovieLIst.style";
-//import { axiosInstance } from "../../apis/axios-instance";
 import useCustomFetch from "../../hooks/useCustomFetch";
 
 const MoviesPage = () => {

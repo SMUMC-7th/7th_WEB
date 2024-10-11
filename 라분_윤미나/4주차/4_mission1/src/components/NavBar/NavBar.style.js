@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Nav = styled.nav`
   display: flex;
   align-items: center;
-  gap: 70%;
+  justify-content: space-between;
 
   div {
     display: flex;
