@@ -29,6 +29,7 @@ const ContentWrapper = styled.div`
   background-color: #000;
   color: #fff;
   overflow-y: auto;
+  padding-bottom: 30px;
 `;
 
 export {
