@@ -1,4 +1,4 @@
-import MovieList from "../components/MovieList";
+import MovieList from "@/components/MovieList";
 
 const UpComing = () => {
   return <MovieList category="upcoming" />;

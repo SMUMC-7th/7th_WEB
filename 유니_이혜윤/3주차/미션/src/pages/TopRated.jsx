@@ -1,4 +1,4 @@
-import MovieList from "../components/MovieList";
+import MovieList from "@/components/MovieList";
 
 const TopRated = () => {
   return <MovieList category="top_rated" />;

@@ -12,7 +12,7 @@ import {
   Popular,
   TopRated,
   UpComing,
-} from "./pages/index";
+} from "@/pages/index";
 
 const router = createBrowserRouter([
   {
