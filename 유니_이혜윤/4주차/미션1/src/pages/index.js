@@ -7,3 +7,4 @@ export { default as Popular } from "./Popular";
 export { default as SearchPage } from "./SearchPage";
 export { default as TopRated } from "./TopRated";
 export { default as UpComing } from "./UpComing";
+export { default as MovieDetail } from "./MovieDetail/MovieDetail";

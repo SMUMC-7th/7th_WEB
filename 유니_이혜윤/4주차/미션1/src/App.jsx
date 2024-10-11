@@ -12,6 +12,7 @@ import {
   Popular,
   TopRated,
   UpComing,
+  MovieDetail,
 } from "@/pages/index";
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "movies/up-coming",
         element: <UpComing />,
+      },
+      {
+        path: "movies/:movieId",
+        element: <MovieDetail />,
       },
     ],
   },
