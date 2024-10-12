@@ -12,22 +12,29 @@ const ImageContainer = styled.div`
   position: relative;
   border-radius: 20px;
   cursor: pointer;
+  background-image: url(${(props) => props.$imgUrl});
+  background-size: cover;
+  background-position: center;
 
-  img {
-    width: 140px;
-    height: 200px;
-    border-radius: 20px;
-  }
-`
-
-const Backdrop = styled.div`
-    width: 140px;
-    height: 200px;
-    background-color: black;
+  &:hover::after {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
 `
 
 const InfoContainer = styled.div`
@@ -45,4 +52,4 @@ const InfoContainer = styled.div`
   }
 `
 
-export { Container, ImageContainer, Backdrop, InfoContainer }
+export { Container, ImageContainer, InfoContainer }

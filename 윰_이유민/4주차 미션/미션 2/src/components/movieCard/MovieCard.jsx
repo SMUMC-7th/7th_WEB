@@ -9,18 +9,11 @@ function MovieCard(movie) {
 
   return (
     <S.Container>
-      <S.ImageContainer>
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-          alt=""
-          onMouseOver={() => setIsHover(true)}
-          onMouseOut={() => {
-            setIsHover(false);
-          }}
-          onClick={() => nav(`/movies/${id}`)}
-        />
-        {isHover && <S.Backdrop />}
-      </S.ImageContainer>
+      <S.ImageContainer
+        $imgUrl={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        alt={`${title}의 포스터`}
+        onClick={() => nav(`/movies/${id}`)}
+      />
       <S.InfoContainer>
         <h5>{title}</h5>
         <p>{release_date}</p>
