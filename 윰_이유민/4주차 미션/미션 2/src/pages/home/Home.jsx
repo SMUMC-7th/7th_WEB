@@ -7,7 +7,7 @@ import LoadingSpinner from "../../components/loadingSpinner/loadingSpinner";
 
 const HomePage = () => {
   const {data: movies, isLoading, isError} = useCustomFetch(`/movie/popular?language=ko-kr`);
-  
+
   if (isLoading) {
     return <LoadingSpinner />
   }

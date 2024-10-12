@@ -11,6 +11,7 @@ import {
   Login,
   Signup,
 } from './pages/index';
+import MovieDetail from './pages/movieDetail/MovieDetail';
 
 const router = createBrowserRouter([
   {
@@ -31,8 +32,12 @@ const router = createBrowserRouter([
         element: <MovieCategory />,
       },
       {
-        path: '/movies/:category',
+        path: '/movies/category/:category',
         element: <MovieList />,
+      },
+      {
+        path: '/movies/:movieId',
+        element: <MovieDetail />
       },
       {
         path: '/login',
