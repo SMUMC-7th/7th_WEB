@@ -13,12 +13,12 @@ const CategoryContainer = styled.div `
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
 `
 
 const CategoryItem = styled(Link)`
-  width: 260px;
+  width: 230px;
   height: 120px;
   border-radius: 20px;
   background-image: url(${(props) => props.img});
