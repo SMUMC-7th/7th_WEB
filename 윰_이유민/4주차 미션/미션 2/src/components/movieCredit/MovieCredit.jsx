@@ -17,7 +17,7 @@ function MovieCredit() {
     return <div>에러 발생..</div>
   }
 
-  const { cast, crew } = movie.data;
+  const { cast = [], crew = [] } = movie.data || {};
 
   return (
     <S.Container>
