@@ -9,8 +9,8 @@ const RootLayout = () => {
             <Navbar/>
             <S.Main>
                 <Sidebar/>
+                <Outlet/>
             </S.Main>
-            <Outlet/>
         </S.Container>
     )
 }
