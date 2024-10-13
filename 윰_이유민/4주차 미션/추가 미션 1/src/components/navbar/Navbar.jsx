@@ -1,3 +1,4 @@
+import { CreateSessionBtn } from "../buttons/CreateSessionBtn";
 import { GetTokenBtn } from "../buttons/GetTokenBtn";
 import { FaBasketShopping } from "react-icons/fa6";
 import * as S from "./Navbar.style";
@@ -11,8 +12,8 @@ function navBar() {
         <h3>영화 장바구니 망둥기</h3>
       </S.Logo>
       <S.BtnContainer>
-        <button>session</button>
         <GetTokenBtn />
+        <CreateSessionBtn />
       </S.BtnContainer>
     </S.Container>
   )
