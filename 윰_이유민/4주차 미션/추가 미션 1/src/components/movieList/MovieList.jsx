@@ -3,8 +3,8 @@ import { MovieCard } from "../movieCard/MovieCard";
 import * as S from "./MovieList.style"
 
 function MovieList() {
-
-  const {data: movies, isLoading, isError} = useFetchData(`/3/movie/popular?language=ko&page=1`)
+  // 영화 목록 (popular) 불러오기
+  const {data: movies, isLoading, isError} = useFetchData(`/movie/popular?language=ko&page=1`)
 
   if (isLoading) {
     return <div>로딩 중..</div>
@@ -18,8 +18,7 @@ function MovieList() {
     <S.Container>
       <h2>Movies</h2>
       <S.MovieList>
-        {movies.data?.results.map((movie, _) =>
-          <MovieCard key={movie.id} {...movie} />
+        {movies.data?.results.slice(0,20).map((movie, _) =>
         )}
       </S.MovieList>
     </S.Container>
