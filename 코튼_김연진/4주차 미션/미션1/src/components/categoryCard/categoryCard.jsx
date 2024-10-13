@@ -7,7 +7,10 @@ function categoryCard(props) {
         <S.StyledLink to={`${move_path}`}>
             <S.Container>
                 <S.Text>{text}</S.Text>
-                <img src={`${img_path}`} alt="" />
+                <img
+                    src={`${img_path}`}
+                    alt="해당 카테고리로 이동할 수 있는 이미지"
+                />
             </S.Container>
         </S.StyledLink>
     );

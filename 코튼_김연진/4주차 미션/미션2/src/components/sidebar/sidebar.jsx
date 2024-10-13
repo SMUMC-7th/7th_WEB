@@ -6,7 +6,6 @@ const Navbar = () => {
     return (
         <S.Sidebar>
             <S.StyledLink to={'/search'}>
-                {' '}
                 <FaSearch /> 찾기
             </S.StyledLink>
             <S.StyledLink to={'/category'}>

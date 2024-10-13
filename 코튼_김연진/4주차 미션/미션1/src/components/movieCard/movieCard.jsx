@@ -13,7 +13,7 @@ function MovieCard(props) {
         >
             <img
                 src={`https://image.tmdb.org/t/p/original${poster_path}`}
-                alt=""
+                alt="포스터 사진"
             />
             {ishovered && <S.Backdrop />}
             <S.Title>{title}</S.Title>

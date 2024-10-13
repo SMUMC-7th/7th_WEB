@@ -22,7 +22,7 @@ const MoviesCategory = () => {
 
     return (
         <S.Container>
-            {movies.data?.results.map((movie) => (
+            {movies?.data?.results.map((movie) => (
                 <MovieCard key={movie.id} {...movie} />
             ))}
         </S.Container>

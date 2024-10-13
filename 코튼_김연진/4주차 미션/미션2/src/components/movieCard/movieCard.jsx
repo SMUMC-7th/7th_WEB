@@ -5,7 +5,7 @@ function MovieCard(props) {
     console.log(props);
     const { poster_path, title, release_date, id } = props;
     const [ishovered, setIsHovered] = useState(false);
-    console.log(release_date);
+
     return (
         <S.Container
             to={`/movies/${id}`}
@@ -14,7 +14,7 @@ function MovieCard(props) {
         >
             <img
                 src={`https://image.tmdb.org/t/p/original${poster_path}`}
-                alt=""
+                alt="포스터 이미지"
             />
             {ishovered && <S.Backdrop />}
             <S.Title>{title}</S.Title>

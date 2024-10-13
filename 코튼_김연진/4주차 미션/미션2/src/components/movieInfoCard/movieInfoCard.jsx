@@ -14,11 +14,11 @@ function MovieInfoCard({ movieId }) {
     const movieData = movie.data;
 
     if (isLoading) {
-        return <Loading></Loading>;
+        return <Loading />;
     }
 
     if (isError) {
-        return <Error></Error>;
+        return <Error />;
     }
 
     if (!movieData) {

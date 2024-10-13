@@ -14,10 +14,10 @@ const MoviesCategory = () => {
     } = useCustomFetch(`/movie/${category}?language=ko&page=1`);
 
     if (isLoading) {
-        return <Loading></Loading>;
+        return <Loading />;
     }
     if (isError) {
-        return <Error></Error>;
+        return <Error />;
     }
     return (
         <S.Container>

@@ -1,5 +1,5 @@
 import Lottie from 'react-lottie-player';
-import errorJson from '../../lottie/Animation - 1728478966350.json';
+import errorJson from '../../lottie/Animation-error.json';
 import * as S from './error.style';
 
 const Error = () => {

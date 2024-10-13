@@ -12,10 +12,10 @@ const CreditInfoList = ({ movieId }) => {
     } = useCustomFetch(`/movie/${movieId}/credits?language=ko`);
 
     if (isLoading) {
-        return <Loading></Loading>;
+        return <Loading />;
     }
     if (isError) {
-        return <Error></Error>;
+        return <Error />;
     }
     if (!credit?.data) {
         return <S.Alert>데이터를 찾을 수 없습니다...</S.Alert>;
@@ -25,10 +25,10 @@ const CreditInfoList = ({ movieId }) => {
         <S.Container>
             <S.Title>감독/출연</S.Title>
             <S.Member>
-                {credit.data.cast.map((cast) => (
+                {credit?.data.cast.map((cast) => (
                     <Profile key={cast.id} {...cast} />
                 ))}
-                {credit.data.crew.map((crew) => (
+                {credit?.data.crew.map((crew) => (
                     <Profile key={crew.id} {...crew} />
                 ))}
             </S.Member>

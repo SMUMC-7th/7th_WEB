@@ -24,7 +24,6 @@ const HomePage = () => {
     return (
         <S.Container>
             {movies.data?.results.map((movie, _) => {
-                //?: optional changing
                 console.log(_);
                 return <MovieCard key={movie.id} {...movie} />;
             })}

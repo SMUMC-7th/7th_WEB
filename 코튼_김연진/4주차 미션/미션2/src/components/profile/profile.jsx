@@ -14,7 +14,7 @@ function Profile({ profile_path, name, character, job }) {
             ) : (
                 <img
                     src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png"
-                    alt="No Image Available"
+                    alt="접근할 수 있는 이미지가 없습니다"
                 />
             )}
             <S.Name>{name}</S.Name>
