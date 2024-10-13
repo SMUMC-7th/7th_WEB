@@ -8,14 +8,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
+  cursor: pointer;
 
   img {
-    width: 87px;
+    width: 86px;
     height: 120px;
     object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    cursor: pointer;
   }
 
   p {
@@ -26,6 +26,13 @@ const Container = styled.div`
     text-overflow: ellipsis;
     margin: 0 10px;
     white-space: nowrap;
+  }
+
+  &:hover {
+    border: 3px solid white;
+    img {
+      width: 85px;
+    }
   }
 `
 
