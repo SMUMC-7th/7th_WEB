@@ -1,15 +1,15 @@
-import * as S from './MovieCard.style'
+import * as S from './MovieCard.style';
 
-function MovieCard(movie) {
-
-  const { poster_path, title } = movie;
-
+function MovieCard({poster_path, title, onClickMethod}) {
   return (
-    <S.Container>
-      <img alt={`${title} 포스터`} src={`https://image.tmdb.org/t/p/w500/${poster_path}`} />
+    <S.Container onClick={onClickMethod}>
+      <img
+        alt={`${title} 포스터`}
+        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+      />
       <p>{title}</p>
     </S.Container>
-  )
+  );
 }
 
-export { MovieCard }
+export { MovieCard };
