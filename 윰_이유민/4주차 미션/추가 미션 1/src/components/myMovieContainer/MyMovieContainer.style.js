@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const MyMovieList = styled.div`
+const MyContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,4 +26,15 @@ const BtnContainer = styled.div`
   }
 `
 
-export { MyMovieList, BtnContainer }
+const MovieList = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  grid-template-rows: 150px;
+  gap: 20px;
+  row-gap: 20px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+`
+
+export { MyContainer, BtnContainer, MovieList }

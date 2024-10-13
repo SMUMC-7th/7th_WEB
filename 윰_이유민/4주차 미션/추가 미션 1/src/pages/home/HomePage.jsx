@@ -1,5 +1,5 @@
 import { MovieList } from "../../components/movieList/MovieList";
-import { MyMovieList } from "../../components/myMovieList/MyMovie";
+import { MyMovieContainer } from "../../components/myMovieContainer/MyMovieContainer";
 import * as S from "./HomePage.style"
 
 const HomePage = () => {
@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <S.Container>
       <MovieList />
-      <MyMovieList />
+      <MyMovieContainer />
     </S.Container>
   );
 };
