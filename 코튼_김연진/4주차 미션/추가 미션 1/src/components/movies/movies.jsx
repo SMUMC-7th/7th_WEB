@@ -1,6 +1,8 @@
 import useCustomFetch from '../../hooks/useCustomFetch';
 import MovieCard from '../movieCard/movieCard';
 import * as S from './movies.style';
+import Error from '../error/error';
+import Loading from '../loading/loading';
 
 const Movies = ({ setMovieIdList, movieIdList }) => {
     const {
@@ -10,10 +12,10 @@ const Movies = ({ setMovieIdList, movieIdList }) => {
     } = useCustomFetch(`/movie/popular?language=ko&page=1`);
 
     if (isLoading) {
-        return null;
+        return <Loading />;
     }
     if (isError) {
-        return null;
+        return <Error />;
     }
 
     return (

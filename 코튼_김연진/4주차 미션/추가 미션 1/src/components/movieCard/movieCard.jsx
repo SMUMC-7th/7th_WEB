@@ -2,6 +2,7 @@ import * as S from './movieCard.style';
 import { useState } from 'react';
 const MovieCard = ({ title, poster_path, id, setMovieIdList }) => {
     const [ishovered, setIsHovered] = useState(false);
+
     const handleAddMovie = () => {
         if (localStorage.getItem('movieId')) {
             let storedMovieIdList = JSON.parse(localStorage.getItem('movieId'));

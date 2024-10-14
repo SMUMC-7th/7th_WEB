@@ -1,5 +1,6 @@
 import * as S from './movieListCard.style';
-// import axios from 'axios';
+import Error from '../error/error';
+import Loading from '../loading/loading';
 import { useState } from 'react';
 import useCustomFetch from '../../hooks/useCustomFetch';
 const MovieListCard = ({ movieId, onClick }) => {
@@ -17,12 +18,12 @@ const MovieListCard = ({ movieId, onClick }) => {
 
     const movieData = movie.data;
     if (isLoading) {
-        return <div></div>;
+        return <Loading />;
     }
 
     if (isError) {
         console.log('에러임');
-        return <div></div>;
+        return <Error />;
     }
 
     if (!movieData) {
