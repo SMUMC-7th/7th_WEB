@@ -1,37 +1,20 @@
-import { useState } from 'react';
-import { axiosInstance } from '../../apis/axios-instance';
+import { useRequestApi } from '../../hooks/useRequestApi';
 
 function DeleteBtn() {
-  const [isLoading, setIsLoading] = useState(false);
+  const { handleRequest, isLoading, isError } = useRequestApi();
 
   const handleDeleteList = async () => {
-    setIsLoading(true);
+    handleRequest({
+      method: "delete",
+      url: `/list/${localStorage.getItem("list_id")}?session_id=${localStorage.getItem("session_id")}`,
+      localKeys: ["list_id", "session_id"],
+      onSuccess: () => {
+        alert("리스트가 삭제되었습니다.");
+        localStorage.removeItem("list_id");
+      },
+      errorMessage: "리스트를 삭제하는 데 오류가 발생했습니다.",
+    });
 
-    const list_id = localStorage.getItem('list_id');
-    const session_id = localStorage.getItem('session_id');
-
-    if (!session_id) {
-      alert(
-        "Session ID가 존재하지 않습니다! 먼저 'session' 버튼을 클릭하여 ID를 받아주세요.",
-      );
-      return;
-    } else if (!list_id) {
-      alert(
-        "리스트가 존재하지 않습니다! 먼저 '만들기' 버튼을 클릭하여 리스트를 생성하세요.",
-      );
-    }
-
-    try {
-      const response = await axiosInstance.delete(
-        `/list/${list_id}?session_id=${session_id}`,
-      );
-      alert("리스트가 삭제되었습니다.");
-      localStorage.removeItem("list_id");
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   return (
