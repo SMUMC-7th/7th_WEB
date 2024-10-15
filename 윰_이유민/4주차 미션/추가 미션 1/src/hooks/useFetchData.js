@@ -2,7 +2,7 @@ import { useState } from "react";
 import { axiosInstance } from "../apis/axios-instance";
 import { useEffect } from "react";
 
-const useFetchData = (url) => {
+const useFetchData = (url, newUrl = null) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -20,8 +20,10 @@ const useFetchData = (url) => {
         setIsLoading(false);
       }
     }
-    fetchData();
-  }, [url])
+    if (url) {
+      fetchData();
+    }
+  }, [url, newUrl])
 
   return {data, isLoading, isError}
 }
