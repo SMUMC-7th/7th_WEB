@@ -26,7 +26,7 @@ function MovieList(props) {
           );
         })}
       {isError && <div>죄송합니다. 불러오는 중 오류가 발생했습니다.</div>}
-      {isLoading && <LoadingSpinner />}
+      {!isLoading && <LoadingSpinner />}
     </S.Container>
   );
 }

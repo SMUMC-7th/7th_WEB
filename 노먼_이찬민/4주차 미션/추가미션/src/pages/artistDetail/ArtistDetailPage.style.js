@@ -8,4 +8,16 @@ const Container = styled.div`
   align-items: center;
 `;
 
-export { Container };
+const Card = styled.div`
+  width: 80%;
+  height: 300px;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+
+  img {
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+  }
+`;
+
+export { Container, Card };
