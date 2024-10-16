@@ -13,7 +13,7 @@ const Container = styled.div`
 const Button = styled.div`
   gap: 20px;
   button {
-    width: 70px;
+    width: 90px;
     border: none;
     border-radius: 10px;
     background-color: #118edc;
@@ -36,4 +36,31 @@ const MovieList = styled.div`
   gap: 15px;
 `;
 
-export { Container, Button, MovieList };
+const MovieWrapper = styled.div`
+  margin-top: 30px;
+  position: relative;
+  cursor: pointer;
+  padding: 10px;
+
+  border: 3px solid #2a2d31;
+  border-radius: 10px;
+
+  img {
+    border-radius: 5px;
+    width: 180px;
+    height: 275px;
+  }
+
+  h3 {
+    font-size: 15px;
+    padding-top: 3px;
+    color: white;
+  }
+
+  p {
+    font-size: 11px;
+    color: #ddd;
+  }
+`;
+
+export { Container, Button, MovieList, MovieWrapper };
