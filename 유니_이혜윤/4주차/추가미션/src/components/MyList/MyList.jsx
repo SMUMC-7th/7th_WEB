@@ -26,8 +26,6 @@ const MyList = () => {
     );
     setList(listData);
     alert("리스트 생성");
-
-    console.log(list);
     localStorage.setItem("list_id", list.data?.list_id);
   };
 
@@ -48,7 +46,7 @@ const MyList = () => {
           },
         }
       );
-      console.log(movie.id);
+      // console.log(movie.id);
       setSelectMovie((prev) => [...prev, movie]);
       alert("영화가 추가되었습니다!");
     } else {
@@ -56,7 +54,7 @@ const MyList = () => {
     }
   };
 
-  console.log(selectMovie);
+  // console.log(selectMovie);
 
   // 영화 삭제
   const handleRemoveMovie = async (movie) => {
@@ -74,6 +72,28 @@ const MyList = () => {
     setSelectMovie((prev) => prev.filter((e) => e.id !== movie.id));
   };
 
+  // 리스트 삭제
+  const handleRemoveList = async () => {
+    if (selectMovie.length === 0) {
+      alert("리스트가 비어있습니다!");
+      return;
+    }
+
+    const res = await axios.delete(
+      `https://api.themoviedb.org/3/list/${list_id}?session_id=${session_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ` + import.meta.env.VITE_MOVIE_TOKEN,
+        },
+      }
+    );
+    if (res.status === 200) {
+      setSelectMovie([]); // 리스트 목록 초기화
+      localStorage.removeItem("list_id"); // localStorage에서도 삭제해야 리스트 바로 생성 가능
+      alert("리스트가 삭제되었습니다!");
+    }
+  };
+
   return (
     <S.Container>
       <MovieList onAddMovie={handleAddedMovie} />
@@ -82,7 +102,7 @@ const MyList = () => {
       <S.Button>
         <button onClick={handleCreate}>만들기</button>
         <button>가져오기</button>
-        <button>리스트 삭제</button>
+        <button onClick={handleRemoveList}>리스트 삭제</button>
       </S.Button>
 
       <S.MovieList>
@@ -101,6 +121,8 @@ const MyList = () => {
           </S.MovieWrapper>
         ))}
       </S.MovieList>
+
+      {selectMovie.length === 0 && <h5>아직 담은 영화가 없습니다 😥</h5>}
     </S.Container>
   );
 };
