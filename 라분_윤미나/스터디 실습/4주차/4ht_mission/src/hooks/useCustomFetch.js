@@ -8,12 +8,13 @@ const useCustomFetch = (url) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true); //처음에는 항상 로딩이 true
+      setIsLoading(true);
       try {
         const response = await axiosInstance.get(url);
+        //console.log(response);
         setData(response);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error(error);
         setIsError(true);
       } finally {
         setIsLoading(false);
@@ -22,6 +23,7 @@ const useCustomFetch = (url) => {
     fetchData();
   }, [url]);
 
+  //console.log(data);
   return { data, isLoading, isError };
 };
 

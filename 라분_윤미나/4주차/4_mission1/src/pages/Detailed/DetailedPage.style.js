@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  min-width: 100px;
-  height: 100vh;
-
-  margin-top: 10px;
-
   display: flex;
   flex-direction: column;
+  margin-left: 50px;
 
-  gap: 10px;
+  hr {
+    width: 100%;
+    border: 0.5px solid white;
+  }
 `;
 
-export default Container;
+export { Container };
