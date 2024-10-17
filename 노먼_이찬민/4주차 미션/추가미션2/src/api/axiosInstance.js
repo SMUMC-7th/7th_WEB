@@ -1,0 +1,38 @@
+import axios from "axios";
+
+const BASE_URL = "https://api.themoviedb.org";
+
+// 단순 get요청으로 인증값이 필요없는 경우
+const axiosApi = (url) => {
+  const instance = axios.create({
+    baseURL: url,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return instance;
+};
+
+// post, delete등 api요청 시 인증값이 필요한 경우
+const axiosAuthApi = (url) => {
+  const instance = axios.create({
+    baseURL: url,
+    headers: {
+      Authorization: "Bearer " + import.meta.env.VITE_MOVIE_API_TOKEN, // .env에 숨겨놓은 api 토큰을 사용
+    },
+  });
+  // instance.interceptors.request.use(
+  //   (config) => {
+  //     const token = localStorage.getItem("accessToken");
+  //     if (token) {
+  //       config.headers.Authorization = `Bearer ${token}`;
+  //     }
+  //     return config;
+  //   },
+  //   (error) => Promise.reject(error)
+  // );
+  return instance;
+};
+
+export const authInstance = axiosAuthApi(BASE_URL);
+export const defaultInstance = axiosApi(BASE_URL);
