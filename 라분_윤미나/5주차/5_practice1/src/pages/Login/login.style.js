@@ -25,6 +25,7 @@ const ErrorText = styled.p`
 `;
 
 const Button = styled.button`
+  width: 400px;
   background-color: rgb(255, 0, 119);
   color: white;
 `;

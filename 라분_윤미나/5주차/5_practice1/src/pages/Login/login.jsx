@@ -37,8 +37,8 @@ const LoginPage = () => {
       )}
       <S.Button
         onClick={handlePressLogin}
-        disabled={!login.isValid}
-        style={{ background: login.isValid ? "rgb(255, 0, 119)" : "gray" }}
+        // disabled={!login.isValid}
+        // style={{ background: login.isValid ? "rgb(255, 0, 119)" : "gray" }}
       >
         로그인
       </S.Button>
