@@ -2,22 +2,22 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "../../components/Card/MovieCard"
 import * as S from "./HomePage.styled";
+import { axiosInstance } from "../../apis/axios-instance";
+
+import useCustomFetch from "../../hooks/useCustomFetch";
+
+
 const HomePage = () => {
-    const [movies, setMovies] = useState([])
-    
-    useEffect(() => {
-        const getMovies = async () => {
-            const movies = await axios.get('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc', {
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5OWZlZGIyZWU2YzZkNWJkYTZhNzY0ODcwMzQyNTk5MyIsIm5iZiI6MTcyODQ1ODExOC4zMTY5MDEsInN1YiI6IjY3MDNlNTRkYTVmMjlmNDNhNTczZWQxYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.MUKXDJxxkKCWfd2ezPrlQislHTnb0myZBDIRGRHEg-I',
-                }
-            })
-            setMovies(movies);
-        }
-        getMovies()
-    }, []);
-    // console.log(movies.data.results);
-    
+    const {data: movies, isLoading, isError} = useCustomFetch(`/discover/movie`)
+    // console.log(isLoading);
+    if(isLoading){
+        return <div>
+            <h1 style={{color:"white"}}>로딩중입니다...</h1>
+        </div>
+    }
+    if (isError){
+        return <div><h1 style={{color:"white"}}>에러발생</h1></div>
+    }
     return (
         <S.Container>
             {movies.data?.results.map((movie, _) => {

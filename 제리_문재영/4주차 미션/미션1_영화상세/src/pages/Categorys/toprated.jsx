@@ -2,24 +2,19 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import MovieCard from "../../components/Card/MovieCard"
 import * as S from '../homePage/HomePage.styled'
+import useCustomFetch from "../../hooks/useCustomFetch";
 
 
 const TopRated = () => {
-    const [movies, setMovies] = useState([])
-
-    useEffect(() => {
-        const getMovies = async () => {
-            const movies = await axios.get('https://api.themoviedb.org/3/movie/top_rated', {
-                headers: {
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5OWZlZGIyZWU2YzZkNWJkYTZhNzY0ODcwMzQyNTk5MyIsIm5iZiI6MTcyODY2MjY1My44NzMyNTQsInN1YiI6IjY3MDNlNTRkYTVmMjlmNDNhNTczZWQxYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.OLZauy_h4fSa_16ZabwdVLluRrqDKrvUnhYtz1hfwQ0',
-                }
-            })
-            setMovies(movies);
-        }
-        getMovies()
-    }, []);
-    // console.log(movies.data.results);
-    // console.log("nowplaying");
+    const {data:movies, isLoading, isError} = useCustomFetch(`/movie/top_rated`);
+    if(isLoading){
+        return <div>
+            <h1 style={{color:"white"}}>로딩중입니다...</h1>
+        </div>
+    }
+    if (isError){
+        return <div><h1 style={{color:"white"}}>에러발생</h1></div>
+    }
     
     return (
         <S.Container>
