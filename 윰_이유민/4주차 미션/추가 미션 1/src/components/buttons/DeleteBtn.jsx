@@ -1,6 +1,6 @@
 import { useRequestApi } from '../../hooks/useRequestApi';
 
-function DeleteBtn() {
+function DeleteBtn({ onListDeleted }) {
   const { handleRequest, isLoading, isError } = useRequestApi();
 
   const handleDeleteList = async () => {
@@ -11,6 +11,7 @@ function DeleteBtn() {
       onSuccess: () => {
         alert("리스트가 삭제되었습니다.");
         localStorage.removeItem("list_id");
+        onListDeleted();
       },
       errorMessage: "리스트를 삭제하는 데 오류가 발생했습니다.",
     });
