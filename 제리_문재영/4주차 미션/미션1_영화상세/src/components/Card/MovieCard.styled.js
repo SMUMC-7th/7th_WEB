@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: start;

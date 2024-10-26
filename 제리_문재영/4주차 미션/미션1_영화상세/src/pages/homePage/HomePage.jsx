@@ -9,7 +9,7 @@ import useCustomFetch from "../../hooks/useCustomFetch";
 
 const HomePage = () => {
     const {data: movies, isLoading, isError} = useCustomFetch(`/discover/movie`)
-    // console.log(isLoading);
+    // console.log('rufrhk',movies.data?.results[0].id);
     if(isLoading){
         return <div>
             <h1 style={{color:"white"}}>로딩중입니다...</h1>
