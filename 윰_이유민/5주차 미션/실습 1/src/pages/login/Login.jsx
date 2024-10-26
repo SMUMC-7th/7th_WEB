@@ -19,15 +19,21 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isSubmitting, errors, isValid },
   } = useForm({
     mode: 'onChange',
     resolver: yupResolver(schema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   const onSubmit = (data) => {
-    console.log('로그인 폼 데이터 제출');
+    alert('로그인 성공!');
     console.log(data);
+    reset({});
   };
 
   return (
