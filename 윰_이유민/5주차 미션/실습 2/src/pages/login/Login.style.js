@@ -15,7 +15,6 @@ const Form = styled.form`
   input,
   button {
     height: 36px;
-    border: none;
     border-radius: 10px;
   }
 `;
@@ -31,6 +30,7 @@ const Input = styled.input`
   width: 270px;
   padding-left: 10px;
   color: black;
+  border: ${(props) => (props.error ? '1.5px solid red' : 'none')};
 
   &:focus {
     outline: none;
@@ -46,6 +46,7 @@ const LoginBtn = styled.button`
   width: 280px;
   background-color: red;
   cursor: pointer;
+  border: none;
 
   &:disabled {
     background-color: gray;
