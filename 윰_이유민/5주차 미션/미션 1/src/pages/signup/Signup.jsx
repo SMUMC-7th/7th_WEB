@@ -1,74 +1,68 @@
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import useForm from '../../hooks/useForm.js';
+import { validateSignup } from '../../utils/validate.js';
 import * as S from './Signup.style.js';
 
 const Signup = () => {
-  const schema = yup.object().shape({
-    email: yup
-      .string()
-      .email('유효한 이메일 형식이어야 합니다.')
-      .required('이메일을 반드시 입력해주세요.'),
-    password: yup
-      .string()
-      .min(8, '비밀번호는 8자 이상이어야 합니다.')
-      .max(16, '비밀번호는 16자 이하여야 합니다.')
-      .required('비밀번호는 필수 입력 요소입니다.'),
-    passwordCheck: yup
-      .string()
-      .oneOf([yup.ref('password'), null], '비밀번호가 일치하지 않습니다.')
-      .required('비밀번호 검증 또한 필수 입력 요소입니다.'),
+  const signup = useForm({
+    initialValue: {
+      email: '',
+      password: '',
+      passwordCheck: '',
+    },
+    validate: validateSignup,
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    mode: 'onBlur',
-    resolver: yupResolver(schema),
-  });
+  const { values, errors, touched, getTestInputProps } = signup;
 
-  const onSubmit = (data) => {
+  const handlePressSignup = () => {
     alert('회원가입 성공!');
-    console.log(data);
+    console.log(values.email, values.password, values.passwordCheck);
   };
 
   return (
-    <S.Form onSubmit={handleSubmit(onSubmit)}>
+    <S.Form noValidate>
       <h2>회원가입</h2>
       <S.Section>
         <S.Input
           type="email"
           placeholder="이메일을 입력해주세요!"
-          {...register('email')}
-          error={errors.email}
+          {...getTestInputProps('email')}
+          error={touched.email && errors.email}
         />
-        {errors.email && <S.ErrorMsg>{errors.email.message}</S.ErrorMsg>}
+        {touched.email && errors.email && (
+          <S.ErrorMsg>{errors.email}</S.ErrorMsg>
+        )}
       </S.Section>
       <S.Section>
         <S.Input
           type="password"
           placeholder="비밀번호를 입력해주세요!"
-          {...register('password')}
-          error={errors.password}
+          {...getTestInputProps('password')}
+          error={touched.password && errors.password}
         />
-        {errors.password && <S.ErrorMsg>{errors.password?.message}</S.ErrorMsg>}
+        {touched.password && errors.password && (
+          <S.ErrorMsg>{errors.password}</S.ErrorMsg>
+        )}
       </S.Section>
       <S.Section>
         <S.Input
           type="password"
           placeholder="비밀번호를 다시 입력해주세요!"
-          {...register('passwordCheck')}
-          error={errors.passwordCheck}
+          {...getTestInputProps('passwordCheck')}
+          error={touched.passwordCheck && errors.passwordCheck}
         />
-        {errors.passwordCheck && (
-          <S.ErrorMsg>{errors.passwordCheck?.message}</S.ErrorMsg>
+        {touched.passwordCheck && errors.passwordCheck && (
+          <S.ErrorMsg>{errors.passwordCheck}</S.ErrorMsg>
         )}
       </S.Section>
       <S.SignupBtn
         type="submit"
-        disabled={errors.email || errors.password || errors.passwordCheck}
+        onClick={handlePressSignup}
+        disabled={
+          (touched.email && errors.email) ||
+          (touched.password && errors.password) ||
+          (touched.passwordCheck && errors.passwordCheck)
+        }
       >
         제출
       </S.SignupBtn>
