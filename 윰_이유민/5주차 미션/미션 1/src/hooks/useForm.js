@@ -31,7 +31,6 @@ function useForm({ initialValue, validate }) {
 
   useEffect(() => {
     const newErrors = validate(values);
-    console.log(newErrors);
 
     setErrors(newErrors);
   }, [validate, values]);
