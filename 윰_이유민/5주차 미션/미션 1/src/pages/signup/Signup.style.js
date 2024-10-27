@@ -5,8 +5,8 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin-top: 50px;
+  gap: 20px;
+  margin: 50px 0;
 
   h2 {
     margin-bottom: 14px;
@@ -20,10 +20,15 @@ const Form = styled.form`
 `;
 
 const Section = styled.section`
+  width: 280px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   justify-content: start;
+`;
+
+const Title = styled.p`
+  font-size: 14px;
 `;
 
 const Input = styled.input`
@@ -34,6 +39,44 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
+  }
+`;
+
+const RadioContainer = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const Radio = styled.div`
+  width: 140px;
+  height: 34px;
+  display: flex;
+
+  input {
+    display: none;
+  }
+`;
+
+const Label = styled.label`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    border: none;
+    background-color: white;
+    color: black;
+  }
+
+  input[type='radio']:checked + & {
+    border: none;
+    background-color: white;
+    color: black;
   }
 `;
 
@@ -58,4 +101,14 @@ const SignupBtn = styled.button`
   }
 `;
 
-export { Form, Section, Input, ErrorMsg, SignupBtn };
+export {
+  Form,
+  Section,
+  Title,
+  Input,
+  RadioContainer,
+  Radio,
+  Label,
+  ErrorMsg,
+  SignupBtn,
+};
