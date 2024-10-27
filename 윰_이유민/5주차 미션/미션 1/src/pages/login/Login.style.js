@@ -5,7 +5,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   margin-top: 50px;
 
   h2 {
@@ -24,6 +24,10 @@ const Section = styled.section`
   flex-direction: column;
   gap: 8px;
   justify-content: start;
+`;
+
+const Title = styled.p`
+  font-size: 14px;
 `;
 
 const Input = styled.input`
@@ -58,4 +62,4 @@ const LoginBtn = styled.button`
   }
 `;
 
-export { Form, Section, Input, ErrorMsg, LoginBtn };
+export { Form, Section, Title, Input, ErrorMsg, LoginBtn };
