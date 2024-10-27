@@ -1,4 +1,5 @@
 const emailPattern = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-]+/;
+const birthDatePattern = /^(19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/;
 
 // values: {email: , password: }
 function validateUser(values) {
@@ -35,6 +36,18 @@ function validateSignup(values) {
     errors.passwordCheck = '비밀번호 검증 또한 필수 입력 요소입니다.';
   } else if (values.passwordCheck !== values.password) {
     errors.passwordCheck = '비밀번호가 일치하지 않습니다.';
+  }
+
+  // 생년월일 유효성 검사
+  if (!values.birthDate) {
+    errors.birthDate = '생년월일은 필수 입력 요소입니다.';
+  } else if (birthDatePattern.test(values.birthDate) === false) {
+    errors.birthDate = '올바른 입력 형식이 아닙니다. 다시 확인해주세요!';
+  }
+
+  // 성별 유효성 검사
+  if (!values.userSex) {
+    errors.userSex = '성별은 필수 선택 요소입니다.';
   }
 
   return errors;
