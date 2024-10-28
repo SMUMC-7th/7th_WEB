@@ -1,19 +1,22 @@
+import { useParams } from "react-router-dom";
+import MovieCredit from "../../components/MovieDetails/MovieCredit";
+import MovieOverview from "../../components/MovieDetails/MovieOverview";
+
 const MoviesDetails = () => {
-    return <div>
-        <div>
-            <h1 style={{color:"white"}}>여기가 이제 영화포스트와 간략한 설명</h1>
-        </div>
+    const {movieId} = useParams();
+    
+    return (
         <div>
             <div>
-            <h1>감독/출연</h1>
+                <MovieOverview key={movieId} movieId={movieId}/>
             </div>
             <div>
-                <div className="profile_img">
-                    <img src="" alt="등장인물" />
+                <div>
+                    <MovieCredit key={movieId} movieId={movieId}/>
                 </div>
             </div>
         </div>
-    </div>
+    )
 }
 
 export default MoviesDetails;

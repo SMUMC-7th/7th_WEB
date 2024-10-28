@@ -4,10 +4,10 @@ import * as S from "./MovieCard.styled"
 function MovieCard(props){
     // console.log("1",props);
     const {poster_path, release_date, title, id} = props;
-    console.log(id);
+    // console.log(id);
     
     return(
-        <S.Container to={`/movies/:${id}`}>
+        <S.Container to={`/movies/${id}`}>
             <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" />
             <S.Title>{title}</S.Title>
             <S.Release>{release_date}</S.Release>

@@ -8,7 +8,7 @@ import useCustomFetch from "../../hooks/useCustomFetch";
 
 
 const HomePage = () => {
-    const {data: movies, isLoading, isError} = useCustomFetch(`/discover/movie`)
+    const {data: movies, isLoading, isError} = useCustomFetch(`/discover/movie`);
     // console.log('rufrhk',movies.data?.results[0].id);
     if(isLoading){
         return <div>
