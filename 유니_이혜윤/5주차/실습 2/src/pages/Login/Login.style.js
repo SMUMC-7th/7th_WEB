@@ -20,7 +20,7 @@ const LoginForm = styled.form`
   flex-direction: column;
 
   margin: 20px;
-  gap: 20px;
+  gap: 10px;
 
   input {
     width: 320px;
@@ -29,6 +29,7 @@ const LoginForm = styled.form`
     border-radius: 15px;
     border: none;
     cursor: pointer;
+    margin-top: 10px;
     padding: 0 15px;
   }
 
@@ -42,12 +43,47 @@ const LoginForm = styled.form`
 
     background-color: #f2085a;
     color: white;
+    margin-top: 10px;
   }
 `;
 
 const ErrorText = styled.p`
   color: red;
   font-size: 12px;
+  padding-left: 10px;
 `;
 
-export { LoginContainer, LoginForm, ErrorText };
+const GenderSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    width: 25px;
+    margin: 5px;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+  }
+`;
+
+const BirthdateSection = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: 15px;
+  }
+`;
+
+export {
+  LoginContainer,
+  LoginForm,
+  ErrorText,
+  GenderSection,
+  BirthdateSection,
+};
