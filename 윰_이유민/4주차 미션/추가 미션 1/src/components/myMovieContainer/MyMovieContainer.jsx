@@ -1,4 +1,3 @@
-import useFetchData from "../../hooks/useFetchData.js";
 import { useRequestApi } from "../../hooks/useRequestApi.js";
 import { CreateListBtn } from "../buttons/CreateListBtn.jsx"
 import { DeleteBtn } from "../buttons/DeleteBtn.jsx"
@@ -7,7 +6,13 @@ import { MovieCard } from "../movieCard/MovieCard.jsx";
 import * as S from "./MyMovieContainer.style.js"
 
 function MyMovieContainer({ myMovies, setMyMovies }) {
-  const { handleRequest, isLoading, isError } = useRequestApi();
+  // 리스트 삭제
+  const handleListDeleted = () => {
+    setMyMovies([]);
+  }
+
+  // 영화 카드 리스트에서 삭제
+  const { handleRequest, isLoading } = useRequestApi();
 
   const handleDeleteMovie = (movieId) => {
     handleRequest({
@@ -28,7 +33,7 @@ function MyMovieContainer({ myMovies, setMyMovies }) {
       <S.BtnContainer>
         <CreateListBtn />
         <GetListBtn />
-        <DeleteBtn />
+        <DeleteBtn onListDeleted={handleListDeleted} />
       </S.BtnContainer>
       <S.MovieList>
         {myMovies.length > 0 ? (
@@ -36,7 +41,7 @@ function MyMovieContainer({ myMovies, setMyMovies }) {
             <MovieCard key={movie.id} {...movie} onClickMethod={() => handleDeleteMovie(movie.id)} />
           ))
         ) : (
-          <p>영화를 추가해보세요!</p>
+          <></>
         )}
       </S.MovieList>
     </S.MyContainer>
