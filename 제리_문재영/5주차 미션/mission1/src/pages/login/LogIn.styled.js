@@ -17,6 +17,19 @@ const Input = styled.input`
     height: 50px;
     border: none;
     border-radius: 10px;
+    padding-left: 10px;
+`
+const Button = styled.button`
+    width: 400px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    box-sizing:content-box; //input과 같은 크기의 버튼을 갖게 하기 위해 필요
+    background-color: deeppink;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    // font: bold 16px; <- 이건 적용이 안 되네요ㅠ //https://www.tcpschool.com/css/css_basic_fonts#google_vignette
 `
 
 const Error = styled.p`
@@ -27,4 +40,4 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
 `
-export {Title, Input, Container, Error, Form}
+export {Title, Input, Container, Error, Form, Button}

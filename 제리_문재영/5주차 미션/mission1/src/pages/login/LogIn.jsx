@@ -30,7 +30,7 @@ const LogIn = () => {
                 placeholder='비밀번호를 입력해주세요'></S.Input>
                 <S.Error>{errors.password?.message}</S.Error>
 
-                {/* <S.Input type='submit'>로그인</S.Input> */}
+                <S.Button type='submit'>로그인</S.Button>
             </S.Form>
         </S.Container>
 
