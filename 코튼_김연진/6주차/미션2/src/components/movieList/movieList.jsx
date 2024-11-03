@@ -16,7 +16,7 @@ const MovieList = ({ url, mq }) => {
         return <Error />;
     }
 
-    if (movies?.data?.results?.length === 0) {
+    if (mq && movies?.data?.results?.length === 0) {
         return (
             <S.Container>
                 <S.Text>

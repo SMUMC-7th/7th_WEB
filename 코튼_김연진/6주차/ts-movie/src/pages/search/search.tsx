@@ -2,7 +2,7 @@
 import * as S from './search.style';
 import { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { SearchMovieList } from '../../components/searchMovieList/searchMovieList';
+import MovieList from '../../components/movieList/movieList';
 import { KeyboardEvent } from 'react';
 const Search = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -15,7 +15,7 @@ const Search = () => {
         mq: '',
     });
 
-    const mq = searchParams.get('mq');
+    const mq = searchParams.get('mq') || '';
 
     const handleSearchMovie = () => {
         if (mq === searchValue) return;
@@ -41,7 +41,10 @@ const Search = () => {
                 ></S.SearchBox>
                 <S.Button onClick={handleSearchMovie}>검색</S.Button>
             </S.Search>
-            <SearchMovieList></SearchMovieList>
+            <MovieList
+                url={`/search/movie?query=${mq}&include_adult=false&language=ko-KR&page=1`}
+                mq={mq}
+            ></MovieList>
         </S.Container>
     );
 };

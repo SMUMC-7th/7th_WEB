@@ -10,6 +10,7 @@ const Container = styled(Link)`
         width: 140px;
         height: 200px;
         border-radius: 10px;
+        object-fit: cover;
     }
 `;
 

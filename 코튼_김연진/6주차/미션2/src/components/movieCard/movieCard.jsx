@@ -1,6 +1,6 @@
 import * as S from './movieCard.style.js';
 import { useState } from 'react';
-
+import NoneImg from '../../images/img.png';
 function MovieCard(props) {
     const { poster_path, title, release_date, id } = props;
     const [ishovered, setIsHovered] = useState(false);
@@ -11,10 +11,14 @@ function MovieCard(props) {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <img
-                src={`https://image.tmdb.org/t/p/original${poster_path}`}
-                alt="포스터 이미지"
-            />
+            {poster_path != null ? (
+                <img
+                    src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                    alt="포스터 이미지"
+                />
+            ) : (
+                <img src={NoneImg} alt="포스터 이미지" />
+            )}
             {ishovered && <S.Backdrop />}
             <S.Title>{title}</S.Title>
             <S.Release>{release_date}</S.Release>
