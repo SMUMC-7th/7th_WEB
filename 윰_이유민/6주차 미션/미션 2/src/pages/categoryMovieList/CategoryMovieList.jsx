@@ -2,9 +2,9 @@ import { useParams } from 'react-router-dom';
 import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner.jsx';
 import MovieCard from '../../components/movieCard/MovieCard.jsx';
 import useCustomFetch from '../../hooks/useCustomFetch.js';
-import * as S from './MovieList.style.js';
+import { MovieList } from '../../components/movieList/MovieList.jsx';
 
-const MoviesPage = () => {
+const CategoryMovieList = () => {
   const { category } = useParams();
 
   const {
@@ -21,13 +21,7 @@ const MoviesPage = () => {
     return <div>에러 발생..</div>;
   }
 
-  return (
-    <S.Container>
-      {movies.data?.results.map((movie, _) => {
-        return <MovieCard key={movie.id} movie={movie} />;
-      })}
-    </S.Container>
-  );
+  return <MovieList movies={movies} />;
 };
 
-export default MoviesPage;
+export default CategoryMovieList;

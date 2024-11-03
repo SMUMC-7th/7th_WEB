@@ -7,7 +7,7 @@ import {
   HomePage,
   Search,
   MovieCategory,
-  MovieList,
+  CategoryMovieList,
   Login,
   Signup,
 } from './pages/index';
@@ -33,11 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/movies/category/:category',
-        element: <MovieList />,
+        element: <CategoryMovieList />,
       },
       {
         path: '/movies/:movieId',
-        element: <MovieDetail />
+        element: <MovieDetail />,
       },
       {
         path: '/login',
