@@ -1,0 +1,19 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position:relative;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.main--content{
+    display: flex;
+    flex-direction: row;
+    overflow-y: auto;
+    gap: 10px;
+}

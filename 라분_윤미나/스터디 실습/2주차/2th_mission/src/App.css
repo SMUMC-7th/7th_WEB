@@ -1,0 +1,17 @@
+div {
+  position: relative;
+  margin: 0 10%;
+}
+
+section {
+  display: flex;
+}
+
+.gitIcon {
+  width: 30px;
+  height: 30px;
+
+  position: sticky;
+  top: 95%;
+  right: 0px;
+}

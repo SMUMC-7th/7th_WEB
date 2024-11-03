@@ -1,0 +1,13 @@
+.DS_Store
+._.DS_Store
+**/.DS_Store
+**/._.DS_Store
+
+.prettierrc
+._.prettierrc
+**/.prettierrc
+**/._.prettierrc
+
+node_modules/
+.vscode
+package-lock.jsons
