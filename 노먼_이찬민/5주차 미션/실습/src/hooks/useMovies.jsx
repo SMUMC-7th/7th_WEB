@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { authInstance } from "./../src/api/axiosInstance";
+import { authInstance } from "../api/axiosInstance";
 
 function useMovies(category) {
   // 커스텀 훅에서 쓸 상태 정의

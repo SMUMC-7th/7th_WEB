@@ -1,4 +1,4 @@
-import { authInstance } from "../../src/api/axiosInstance";
+import { authInstance } from "../../api/axiosInstance";
 
 async function getMovies(category) {
   //https://api.themoviedb.org/3은 이미 지정됨
