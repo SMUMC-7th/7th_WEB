@@ -2,6 +2,7 @@ import { useState } from 'react';
 import * as S from './TodoList.style';
 import Button from '../../components/button/Button';
 import Input from '../../components/input/Input';
+import { TodoItem } from '../../components/todoItem/TodoItem';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -42,27 +43,17 @@ function TodoList() {
       </S.SubmitForm>
       <S.TodoListContainer>
         {todos.map((todo, index) => (
-          <S.Todos key={todo.id}>
-            <S.Todo>
-              <S.TodoId>{index + 1}번</S.TodoId>
-              {editingId !== todo.id ? (
-                <p>{todo.task}</p>
-              ) : (
-                <Input defaultValue={todo.task} onChange={(e) => setEditText(e.target.value)} />
-              )}
-            </S.Todo>
-
-            <S.BtnContainer>
-              <S.DeleteButton onClick={() => deleteTodo(todo.id)}>삭제하기</S.DeleteButton>
-              {editingId === todo.id ? (
-                <S.UpdateButton onClick={() => updateTodo(editingId, editText)}>
-                  수정 완료
-                </S.UpdateButton>
-              ) : (
-                <S.UpdateButton onClick={() => setEditingId(todo.id)}>수정 진행</S.UpdateButton>
-              )}
-            </S.BtnContainer>
-          </S.Todos>
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            index={index}
+            editingId={editingId}
+            setEditingId={setEditingId}
+            editText={editText}
+            setEditText={setEditText}
+            updateTodo={updateTodo}
+            deleteTodo={deleteTodo}
+          />
         ))}
       </S.TodoListContainer>
     </S.Container>
