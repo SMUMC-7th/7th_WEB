@@ -1,13 +1,10 @@
 import { LOGIN_FORM } from '../../constants/menu';
 import useForm from '../../hooks/useForm';
 import { validateLogin } from '../../utils/validate';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './Login.style';
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const login = useForm({
     initialValue: {
       email: '',
@@ -40,9 +37,13 @@ const Login = () => {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
 
-      navigate('/');
+      window.location.replace('/');
     } catch (error) {
-      console.log(error.message);
+      if (error.response && error.response.status === 400) {
+        alert('이메일 또는 비밀번호를 확인하세요.');
+      } else {
+        console.log(error.message);
+      }
     }
   };
 
