@@ -1,15 +1,13 @@
-import * as S from "./Navbar.style.js";
+import * as S from './Navbar.style.js';
+import { NaveBtnContainer } from './navBtnContainer.jsx';
 
 const Navbar = () => {
-    return (
-        <S.Nav>
-            <S.Logo to="/">YUMCHA</S.Logo>
-            <S.BtnContainer>
-                <S.Login to="/login">로그인</S.Login>
-                <S.Signup to="/signup">회원가입</S.Signup>
-            </S.BtnContainer>
-        </S.Nav>
-    );
+  return (
+    <S.Nav>
+      <S.Logo to="/">YUMCHA</S.Logo>
+      <NaveBtnContainer />
+    </S.Nav>
+  );
 };
 
 export default Navbar;
