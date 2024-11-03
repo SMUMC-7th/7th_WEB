@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(250,250,250);
+    
+}
+.container{
+    background-color: white;
+    max-width: 600px;
+    min-height: 100vh;
+    margin: 0 auto;
+
+    box-shadow: rgba(100,100,100,0.2);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    height: 60%;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+}
+.header > a{
+    color: black;
+    text-decoration: none;
+}
+.header > img{
+    width: 30px;
+    height: 40px;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+}
+
+.cover-img{
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 20px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.cover-img::before{
+    position: absolute;
+    border-radius: 20px;
+
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    content: ""
+}
+.cover-img > img{
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.main{
+    flex: 1;
+    
+}
+
+.description {
+    padding: 20px;
+    text-align: center;
+ }
+
+ .description__title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+ }
+
+ .description__subTitle {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #666;
+ }
+
+ .description__pocket-info {
+    font-size: 16px;
+    color: #007bff;
+    margin-bottom: 15px;
+ }
+
+ .description__pocket-description {
+    font-size: 14px;
+    color: #333;
+ }
+
+
+
+
+/* body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+header{
+    height: 7%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    margin: 0;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img{
+    border: 1px solid black;
+    border-radius: 5%;
+}
+
+footer{
+    height: 3%;
+} 
+ */

@@ -1,0 +1,87 @@
+html, body{
+    margin: 5% 10%;
+    background-color: rgb(206, 255, 255);
+    height: 100%;
+}
+
+button{
+    background-color: rgb(158, 227, 255);
+    color: rgb(0, 0, 0);
+    border: 0;
+    border-radius: 7%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 40%;
+}
+button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+header{
+    text-align: center;
+    margin: 5% 0;
+    padding: 3%;
+}
+
+.input_con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+
+}
+.input_con > input{
+    margin: 0 2%;
+    width: 90%;
+    padding: 1%;
+    border: 2px solid black;
+}
+
+article{
+    display: flex;
+    align-content: space-around;
+    margin: 3%;
+    flex: 1;
+}
+h3{
+    text-align: center;
+}
+.ing, .ed{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    max-width: 400px;
+    max-height: 400px;
+}
+.ing_list_box, .ed_list_box{
+    width: 80%;
+    overflow: auto;
+}
+.list{
+    display: flex;
+    margin: 10% 1%;
+    padding: 3%;
+    width: 90%;
+    border-bottom: 2px solid blue;/* solid가 아닌 일반 rgb값넣으면 색이 안 보임 */
+    /* cursor: pointer; */
+}
+.textInput{
+    display: flex;
+    flex-direction: row;;
+    border: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 80%;
+    flex: 1;
+}
+
+.tempInput{
+    background-color: unset;
+    margin: 0 2%;
+    width: 90%;
+    padding: 1%;
+    border: none;
+}
