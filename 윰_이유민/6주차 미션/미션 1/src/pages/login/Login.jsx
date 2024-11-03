@@ -1,9 +1,13 @@
 import { LOGIN_FORM } from '../../constants/menu';
 import useForm from '../../hooks/useForm';
 import { validateLogin } from '../../utils/validate';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import * as S from './Login.style';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const login = useForm({
     initialValue: {
       email: '',
@@ -18,13 +22,32 @@ const Login = () => {
     return !errors.email && !errors.password;
   };
 
-  const handlePressLogin = () => {
-    console.log(values.email, values.password);
-    alert('로그인 성공!');
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      email: values.email,
+      password: values.password,
+    };
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        data
+      );
+      const { accessToken, refreshToken } = response.data;
+
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+
+      navigate('/');
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
-    <S.Form noValidate>
+    <S.Form noValidate onSubmit={handleLogin}>
       <h2>로그인</h2>
       {LOGIN_FORM.map((field) => (
         <S.Section key={field.id}>
@@ -40,11 +63,7 @@ const Login = () => {
           )}
         </S.Section>
       ))}
-      <S.LoginBtn
-        type="submit"
-        onClick={handlePressLogin}
-        disabled={!isFormValid()}
-      >
+      <S.LoginBtn type="submit" disabled={!isFormValid()}>
         로그인
       </S.LoginBtn>
     </S.Form>
