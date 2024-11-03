@@ -1,9 +1,13 @@
+import * as S from './Signup.style.js';
 import { SIGNUP_FORM } from '../../constants/menu.js';
 import useForm from '../../hooks/useForm.js';
 import { validateSignup } from '../../utils/validate.js';
-import * as S from './Signup.style.js';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const signup = useForm({
     initialValue: {
       email: '',
@@ -19,13 +23,26 @@ const Signup = () => {
     return !errors.email && !errors.password && !errors.passwordCheck;
   };
 
-  const handlePressSignup = () => {
-    alert('회원가입 성공!');
-    console.log(values.email, values.password, values.passwordCheck);
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      email: values.email,
+      password: values.password,
+      passwordCheck: values.passwordCheck,
+    };
+
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, data);
+      alert('회원가입이 완료되었습니다.');
+      navigate('/login');
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
-    <S.Form noValidate onSubmit={handlePressSignup}>
+    <S.Form noValidate onSubmit={handleSignup}>
       <h2>회원가입</h2>
       {SIGNUP_FORM.map((field) => (
         <S.Section key={field.id}>
