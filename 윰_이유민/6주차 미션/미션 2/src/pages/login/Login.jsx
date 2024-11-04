@@ -3,8 +3,14 @@ import useForm from '../../hooks/useForm';
 import { validateLogin } from '../../utils/validate';
 import axios from 'axios';
 import * as S from './Login.style';
+import { useContext } from 'react';
+import { LoginContext } from '../../context/loginContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const { setIsLogin } = useContext(LoginContext);
+  const navigate = useNavigate();
+
   const login = useForm({
     initialValue: {
       email: '',
@@ -37,7 +43,8 @@ const Login = () => {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
 
-      window.location.replace('/');
+      setIsLogin(true);
+      navigate('/');
     } catch (error) {
       if (error.response && error.response.status === 400) {
         alert('이메일 또는 비밀번호를 확인하세요.');

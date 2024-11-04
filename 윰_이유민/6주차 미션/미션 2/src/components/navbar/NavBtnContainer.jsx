@@ -1,9 +1,12 @@
 import * as S from './NavBtnContainer.style';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { LoginContext } from '../../context/loginContext';
 
 const NaveBtnContainer = () => {
+  const { isLogin, setIsLogin } = useContext(LoginContext);
   const [user, setUser] = useState(null);
+
   const accessToken = localStorage.getItem('accessToken');
   const getUserUrl = `${import.meta.env.VITE_API_URL}/user/me`;
 
@@ -30,17 +33,17 @@ const NaveBtnContainer = () => {
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    setUser(null);
+    setIsLogin(false);
   };
 
   return (
     <S.BtnContainer>
-      {user ? (
+      {isLogin && user ? (
         <S.User>{getUserName(user.email)}님 반갑습니다.</S.User>
       ) : (
         <S.Login to="/login">로그인</S.Login>
       )}
-      {user ? (
+      {isLogin && user ? (
         <S.Logout onClick={handleLogout}>로그아웃</S.Logout>
       ) : (
         <S.Signup to="/signup">회원가입</S.Signup>

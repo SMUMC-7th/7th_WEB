@@ -1,5 +1,4 @@
 import './App.css';
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import {
   RootLayout,
@@ -12,6 +11,7 @@ import {
   Signup,
 } from './pages/index';
 import MovieDetail from './pages/movieDetail/MovieDetail';
+import { LoginContext } from './context/loginContext';
 
 const router = createBrowserRouter([
   {
