@@ -12,6 +12,7 @@ const MovieWrapper = styled.div`
   }
 
   h3 {
+    width: 190px;
     font-size: 15px;
     padding-top: 3px;
   }

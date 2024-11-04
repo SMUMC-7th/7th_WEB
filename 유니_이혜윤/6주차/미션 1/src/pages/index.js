@@ -4,7 +4,7 @@ export { default as Signup } from "./Signup/Signup";
 export { default as MovieCategory } from "./MovieCategory/MovieCategory";
 export { default as NowPlaying } from "./NowPlaying";
 export { default as Popular } from "./Popular";
-export { default as SearchPage } from "./SearchPage";
+export { default as SearchPage } from "./Search/SearchPage";
 export { default as TopRated } from "./TopRated";
 export { default as UpComing } from "./UpComing";
 export { default as MovieDetail } from "./MovieDetail/MovieDetail";
