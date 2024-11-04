@@ -1,18 +1,25 @@
 import { Link } from "react-router-dom";
 import * as S from "./NavBar.style";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { loginContext } from "../../context/LoginContext";
 
 const Navbar = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [userName, setUserName] = useState("");
+  const {
+    isLogin,
+    setIsLogin,
+    userName,
+    setUserName,
+    accessToken,
+    handleLogout,
+  } = useContext(loginContext);
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
-      userInfo(accessToken);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     userInfo(accessToken);
+  //   }
+  // }, [accessToken]);
+
   const userInfo = (accessToken) => {
     axios
       .get("http://localhost:3000/user/me", {
@@ -24,6 +31,7 @@ const Navbar = () => {
         const email = response.data.email;
         const nickname = email.split("@")[0];
         setUserName(nickname);
+
         setIsLogin(true);
       })
       .catch((error) => {
@@ -31,14 +39,9 @@ const Navbar = () => {
         setIsLogin(false);
       });
   };
-
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    setIsLoggedIn(false);
-    setUsername("");
-  };
-
+  if (accessToken) {
+    userInfo(accessToken);
+  }
   return (
     <S.Nav>
       <Link to={"/"} style={{ color: "rgb(255, 0, 119)" }}>

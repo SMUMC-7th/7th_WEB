@@ -5,9 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorLottie from "../../components/Error/Error";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { loginContext } from "../../context/LoginContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  let { setIsLogin, setAccessToken } = useContext(loginContext);
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -37,7 +40,11 @@ const LoginPage = () => {
       console.log("API 응답: ", response.data);
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("refreshToken", response.data.refreshToken);
-      navigate("/");
+
+      setIsLogin(true);
+      setAccessToken(response.data.accessToken);
+
+      navigate("/"); //window.location.href('/'); -> 새로고침까지 해서 리로딩(?)
     } catch (error) {
       if (error.response) {
         <ErrorLottie />;
