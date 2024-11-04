@@ -1,5 +1,5 @@
 import * as S from './navbar.style';
-import fetchUserData from '../../apis/fetchUserData';
+import fetchUserData from '../../hooks/fetchUserData';
 import { useEffect, useState } from 'react';
 
 const Navbar = () => {

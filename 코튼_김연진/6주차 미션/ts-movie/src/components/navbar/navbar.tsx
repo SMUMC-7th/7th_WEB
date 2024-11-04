@@ -1,7 +1,7 @@
 import * as S from './navbar.style';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import fetchUserData from '../../apis/fetchUserData';
+import fetchUserData from '../../hooks/fetchUserData';
 interface UserData {
     email: string;
     id: number;

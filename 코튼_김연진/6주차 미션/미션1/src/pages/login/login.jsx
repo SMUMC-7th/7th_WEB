@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import fetchUserData from '../../apis/fetchUserData';
+import fetchUserData from '../../hooks/fetchUserData';
 const LogIn = () => {
     const schema = yup.object().shape({
         email: yup.string().email().required('이메일을 반드시 입력해주세요.'),
