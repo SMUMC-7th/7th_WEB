@@ -31,9 +31,10 @@ const fetchUserData = async () => {
 const handleTokenRefreshAndRetry = async () => {
     try {
         const refreshToken = localStorage.getItem('refreshToken');
-        console.log(refreshToken);
+
         const refreshResponse = await axios.post(
             `http://localhost:3000/auth/token/access`,
+            {},
             {
                 headers: {
                     Authorization: `Bearer ${refreshToken}`,
@@ -49,10 +50,11 @@ const handleTokenRefreshAndRetry = async () => {
                 Authorization: `Bearer ${newAccessToken}`,
             },
         });
+        console.log('토큰 재발급에 성공하였습니다');
 
         return retryResponse.data;
     } catch (refreshError) {
-        console.error('Token refresh failed:', refreshError);
+        console.error('Token 재발급에 실패했습니다:', refreshError);
         redirectToLogin();
         return null;
     }
