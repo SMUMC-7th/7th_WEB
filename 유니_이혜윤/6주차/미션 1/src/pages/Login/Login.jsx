@@ -3,6 +3,8 @@ import { validateLogin } from "../../utils/validate";
 import * as S from "./Login.style";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import IsLoginContext from "../../context/LoginContext";
 
 const Login = () => {
   const login = useForm({
@@ -12,9 +14,9 @@ const Login = () => {
     },
     validate: validateLogin,
   });
-
-  // console.log(login);
   const navigate = useNavigate();
+
+  const { handleLogin } = useContext(IsLoginContext);
 
   const handlePressLogin = async (event) => {
     event.preventDefault();
@@ -26,12 +28,9 @@ const Login = () => {
       });
 
       const { refreshToken, accessToken } = response.data;
-      // console.log("로그인 성공: ", response.data);
       alert("로그인 성공 !!");
 
-      localStorage.setItem("refreshToken", refreshToken);
-      localStorage.setItem("accessToken", accessToken);
-
+      handleLogin(accessToken, refreshToken);
       navigate("/");
     } catch (error) {
       console.log("로그인 오류: ", error);
