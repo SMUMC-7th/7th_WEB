@@ -62,7 +62,7 @@ const handleTokenRefreshAndRetry = async () => {
 const redirectToLogin = () => {
     if (!isRedirecting) {
         isRedirecting = true;
-        window.location.href('/login');
+        window.location.href = '/login';
     }
 };
 
