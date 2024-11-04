@@ -22,7 +22,7 @@ const fetchUserData = async () => {
             );
             return await handleTokenRefreshAndRetry();
         } else {
-            console.error('Error fetching user data:', err);
+            console.error('Error:', err);
             return null;
         }
     }
@@ -50,7 +50,7 @@ const handleTokenRefreshAndRetry = async () => {
                 Authorization: `Bearer ${newAccessToken}`,
             },
         });
-        console.log('토큰 재발급에 성공하였습니다');
+        console.log('Token 재발급에 성공하였습니다');
 
         return retryResponse.data;
     } catch (refreshError) {
