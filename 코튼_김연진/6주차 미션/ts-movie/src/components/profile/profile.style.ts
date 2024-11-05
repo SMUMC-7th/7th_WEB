@@ -3,19 +3,23 @@ import styled from 'styled-components';
 const Container = styled.div`
     flex: 1;
     display: flex;
-    height: 150px;
-    width: 110px;
-    position: relative;
     flex-direction: column;
     align-items: center;
     gap: 8px;
+
+    height: 150px;
+    width: 110px;
+
+    position: relative;
+
     margin-bottom: 5px;
+
     img {
         height: 80px;
         width: 80px;
         object-fit: cover;
         border-radius: 100%;
-        border-line: 0.5px solid white;
+        border-inline: 0.5px solid white;
     }
 `;
 

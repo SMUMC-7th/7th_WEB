@@ -1,18 +1,23 @@
 import * as S from './movieInfoCard.style.js';
-import useCustomFetch from '../../hooks/useCustomFetch';
 import Error from '../error/error.jsx';
 import Lottie from 'react-lottie-player';
 import loadingJson from '../../lottie/Animation-loading.json';
+import { getSingleMovie } from '../../apis/movie';
+import { useQuery } from '@tanstack/react-query';
 
-function MovieInfoCard({ movieId }) {
-    const {
-        data: movie,
-        isLoading,
-        isError,
-    } = useCustomFetch(`/movie/${movieId}?language=ko`);
+function MovieInfoCard(props) {
+    const { movieId } = props;
+    const { data, error, isLoading } = useQuery({
+        queryKey: ['movieId', movieId],
+        queryFn: () => getSingleMovie(movieId || ''),
+        enabled: !!movieId,
+    });
+    console.log(data);
+    if (error) {
+        console.log('데이터가 없습니다');
+        return <Error />;
+    }
 
-    const movieData = movie.data;
-    console.log(movie.data);
     if (isLoading) {
         return (
             <S.Alert>
@@ -20,13 +25,9 @@ function MovieInfoCard({ movieId }) {
             </S.Alert>
         );
     }
-
-    if (isError) {
+    if (!data) {
+        console.log('데이터가 없습니다');
         return <Error />;
-    }
-
-    if (!movieData) {
-        return <S.Alert>데이터를 찾을 수 없습니다...</S.Alert>;
     }
 
     const {
@@ -37,7 +38,7 @@ function MovieInfoCard({ movieId }) {
         overview,
         tagline,
         runtime,
-    } = movieData;
+    } = data;
 
     const backgroundImageUrl = `https://image.tmdb.org/t/p/original${poster_path}`;
     const formattedReleaseDate = release_date.slice(0, 4);

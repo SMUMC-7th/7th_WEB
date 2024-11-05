@@ -48,11 +48,10 @@ const Button = styled.button`
 
 const MovieCardList = styled.div`
     display: flex;
-    width: 100%;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 20px 30px;
-    gap: 15px;
+    margin: 20px 20px;
+    gap: 20px;
     margin-bottom: 30px;
 `;
 export { Container, Text, SearchBox, Button, Search, MovieCardList };

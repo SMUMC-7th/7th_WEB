@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { MovieData } from '../../hooks/useCustomFetch';
 import NoneImg from '../../images/img.png';
 function MovieCard({ poster_path, title, release_date, id }: MovieData) {
-    const [ishovered, setIsHovered] = useState(false);
+    const [ishovered, setIsHovered] = useState<boolean>(false);
     return (
         <S.Container
             to={`/movies/${id}`}

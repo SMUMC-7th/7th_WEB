@@ -1,6 +1,6 @@
 import * as S from './category.style';
 import CategoryCard from '../../components/categoryCard/categoryCard';
-import CategoryData from '../../constance/Menu';
+import CategoryData from '../../constants/Menu';
 
 const Movie = () => {
     return (

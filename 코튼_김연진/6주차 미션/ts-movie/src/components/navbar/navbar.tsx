@@ -1,27 +1,32 @@
 import * as S from './navbar.style';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import fetchUserData from '../../hooks/fetchUserData';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { TMyInfoResponse, getMyInfo } from '../../apis/user';
+
 interface UserData {
     email: string;
-    id: number;
+    id: string;
 }
+
 const Navbar = () => {
     const [userData, setUserData] = useState<UserData | null>(null);
+    const accessToken = localStorage.getItem('accessToken');
+    const { data } = useQuery<TMyInfoResponse | null>({
+        queryKey: ['myInfo'],
+        queryFn: () => {
+            if (accessToken) {
+                return getMyInfo({ accessToken });
+            }
+            return null;
+        },
+        enabled: !!accessToken,
+    });
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await fetchUserData();
-                console.log(data);
-                setUserData(data);
-            } catch {
-                setUserData(null);
-            }
-        };
-
-        fetchData();
-    }, []);
+        if (data) {
+            setUserData({ email: data.email, id: data.id });
+        }
+    }, [data]);
 
     const logout = () => {
         localStorage.removeItem('accessToken');
@@ -33,6 +38,7 @@ const Navbar = () => {
     const handleLogout = () => {
         logout();
     };
+
     return (
         <S.Nav>
             <S.StyledLink to={'/'}>CATFLIX</S.StyledLink>

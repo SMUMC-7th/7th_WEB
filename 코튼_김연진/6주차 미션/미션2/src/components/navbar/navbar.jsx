@@ -1,32 +1,37 @@
 import * as S from './navbar.style';
-import fetchUserData from '../../hooks/fetchUserData';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getMyInfo } from '../../apis/user';
 
 const Navbar = () => {
     const [userData, setUserData] = useState(null);
+    const accessToken = localStorage.getItem('accessToken');
+    const { data } = useQuery({
+        queryKey: ['myInfo'],
+        queryFn: () => {
+            if (accessToken) {
+                return getMyInfo({ accessToken });
+            }
+            return null;
+        },
+        enabled: !!accessToken,
+    });
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await fetchUserData(); // 유저 데이터 가져오기
-                setUserData(data); // 상태에 데이터 저장
-            } catch {
-                setUserData(null);
-            }
-        };
-
-        fetchData();
-    }, []);
+        if (data) {
+            setUserData({ email: data.email, id: data.id });
+        }
+    }, [data]);
 
     const logout = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         console.log('로그아웃');
-        window.location.reload(); // 페이지를 새로고침하여 로그아웃 반영
+        window.location.reload();
     };
 
     const handleLogout = () => {
-        logout(); // 로그아웃 함수 호출
+        logout();
     };
 
     return (
@@ -42,8 +47,10 @@ const Navbar = () => {
                     </>
                 ) : (
                     <>
-                        <S.Button1 to={'/login'}>로그인</S.Button1>
-                        <S.Button1 to={'/signup'} signup="true">
+                        <S.Button1 to={'/login'} signup={false}>
+                            로그인
+                        </S.Button1>
+                        <S.Button1 to={'/signup'} signup={true}>
                             회원가입
                         </S.Button1>
                     </>

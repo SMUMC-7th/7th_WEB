@@ -2,7 +2,8 @@ import * as S from './login.style';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import { Login } from '../../apis/auth';
+
 const LogIn = () => {
     const schema = yup.object().shape({
         email: yup.string().email().required('이메일을 반드시 입력해주세요.'),
@@ -25,16 +26,11 @@ const LogIn = () => {
     const onSubmit = async (data) => {
         console.log('폼 데이터 제출', data);
         try {
-            const response = await axios.post(
-                'http://localhost:3000/auth/login',
-                data,
-            );
-            const { refreshToken, accessToken } = response.data;
-
+            const { accessToken, refreshToken } = await Login(data);
             localStorage.setItem('refreshToken', refreshToken);
             localStorage.setItem('accessToken', accessToken);
 
-            console.log('성공');
+            console.log('로그인 성공');
             window.location.replace('/');
         } catch (error) {
             console.error('Error Login:', error);

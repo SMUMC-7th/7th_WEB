@@ -3,7 +3,9 @@ import * as S from './loading.style';
 const Loading = () => {
     return (
         <S.Container>
-            <CardListSkeleton number={20}></CardListSkeleton>;
+            <S.MovieCardList>
+                <CardListSkeleton number={20}></CardListSkeleton>
+            </S.MovieCardList>
         </S.Container>
     );
 };

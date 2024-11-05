@@ -1,10 +1,9 @@
 import * as S from './movieCard.style.js';
 import { useState } from 'react';
-import NoneImg from '../../images/img.png';
-function MovieCard(props) {
-    const { poster_path, title, release_date, id } = props;
-    const [ishovered, setIsHovered] = useState(false);
 
+import NoneImg from '../../images/img.png';
+function MovieCard({ poster_path, title, release_date, id }) {
+    const [ishovered, setIsHovered] = useState(false);
     return (
         <S.Container
             to={`/movies/${id}`}
