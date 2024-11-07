@@ -2,29 +2,26 @@ import MovieCard from "../../components/Moviecard/MovieCard";
 import { Container } from "../../components/MovieList/MovieLIst.style";
 import useCustomFetch from "../../hooks/useCustomFetch";
 import * as S from "./movies.style";
-import { TMoviesDTO } from "../../mocks/movieType.ts";
-
-interface IMoviesDataType {
-  results: TMoviesDTO[];
-}
+import { TMoviesDTO, FetchResponse } from "../../mocks/movieType.ts";
+import CardListSkeleton from "../../components/Moviecard/Skeleton/Card-List-Skeleton.tsx";
 
 const MoviesPage = () => {
   const {
     data: movies,
     isLoading,
     isError,
-  } = useCustomFetch<IMoviesDataType>(`/movie/popular?language=ko&page=1`);
+  } = useCustomFetch<FetchResponse>(`/movie/popular?language=ko&page=1`);
 
   if (isLoading) {
-    return <S.H1>로딩중...</S.H1>;
+    return <CardListSkeleton number={20} />;
   }
-  if (isError) {
+  if (isError || !movies) {
     return <S.H1>Error</S.H1>;
   }
-
+  console.log("무비데이터: ", movies);
   return (
     <Container>
-      {movies.data?.results.map((movie: TMoviesDTO) => (
+      {movies?.results?.map((movie: TMoviesDTO) => (
         <MovieCard key={movie.id} {...movie} />
       ))}
     </Container>

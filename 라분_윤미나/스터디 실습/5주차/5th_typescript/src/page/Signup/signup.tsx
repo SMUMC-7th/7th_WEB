@@ -2,8 +2,18 @@ import * as S from "./signup.style";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios, { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
+import ErrorLottie from "../../components/Error/Error";
+
+interface ISignupData {
+  email: string;
+  password: string;
+  password_check: string | null;
+}
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -16,6 +26,7 @@ const SignUpPage = () => {
       .required(),
     password_check: yup
       .string()
+      .nullable()
       .oneOf([yup.ref("password"), null], "비밀번호가 일치하지 않습니다.")
       .required("비밀번호 검증 또한 필수 입력요소입니다."),
   });
@@ -28,9 +39,28 @@ const SignUpPage = () => {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  const onSubmit = (data) => {
-    console.log("폼 데이터 제출");
-    console.log(data);
+
+  const onSubmit = async (data: ISignupData) => {
+    try {
+      const response = await axios.post("http://localhost:3000/auth/register", {
+        email: data.email,
+        password: data.password,
+        passwordCheck: data.password_check,
+      });
+
+      console.log("데이터 제출 : ", data);
+      console.log("API 응답: ", response.data);
+      navigate("/login");
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      if (axiosError.response) {
+        <ErrorLottie />;
+        console.error("에러 발생:", axiosError.response.data); // 서버가 제공하는 자세한 오류 메시지
+      } else {
+        <ErrorLottie />;
+        console.error("에러 발생:", axiosError.message); // 기타 오류 메시지
+      }
+    }
   };
 
   return (

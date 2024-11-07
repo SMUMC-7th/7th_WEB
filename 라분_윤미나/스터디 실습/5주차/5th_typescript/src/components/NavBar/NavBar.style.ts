@@ -5,12 +5,6 @@ const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
 
-  div {
-    display: flex;
-    gap: 20px;
-    margin: 0 60px;
-  }
-
   button {
     width: 90px;
     height: 40px;
@@ -25,5 +19,16 @@ const Nav = styled.nav`
     }
   }
 `;
-
-export { Nav };
+const Span = styled.span`
+  color: white;
+`;
+const Nav_Container = styled.div`
+  display: flex;
+  gap: 20px;
+  margin: 0 60px;
+  align-items: center;
+  span {
+    color: white;
+  }
+`;
+export { Nav, Nav_Container, Span };

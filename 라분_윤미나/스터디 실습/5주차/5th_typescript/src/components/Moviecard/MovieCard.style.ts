@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 140px;
-  height: 200px;
-  background-color: pink;
+  height: 250px;
   position: relative;
   color: white;
 
@@ -11,10 +10,18 @@ const Container = styled.div`
     width: 140px;
     height: 200px;
   }
+  div {
+    font-size: 13px;
+  }
+  p {
+    margin-top: 5px;
+    font-size: 11px;
+  }
 `;
 const Backdrop = styled.div`
   width: 140px;
   height: 200px;
+
   background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   top: 0;
