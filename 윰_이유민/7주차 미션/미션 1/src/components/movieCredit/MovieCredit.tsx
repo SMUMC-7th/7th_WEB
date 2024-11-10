@@ -51,11 +51,11 @@ function MovieCredit() {
     <S.Container>
       <h2>감독 / 출연</h2>
       <S.CreditList>
-        {cast.map((person) => (
-          <PersonCard key={person.id} person={person} />
+        {cast.map((person, idx) => (
+          <PersonCard key={`${person.id} - ${idx}`} person={person} />
         ))}
-        {crew.map((person) => (
-          <PersonCard key={person.id} person={person} />
+        {crew.map((person, idx) => (
+          <PersonCard key={`${person.id} - ${idx}`} person={person} />
         ))}
       </S.CreditList>
     </S.Container>
