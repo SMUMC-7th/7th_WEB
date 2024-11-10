@@ -16,8 +16,6 @@ const MovieList = ({ movies }: { movies: Movies }) => {
   return (
     <S.Container>
       {movies.results.map((movie) => {
-        console.log(movie);
-
         return <MovieCard key={movie.id} movie={movie} />;
       })}
     </S.Container>
