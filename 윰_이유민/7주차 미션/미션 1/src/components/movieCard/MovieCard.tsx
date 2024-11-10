@@ -13,8 +13,6 @@ interface MovieCardProps {
 }
 
 function MovieCard(movie: MovieCardProps) {
-  console.log(movie);
-
   const { id, poster_path, title, release_date } = movie.movie;
   const nav = useNavigate();
 
