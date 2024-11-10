@@ -1,8 +1,9 @@
 import { SearchBar } from '../../components/serchBar/SearchBar';
 import * as S from './Search.style';
-import useCustomFetch from '../../hooks/useCustomFetch';
 import { useSearchParams } from 'react-router-dom';
 import { MovieList } from '../../components/movieList/MovieList';
+import { axiosInstance } from '../../apis/axios-instance';
+import { useQuery } from '@tanstack/react-query';
 
 interface Movie {
   id: number;
@@ -20,7 +21,6 @@ const Search = () => {
   const mq = searchParams.get('mq') || '';
 
   const url = `/search/movie?query=${mq}&include_adult=false&language=ko-KR&page=1`;
-  const { data: movies } = useCustomFetch<Movies>(url);
 
   const errorBox = () => (
     <S.ErrorBox>
@@ -28,6 +28,22 @@ const Search = () => {
       <h3>해당하는 데이터가 없습니다.</h3>
     </S.ErrorBox>
   );
+  const getMovieSearchData = async () => {
+    const { data } = await axiosInstance.get(url);
+    return data;
+  };
+
+  const {
+    data: movies,
+    isLoading,
+    isError,
+  } = useQuery<Movies>({
+    queryKey: ['movieSearchData', mq],
+    queryFn: getMovieSearchData,
+    enabled: !!mq,
+  });
+
+  console.log(isError);
 
   return (
     <S.Container>
