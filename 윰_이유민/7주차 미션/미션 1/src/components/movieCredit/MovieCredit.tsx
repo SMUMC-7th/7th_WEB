@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
-import useCustomFetch from '../../hooks/useCustomFetch';
 import LoadingSpinner from '../loadingSpinner/loadingSpinner';
 import * as S from './MovieCredit.style';
 import { PersonCard } from '../personCard/PersonCard';
+import { axiosInstance } from '../../apis/axios-instance';
+import { useQuery } from '@tanstack/react-query';
 
 interface Person {
   id: number;
@@ -20,13 +21,21 @@ interface MovieData {
 function MovieCredit() {
   const { movieId } = useParams();
 
+  const getMovieCreditData = async () => {
+    const { data } = await axiosInstance.get(
+      `/movie/${movieId}/credits?language=ko`
+    );
+    return data;
+  };
+
   const {
     data: movie,
     isLoading,
     isError,
-  } = useCustomFetch<{ data: MovieData }>(
-    `/movie/${movieId}/credits?language=ko`
-  );
+  } = useQuery<MovieData>({
+    queryKey: ['movieCreditData'],
+    queryFn: getMovieCreditData,
+  });
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -36,7 +45,7 @@ function MovieCredit() {
     return <div>에러 발생..</div>;
   }
 
-  const { cast = [], crew = [] } = movie?.data || {};
+  const { cast = [], crew = [] } = movie || {};
 
   return (
     <S.Container>
