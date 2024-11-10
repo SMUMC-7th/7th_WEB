@@ -3,29 +3,78 @@ import { useContext } from 'react';
 import { LoginContext } from '../../context/LoginContext';
 import { axiosInstanceUser } from '../../apis/axios-instance';
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 interface User {
   email: string;
 }
 
 const NaveBtnContainer = () => {
-  const { isLogin, setIsLogin } = useContext(LoginContext);
-
-  const accessToken = localStorage.getItem('accessToken');
+  const {
+    isLogin,
+    setIsLogin,
+    accessToken,
+    setAccessToken,
+    refreshToken,
+    setRefreshToken,
+  } = useContext(LoginContext);
 
   const getUserData = async () => {
     if (!accessToken) {
       setIsLogin(false);
+      return;
     }
+
     try {
       const { data } = await axiosInstanceUser.get<User>('/user/me');
       setIsLogin(true);
       return data;
     } catch (error) {
-      setIsLogin(false);
-      if (error instanceof Error) {
-        console.log(`${error.message}`);
+      if (
+        axios.isAxiosError(error) &&
+        error.response?.status === 401 &&
+        refreshToken
+      ) {
+        return await refreshAccessToken();
+      } else {
+        console.log(error instanceof Error ? error.message : '에러 발생');
+        setIsLogin(false);
       }
+    }
+  };
+
+  const refreshAccessToken = async () => {
+    try {
+      const tokenResponse = await axiosInstanceUser.post(
+        `/auth/token/access`,
+        [],
+        {
+          headers: {
+            Authorization: `Bearer ${refreshToken}`,
+          },
+        }
+      );
+
+      const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+        tokenResponse.data;
+
+      localStorage.setItem('accessToken', newAccessToken);
+      localStorage.setItem('refreshToken', newRefreshToken);
+
+      setAccessToken(newAccessToken);
+      setRefreshToken(newRefreshToken);
+
+      axiosInstanceUser.defaults.headers.Authorization = `Bearer ${newAccessToken}`;
+
+      const { data: retryData } = await axiosInstanceUser.get<User>('/user/me');
+
+      setIsLogin(true);
+      console.log('토큰 재발급');
+
+      return retryData;
+    } catch (error) {
+      console.log(error instanceof Error ? error.message : '토큰 재발급 실패');
+      setIsLogin(false);
     }
   };
 
@@ -36,14 +85,20 @@ const NaveBtnContainer = () => {
   } = useQuery<User | undefined>({
     queryKey: ['user'],
     queryFn: getUserData,
+    enabled: !!accessToken,
   });
 
-  if (isLoading) {
-    return <p>...</p>;
+  if (!isLogin || isError) {
+    return (
+      <S.BtnContainer>
+        <S.Login to="/login">로그인</S.Login>
+        <S.Signup to="/signup">회원가입</S.Signup>
+      </S.BtnContainer>
+    );
   }
 
-  if (isError) {
-    return <div>에러가 발생했어요!</div>;
+  if (isLoading) {
+    return <></>;
   }
 
   const getUserName = (email: string) => email.split('@')[0];
