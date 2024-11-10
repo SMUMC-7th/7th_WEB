@@ -7,4 +7,14 @@ const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_MOVIE_API_URL,
 });
 
-export { axiosInstance };
+// 유저 정보 불러오기
+const accessToken = localStorage.getItem('accessToken');
+
+const axiosInstanceUser = axios.create({
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+  },
+  baseURL: `${import.meta.env.VITE_API_URL}`,
+});
+
+export { axiosInstance, axiosInstanceUser };
