@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
-import useCustomFetch from '../../hooks/useCustomFetch';
 import { MovieList } from '../../components/movieList/MovieList';
+import { useQuery } from '@tanstack/react-query';
+import { axiosInstance } from '../../apis/axios-instance';
 
 interface Movie {
   id: number;
@@ -17,11 +18,21 @@ interface Movies {
 const CategoryMovieList = () => {
   const { category } = useParams();
 
+  const getMovieData = async () => {
+    const { data } = await axiosInstance.get(
+      `/movie/${category}?language=ko-kr`
+    );
+    return data;
+  };
+
   const {
     data: movies,
     isLoading,
     isError,
-  } = useCustomFetch<Movies>(`/movie/${category}?language=ko-kr`);
+  } = useQuery<Movies>({
+    queryKey: [`${category}_Movie`],
+    queryFn: getMovieData,
+  });
 
   if (isLoading) {
     return <LoadingSpinner />;
