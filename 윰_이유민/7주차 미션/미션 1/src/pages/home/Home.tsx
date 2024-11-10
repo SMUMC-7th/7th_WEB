@@ -1,6 +1,7 @@
-import useCustomFetch from '../../hooks/useCustomFetch';
+import { useQuery } from '@tanstack/react-query';
 import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
 import { MovieList } from '../../components/movieList/MovieList';
+import { axiosInstance } from '../../apis/axios-instance';
 
 interface Movie {
   id: number;
@@ -14,11 +15,19 @@ interface Movies {
 }
 
 const HomePage = () => {
+  const getMovieData = async () => {
+    const { data } = await axiosInstance.get('/movie/popular?language=ko-kr');
+    return data;
+  };
+
   const {
     data: movies,
     isLoading,
     isError,
-  } = useCustomFetch<Movies>(`/movie/popular?language=ko-kr`);
+  } = useQuery<Movies>({
+    queryKey: ['home'],
+    queryFn: getMovieData,
+  });
 
   if (isLoading) {
     return <LoadingSpinner />;
