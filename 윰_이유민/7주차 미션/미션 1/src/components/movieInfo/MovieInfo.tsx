@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import * as S from './MovieInfo.style';
-import useCustomFetch from '../../hooks/useCustomFetch';
 import LoadingSpinner from '../loadingSpinner/loadingSpinner';
+import { axiosInstance } from '../../apis/axios-instance';
+import { useQuery } from '@tanstack/react-query';
 
 interface MovieData {
   poster_path: string;
@@ -15,11 +16,22 @@ interface MovieData {
 
 function MovieInfo() {
   const { movieId } = useParams();
+
+  const getMovieInfoData = async () => {
+    const { data } = await axiosInstance.get(
+      `/movie/${movieId}?language=ko-kr`
+    );
+    return data;
+  };
+
   const {
     data: movie,
     isLoading,
     isError,
-  } = useCustomFetch<{ data: MovieData }>(`/movie/${movieId}?language=ko-kr`);
+  } = useQuery<MovieData>({
+    queryKey: ['movieInfoData'],
+    queryFn: getMovieInfoData,
+  });
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -37,7 +49,7 @@ function MovieInfo() {
     runtime = '',
     tagline = '',
     overview = '',
-  } = movie?.data || {};
+  } = movie || {};
 
   return (
     <S.Container>
