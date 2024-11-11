@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '../loadingSpinner/loadingSpinner';
 import * as S from './MovieCredit.style';
 import { PersonCard } from '../personCard/PersonCard';
 import { axiosInstance } from '../../apis/axios-instance';
 import { useQuery } from '@tanstack/react-query';
+import { PersonCardSkeletonList } from '../personCard/skeleton/PersonCardSkeletonList';
 
 interface Person {
   id: number;
@@ -38,7 +38,11 @@ function MovieCredit() {
   });
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return (
+      <S.CreditList>
+        <PersonCardSkeletonList number={20} />
+      </S.CreditList>
+    );
   }
 
   if (isError) {
