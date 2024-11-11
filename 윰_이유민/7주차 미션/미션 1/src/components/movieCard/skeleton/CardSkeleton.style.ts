@@ -26,7 +26,7 @@ const Container = styled.div`
 const CardMain = styled.div`
   width: 140px;
   height: 200px;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(180, 180, 180);
   border-radius: 20px;
   overflow: hidden;
   animation: ${skeleton} 3s 1s infinite linear alternate;
@@ -43,7 +43,7 @@ const TextWrapper = styled.div`
 const TitleBox = styled.div`
   margin: 0;
   height: 16px;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(180, 180, 180);
   border-radius: 5px;
   animation: ${skeleton} 3s 1s infinite linear alternate;
 `;
@@ -51,7 +51,7 @@ const TitleBox = styled.div`
 const DescriptionBox = styled.div`
   margin: 0;
   height: 12px;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(180, 180, 180);
   border-radius: 5px;
   animation: ${skeleton} 3s 1s infinite linear alternate;
 `;
