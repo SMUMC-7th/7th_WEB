@@ -30,7 +30,7 @@ const PosterContainer = styled.div`
   width: 100%;
   height: 340px;
   border-radius: 14px;
-  background-color: rgb(80, 80, 80);
+  background-color: rgb(40, 40, 40);
 `;
 
 const DetailContainer = styled.div`
