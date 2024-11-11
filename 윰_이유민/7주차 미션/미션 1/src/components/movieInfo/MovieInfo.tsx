@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import * as S from './MovieInfo.style';
-import LoadingSpinner from '../loadingSpinner/loadingSpinner';
 import { axiosInstance } from '../../apis/axios-instance';
 import { useQuery } from '@tanstack/react-query';
+import { InfoCardSkeleton } from './skeleton/InfoCardSkeleton';
 
 interface MovieData {
   poster_path: string;
@@ -34,7 +34,7 @@ function MovieInfo() {
   });
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <InfoCardSkeleton />;
   }
 
   if (isError) {
