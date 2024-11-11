@@ -39,9 +39,12 @@ function MovieCredit() {
 
   if (isLoading) {
     return (
-      <S.CreditList>
-        <PersonCardSkeletonList number={20} />
-      </S.CreditList>
+      <S.Container>
+        <h2>감독 / 출연</h2>
+        <S.CreditList>
+          <PersonCardSkeletonList number={20} />
+        </S.CreditList>
+      </S.Container>
     );
   }
 
