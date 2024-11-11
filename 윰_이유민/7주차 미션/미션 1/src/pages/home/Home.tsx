@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import LoadingSpinner from '../../components/loadingSpinner/loadingSpinner';
 import { MovieList } from '../../components/movieList/MovieList';
 import { axiosInstance } from '../../apis/axios-instance';
+import { CardSkeletonList } from '../../components/movieCard/skeleton/CardSkeletonList';
 
 interface Movie {
   id: number;
@@ -30,7 +30,7 @@ const HomePage = () => {
   });
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <CardSkeletonList number={20} />;
   }
 
   if (isError) {
