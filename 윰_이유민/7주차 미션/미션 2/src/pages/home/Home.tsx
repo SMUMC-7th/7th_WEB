@@ -12,6 +12,8 @@ interface Movie {
 
 interface Movies {
   results: Movie[];
+  page: number;
+  total_pages: number;
 }
 
 const HomePage = () => {
@@ -25,8 +27,10 @@ const HomePage = () => {
     isLoading,
     isError,
   } = useQuery<Movies>({
-    queryKey: ['home'],
+    queryKey: ['movies', 'home'],
     queryFn: getMovieData,
+    cacheTime: 10000,
+    staleTime: 10000,
   });
 
   if (isLoading) {

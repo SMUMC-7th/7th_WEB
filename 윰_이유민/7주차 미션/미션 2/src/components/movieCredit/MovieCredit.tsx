@@ -35,6 +35,8 @@ function MovieCredit() {
   } = useQuery<MovieData>({
     queryKey: ['movieCreditData'],
     queryFn: getMovieCreditData,
+    cacheTime: 10000,
+    staleTime: 10000,
   });
 
   if (isLoading) {

@@ -31,6 +31,8 @@ function MovieInfo() {
   } = useQuery<MovieData>({
     queryKey: ['movieInfoData'],
     queryFn: getMovieInfoData,
+    cacheTime: 10000,
+    staleTime: 10000,
   });
 
   if (isLoading) {

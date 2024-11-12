@@ -86,6 +86,8 @@ const NaveBtnContainer = () => {
     queryKey: ['user'],
     queryFn: getUserData,
     enabled: !!accessToken,
+    cacheTime: 10000,
+    staleTime: 10000,
   });
 
   if (!isLogin || isError) {

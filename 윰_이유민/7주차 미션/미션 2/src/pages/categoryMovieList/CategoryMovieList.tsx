@@ -32,6 +32,8 @@ const CategoryMovieList = () => {
   } = useQuery<Movies>({
     queryKey: [`${category}_Movie`],
     queryFn: getMovieData,
+    cacheTime: 10000,
+    staleTime: 10000,
   });
 
   if (isLoading) {
