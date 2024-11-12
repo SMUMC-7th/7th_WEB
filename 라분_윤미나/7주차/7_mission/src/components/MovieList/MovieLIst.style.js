@@ -7,13 +7,12 @@ const Column = styled.div`
 
 const Container = styled.div`
   width: 100%;
-
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
 `;
 const MovieContainer = styled.div`
-  width: 90%;
+  width: 100%;
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;

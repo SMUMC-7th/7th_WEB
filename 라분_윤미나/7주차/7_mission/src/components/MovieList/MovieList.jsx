@@ -5,6 +5,7 @@ import { useGetInfiniteMovies } from "../../hooks/queries/useGetInfiniteMovies.j
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
+import ErrorLottie from "../../components/Error/Error";
 
 const MovieList = ({ category }) => {
   //isPending : 데이터를 불러오는 중. 데이터가 로딩중일 때 isPending이 true가 됨.
@@ -39,7 +40,7 @@ const MovieList = ({ category }) => {
   if (isError) {
     return (
       <S.TextContainer>
-        <h2>에러발생</h2>
+        <ErrorLottie />
       </S.TextContainer>
     );
   }

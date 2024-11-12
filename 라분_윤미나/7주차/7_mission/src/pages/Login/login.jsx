@@ -7,9 +7,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { loginContext } from "../../context/LoginContext";
+import { useState } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState(false);
   let { setIsLogin, setAccessToken } = useContext(loginContext);
   const schema = yup.object().shape({
     email: yup
@@ -47,14 +49,15 @@ const LoginPage = () => {
       navigate("/"); //window.location.href('/'); -> 새로고침까지 해서 리로딩(?)
     } catch (error) {
       if (error.response) {
-        <ErrorLottie />;
+        setError(true);
         console.error("에러 발생:", error.response.data); // 서버가 제공하는 자세한 오류 메시지
-      } else {
-        <ErrorLottie />;
-        console.error("에러 발생:", error.message); // 기타 오류 메시지
       }
     }
   };
+
+  if (error) {
+    return <ErrorLottie />;
+  }
 
   return (
     <S.Container>

@@ -5,6 +5,7 @@ import * as S from "./movies.style.js";
 import fetchGetPage from "../../hooks/queries/useGetPage.js";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import ErrorLottie from "../../components/Error/Error";
 
 const MoviesPage = () => {
   const [page, setPage] = useState(1);
@@ -31,7 +32,7 @@ const MoviesPage = () => {
   if (isError) {
     return (
       <S.TextContainer>
-        <h2>에러발생</h2>
+        <ErrorLottie />
       </S.TextContainer>
     );
   }

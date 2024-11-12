@@ -22,7 +22,7 @@ const PageContainer = styled.div`
   margin-top: 20px;
 `;
 
-const Button = styled.div`
+const Button = styled.button`
   width: 70px;
   height: 40px;
   border-radius: 10px;
