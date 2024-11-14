@@ -18,6 +18,7 @@ const Input = styled.input`
     border: none;
     border-radius: 10px;
     padding-left: 10px;
+    border: ${props => props.error ? '2px solid red' : '1px solid #ccc'};
 `
 const Button = styled.button`
     width: 400px;

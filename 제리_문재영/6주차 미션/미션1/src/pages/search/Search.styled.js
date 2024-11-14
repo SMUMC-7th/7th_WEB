@@ -3,13 +3,16 @@ import styled from "styled-components";
 const Title = styled.h1`
     color: white;
 `
-
 const Container = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     width: 100%;
+`
+const SearchInputContainer = styled.div`
+    display: flex;
+    justify-content: center;
     height: 70px;
-    margin: 10px;
+    margin: 30px 40px;
     
     input{
         flex: 1;
@@ -28,4 +31,11 @@ const Container = styled.div`
         border-top-right-radius: 10px;
     }
 `
-export {Title, Container}
+
+const MovieCardContainer = styled.div`
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+`
+export {Title, SearchInputContainer, MovieCardContainer, Container}

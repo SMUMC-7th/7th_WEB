@@ -19,7 +19,6 @@ const SignUp = () => {
 
     const onSubmit = (data) => {
         console.log('signup',data);
-        
     }
     return (
         <S.Container>
@@ -47,7 +46,6 @@ const SignUp = () => {
                 <S.Error>{errors.passwordCheck?.message}</S.Error>
 
                 <S.Button type='submit'>회원가입</S.Button>
-
             </S.Form>
         </S.Container>
     )
