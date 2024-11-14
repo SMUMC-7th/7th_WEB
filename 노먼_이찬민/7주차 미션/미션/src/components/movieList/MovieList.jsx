@@ -21,7 +21,7 @@ function MovieList(props) {
           return (
             <MovieCard
               key={movie.id}
-              {...movie} // movie 내의 속성들을 다 분리해서 넘겨줌
+              movie={movie} // movie 내의 속성들을 다 분리해서 넘겨줌
             />
           );
         })}

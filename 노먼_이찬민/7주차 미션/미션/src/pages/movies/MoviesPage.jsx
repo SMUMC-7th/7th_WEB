@@ -6,6 +6,7 @@ import { movieCategoriesENUM } from "../_shared/Shared";
 import useInfiniteMovies from "../../hooks/useInfiniteMovies";
 import { useInView } from "react-intersection-observer";
 import useInfiniteScroll from "../../hooks/useInfiniteScroll";
+import MovieCard from "../../components/movieCard/MovieCard";
 
 function MoviesPage() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function MoviesPage() {
     navigate("/");
   }
 
-  const { infiniteData, movies } = useInfiniteMovies(
+  const { infiniteData } = useInfiniteMovies(
     "/movie/" + category + "?language=ko-KR"
   );
 
@@ -32,11 +33,13 @@ function MoviesPage() {
 
   return (
     <S.Container>
-      <MovieList
-        movies={movies}
-        isLoading={infiniteData.isLoading}
-        isError={infiniteData.error}
-      />
+      <S.MovieList>
+        {infiniteData.data?.pages.map((page) => {
+          return page.results.map((movie, _) => {
+            return <MovieCard key={movie.id} movie={movie} />;
+          });
+        })}
+      </S.MovieList>
       <S.ContentEnd ref={ref} />
     </S.Container>
   );

@@ -1,15 +1,14 @@
-import React, { createContext, useState } from "react";
-import axios from "axios";
+import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const userContext = createContext();
 
-function UserContextProvider({ children }) {
+export function UserContextProvider({ children }) {
   const accessToken = localStorage.getItem("accessToken")
     ? localStorage.getItem("accessToken")
     : null;
   const [isLogin, setIsLogin] = useState(accessToken ? true : false);
-  const [username, setUsername] = useState();
+  const [username, setUsername] = useState(accessToken ? accessToken : null);
 
   return (
     <userContext.Provider
@@ -25,4 +24,12 @@ function UserContextProvider({ children }) {
   );
 }
 
-export default UserContextProvider;
+export function useAuthContext() {
+  const context = useContext(userContext);
+
+  if (context == null) {
+    throw new Error("AuthProvider를 찾을 수 없습니다.");
+  }
+
+  return context;
+}

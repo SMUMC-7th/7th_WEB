@@ -1,3 +1,4 @@
+import { Navigate } from "react-router-dom";
 import AppLayout from "../layout/AppLayout";
 import {
   LoginPage,
@@ -8,6 +9,22 @@ import {
   MovieDetailPage,
   MoviesPage,
 } from "../pages/index";
+import { useAuthContext } from "../context/UserContext";
+
+const ProtectedRoute = ({ children }) => {
+  const { username } = useAuthContext();
+
+  if (username == null) {
+    alert("로그인이 필요한 서비스입니다");
+    return (
+      <Navigate to="/login" replace={true}>
+        {children}
+      </Navigate>
+    );
+  } else {
+    return children;
+  }
+};
 
 const Router = [
   {
@@ -28,20 +45,36 @@ const Router = [
       },
       {
         path: "/search",
-        element: <SearchPage />,
+        element: (
+          <ProtectedRoute>
+            <SearchPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/category",
-        element: <CategoryPage />,
+        element: (
+          <ProtectedRoute>
+            <CategoryPage />
+          </ProtectedRoute>
+        ),
       },
 
       {
         path: "/movies/:category",
-        element: <MoviesPage />,
+        element: (
+          <ProtectedRoute>
+            <MoviesPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/movies/detail/:movieId",
-        element: <MovieDetailPage />,
+        element: (
+          <ProtectedRoute>
+            <MovieDetailPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

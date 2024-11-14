@@ -10,7 +10,7 @@ const Container = styled.div`
 
 const ContentEnd = styled.div`
   width: 10px;
-  height: 10px;
+  height: 40px;
 `;
 
 const PagenationBar = styled.div`
@@ -37,4 +37,18 @@ const PagenationBar = styled.div`
   }
 `;
 
-export { Container, ContentEnd, PagenationBar };
+const MovieList = styled.div`
+  width: 98%;
+  /* height: 100%; */
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(120px, 1fr)
+  ); // 140px, 3fr 과 동일
+  /* grid-template-rows: repeat(3, 200px); */
+  grid-auto-rows: 200px; // row 수 자동 계산
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+export { Container, ContentEnd, PagenationBar, MovieList };

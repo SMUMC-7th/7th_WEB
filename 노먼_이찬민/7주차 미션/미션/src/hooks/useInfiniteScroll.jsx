@@ -5,8 +5,9 @@ function useInfiniteScroll(inView, infiniteQueryObject) {
   // 상태 -> 이 훅에서는 없어도 될 듯
   // api fn = callbackFn을 사용, 영화 api에서는 infiniteData.fetchNextPage 사용
   // useEffect
+  console.log(inView);
   useEffect(() => {
-    if (inView && !infiniteQueryObject.isLoading) {
+    if (inView) {
       // inView 변화 시 fetchNextPage 하기
       infiniteQueryObject.fetchNextPage();
     }
