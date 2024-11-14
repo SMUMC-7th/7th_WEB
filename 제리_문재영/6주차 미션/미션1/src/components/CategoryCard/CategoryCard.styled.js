@@ -15,11 +15,11 @@ const Text = styled.div`
     position: absolute;
 `
 const ImgBox = styled.img`
-    width: 320px;
+    width: 350px;
     height: 213px;
 `
 const ImgLink = styled(Link)`
-
+    width: 350px;
 `
 
 export {Container, Text, ImgLink, ImgBox}

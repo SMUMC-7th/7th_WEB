@@ -13,9 +13,9 @@ const Title = styled.h1`
 const CategoryList = styled.div`
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 10px;
-  margin: 15px;
+  margin: 10px;
   background-color: rgb(20, 20, 20);
 
 `
