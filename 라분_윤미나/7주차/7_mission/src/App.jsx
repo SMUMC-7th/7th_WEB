@@ -6,7 +6,11 @@ import SearchPage from "./pages/Search/search";
 import CategoryPage from "./pages/Category/category";
 import NotFound from "./pages/Not-Found/not-found";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import RootLayout from "./layout/root-layout";
 import NowPlaying from "./pages/Now-Playing/now-playing";
 import Popular from "./pages/Popular/popular";
@@ -16,6 +20,16 @@ import DetailedPage from "./pages/Detailed/DetailedPage";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useAuthContext, AuthProvider } from "./context/AuthContext";
+
+const ProtectedRoute = ({ children }) => {
+  const { username } = useAuthContext();
+  if (username == null) {
+    alert("로그인을 해주세요.");
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
 
 const router = createBrowserRouter([
   {
@@ -45,19 +59,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/movies/now-playing",
-        element: <NowPlaying />,
+        element: (
+          <ProtectedRoute>
+            <NowPlaying />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/movies/popular",
-        element: <Popular />,
+        element: (
+          <ProtectedRoute>
+            <Popular />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/movies/top-rated",
-        element: <TopRated />,
+        element: (
+          <ProtectedRoute>
+            <TopRated />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/movies/up-coming",
-        element: <UpComing />,
+        element: (
+          <ProtectedRoute>
+            <UpComing />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/movies/:movieId",
@@ -72,7 +102,10 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} future={{ v7_startTransition: true }} />;
+      <AuthProvider>
+        <RouterProvider router={router} future={{ v7_startTransition: true }} />
+      </AuthProvider>
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

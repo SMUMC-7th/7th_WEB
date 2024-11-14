@@ -1,5 +1,4 @@
-import axios from "axios";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 export const loginContext = createContext();
 
 export function LoginContextProvider({ children }) {

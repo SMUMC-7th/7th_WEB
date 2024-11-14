@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import * as S from "./NavBar.style";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import axios from "axios";
 import { loginContext } from "../../context/LoginContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
   const {
@@ -13,12 +14,7 @@ const Navbar = () => {
     accessToken,
     handleLogout,
   } = useContext(loginContext);
-
-  // useEffect(() => {
-  //   if (accessToken) {
-  //     userInfo(accessToken);
-  //   }
-  // }, [accessToken]);
+  const { setUsername } = useAuthContext();
 
   const userInfo = (accessToken) => {
     axios
@@ -31,7 +27,7 @@ const Navbar = () => {
         const email = response.data.email;
         const nickname = email.split("@")[0];
         setUserName(nickname);
-
+        setUsername(nickname);
         setIsLogin(true);
       })
       .catch((error) => {

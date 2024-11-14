@@ -11,6 +11,7 @@ import { useState } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
   const [error, setError] = useState(false);
   let { setIsLogin, setAccessToken } = useContext(loginContext);
   const schema = yup.object().shape({
@@ -64,15 +65,21 @@ const LoginPage = () => {
       <S.H3>로그인</S.H3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
+          id="email"
           type={"email"}
+          name="email"
           {...register("email")}
           placeholder="  이메일을 입력해주세요!"
+          aria-label="email"
         />
         <p style={{ color: "red" }}>{errors.email?.message}</p>
         <input
+          id="password"
           type={"password"}
+          name="password"
           {...register("password")}
           placeholder="  비밀번호를 입력해주세요!"
+          aria-label="password"
         />
         <p style={{ color: "red" }}>{errors.password?.message}</p>
         <S.Button

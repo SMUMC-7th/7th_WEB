@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "types": ["cypress", "node", "@testing-library/cypress"]
+  },
+  "include": [
+    "./**/*ts",
+    "support/commands.js",
+    "e2e/protected.cy.js",
+    "support/commands.d.js"
+  ]
+}
