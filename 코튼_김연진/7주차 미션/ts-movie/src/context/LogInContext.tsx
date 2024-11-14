@@ -1,22 +1,43 @@
-import { createContext, useState } from 'react';
+import {
+    PropsWithChildren,
+    useContext,
+    createContext,
+    useState,
+    useEffect,
+} from 'react';
 
-const accessToken = localStorage.getItem('accessToken');
-
-// eslint-disable-next-line react-refresh/only-export-components
-export const IsLoginContext = createContext<{
+interface IAuthContextValue {
     isLogin: boolean;
-    setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
-}>({
-    isLogin: accessToken !== null,
+    setIsLogin: (isLogin: boolean) => void;
+}
+
+const AuthContext = createContext<IAuthContextValue>({
+    isLogin: false,
     setIsLogin: () => {},
 });
 
-export function IsLoginProvider({ children }: { children: React.ReactNode }) {
-    const [isLogin, setIsLogin] = useState(accessToken !== null);
+export const AuthProvider = ({ children }: PropsWithChildren) => {
+    const [isLogin, setIsLogin] = useState<boolean>(() => {
+        return localStorage.getItem('isLogin') === 'true';
+    });
+
+    useEffect(() => {
+        localStorage.setItem('isLogin', String(isLogin));
+    }, [isLogin]);
 
     return (
-        <IsLoginContext.Provider value={{ isLogin, setIsLogin }}>
+        <AuthContext.Provider value={{ isLogin, setIsLogin }}>
             {children}
-        </IsLoginContext.Provider>
+        </AuthContext.Provider>
     );
+};
+
+export function useAuthContext() {
+    const context = useContext(AuthContext);
+
+    if (context == null) {
+        throw new Error('AuthProvider를 찾을 수 없습니다.');
+    }
+
+    return context;
 }

@@ -26,6 +26,13 @@ const CategoryData = [
         'id:': '4',
         move_path: 'upcoming',
     },
+    {
+        img_path:
+            'https://discussionskorea.apple.com/content/attachment/0c74545f-b16b-4d39-a59a-f0ad5219fad2',
+        text: '로그인 한 사용자만 접근 가능',
+        'id:': '5',
+        move_path: '/protected',
+    },
 ];
 
 export default CategoryData;

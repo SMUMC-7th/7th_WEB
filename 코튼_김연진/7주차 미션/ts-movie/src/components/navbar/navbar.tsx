@@ -2,6 +2,7 @@ import * as S from './navbar.style';
 import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { TMyInfoResponse, getMyInfo } from '../../apis/user';
+import { useAuthContext } from '../../context/LogInContext';
 
 interface UserData {
     email: string;
@@ -10,8 +11,10 @@ interface UserData {
 
 const Navbar = () => {
     const [userData, setUserData] = useState<UserData | null>(null);
+    const { isLogin } = useAuthContext();
     const accessToken = localStorage.getItem('accessToken');
-    const { data } = useQuery<TMyInfoResponse | null>({
+
+    const { data, refetch } = useQuery<TMyInfoResponse | null>({
         queryKey: ['myInfo'],
         queryFn: () => {
             if (accessToken) {
@@ -21,6 +24,12 @@ const Navbar = () => {
         },
         enabled: !!accessToken,
     });
+
+    useEffect(() => {
+        if (isLogin) {
+            refetch();
+        }
+    }, [isLogin, refetch]);
 
     useEffect(() => {
         if (data) {
@@ -37,6 +46,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         logout();
+        localStorage.removeItem('isLogin');
     };
 
     return (

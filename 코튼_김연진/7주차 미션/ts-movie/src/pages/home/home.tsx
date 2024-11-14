@@ -8,7 +8,10 @@ import {
 } from '../../apis/movie';
 import Loading from '../../components/loading/loading';
 import Error from '../../components/error/error';
+import { useAuthContext } from '../../context/LogInContext';
 const HomePage = () => {
+    const { isLogin } = useAuthContext();
+    console.log(isLogin);
     const { data, error, isLoading } = useQuery<TMovieTotalResponse>({
         queryKey: ['totalMovie', 1],
         queryFn: () => getTotalMovie(1),

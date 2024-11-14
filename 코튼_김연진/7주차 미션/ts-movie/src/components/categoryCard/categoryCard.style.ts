@@ -8,6 +8,7 @@ const Container = styled.div`
         width: 245px;
         height: 130px;
         border-radius: 10px;
+        object-fit: cover;
     }
 `;
 

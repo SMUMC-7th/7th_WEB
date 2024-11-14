@@ -3,13 +3,17 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Login } from '../../apis/auth';
-
+import { useAuthContext } from '../../context/LogInContext';
+import { useNavigate } from 'react-router-dom';
 interface LoginForm {
     email: string;
     password: string;
 }
 
 const LogIn = () => {
+    const navigate = useNavigate();
+    const { setIsLogin, isLogin } = useAuthContext();
+    console.log(isLogin);
     const schema = yup.object().shape({
         email: yup.string().email().required('이메일을 반드시 입력해주세요.'),
         password: yup
@@ -34,9 +38,10 @@ const LogIn = () => {
             const { accessToken, refreshToken } = await Login(data);
             localStorage.setItem('refreshToken', refreshToken);
             localStorage.setItem('accessToken', accessToken);
-
+            setIsLogin(true);
+            console.log(isLogin);
             console.log('로그인 성공');
-            window.location.replace('/');
+            navigate('/');
         } catch (error) {
             console.error('Error Login:', error);
         }
