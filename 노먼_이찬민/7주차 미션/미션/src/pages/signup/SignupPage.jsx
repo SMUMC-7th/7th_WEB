@@ -1,58 +1,49 @@
-import React, { useEffect, useState, useContext } from "react";
-import * as S from "./LoginPage.style";
+import React, { useEffect, useState } from "react";
+import * as S from "./SignupPage.style";
 import { useForm } from "react-hook-form";
 import Input from "./../../components/Input";
 import Button from "../../components/Button";
 import * as yup from "yup";
 // TIP: zod를 사용하신다면 @hookform/resolvers/zod 를 import 하시면 됩니다!
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LoginSchema } from "../../const/schema";
+import { SignUpSchema } from "../../const/schema";
 import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
-import { userContext } from "./../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
+function SignupPage() {
   const navigate = useNavigate();
-  const { isLogin, setIsLogin, username, setUsername } =
-    useContext(userContext);
-
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
-    resolver: yupResolver(LoginSchema),
+    resolver: yupResolver(SignUpSchema),
   });
 
-  const postLogin = async (data) => {
-    try {
-      const apiRes = await axios.post("http://localhost:3000/auth/login", {
-        email: data.email,
-        password: data.password,
-      });
-      localStorage.setItem("accessToken", apiRes.data.accessToken);
-      localStorage.setItem("refreshToken", apiRes.data.refreshToken);
-      setIsLogin(true);
-      navigate("/");
-    } catch (error) {
-      setIsLogin(false);
-    }
+  const postSignUp = async (data) => {
+    await axios.post("http://localhost:3000/auth/register", {
+      email: data.email,
+      password: data.password,
+      passwordCheck: data.passwordCheck,
+    });
+    alert("회원가입 성공, 로그인 페이지로 이동합니다.");
+    navigate("/login");
   };
 
   const onSubmit = (data) => {
     console.log("폼 데이터 제출");
     console.log(data);
-    postLogin(data);
+    postSignUp(data);
   };
 
   return (
     <S.Container>
       <S.MainBox onSubmit={handleSubmit(onSubmit)}>
-        <h2>로그인 페이지</h2>
+        <h2>회원가입 페이지</h2>
         <div>
           <Input
-            type={"LoginEmail"}
+            type={"SignUpEmail"}
             PlaceHolder={"이메일을 입력하세요"}
             register={register}
             // setLoginData={setLoginData}
@@ -61,16 +52,25 @@ function LoginPage() {
         </div>
         <div>
           <Input
-            type={"LoginPw"}
+            type={"SignUpPw"}
             PlaceHolder={"비밀번호를 입력하세요"}
             register={register}
             // setLoginData={setLoginData}
           />
           <p>{errors.password?.message}</p>
         </div>
+        <div>
+          <Input
+            type={"SignUpPwCheck"}
+            PlaceHolder={"비밀번호를 입력하세요"}
+            register={register}
+            // setLoginData={setLoginData}
+          />
+          <p>{errors.passwordCheck?.message}</p>
+        </div>
         <Button
-          type={"LoginSubmit"}
-          Content={"로그인"}
+          type={"SignUpSubmit"}
+          Content={"회원가입"}
           isValid={isValid}
         ></Button>
       </S.MainBox>
@@ -78,4 +78,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default SignupPage;
