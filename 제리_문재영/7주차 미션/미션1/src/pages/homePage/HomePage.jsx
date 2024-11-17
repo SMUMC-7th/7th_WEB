@@ -5,15 +5,19 @@ import * as S from "./HomePage.styled";
 import { axiosInstance } from "../../apis/axios-instance";
 
 import useCustomFetch from "../../hooks/useCustomFetch";
+import { MovieCardContainer } from "../search/Search.styled";
+import CardListSkeleton from "../../components/Skeleton/card-list-skeleton";
 
 
 const HomePage = () => {
     const {data: movies, isLoading, isError} = useCustomFetch(`/discover/movie?language=ko`);
     // console.log('rufrhk',movies.data?.results[0].id);
     if(isLoading){
-        return <div>
-            <h1 style={{color:"white"}}>로딩중입니다...</h1>
-        </div>
+        return (
+            <MovieCardContainer>
+                <CardListSkeleton num={20}/>
+            </MovieCardContainer>
+        )
     }
     if (isError){
         return <div><h1 style={{color:"white"}}>에러발생</h1></div>
