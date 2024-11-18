@@ -20,6 +20,7 @@ const SubmitBtn = styled.button`
   border: none;
   border-radius: 4px;
   background-color: orange;
+  cursor: pointer;
 
   &:hover {
     background-color: darkorange;
@@ -32,6 +33,7 @@ const TodoList = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  margin-bottom: 40px;
 `;
 
 export { Container, InputContainer, SubmitBtn, TodoList };

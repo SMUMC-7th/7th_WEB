@@ -7,6 +7,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 70px;
+  margin: 20px 0;
 `;
 
 const Header = styled.h1``;
