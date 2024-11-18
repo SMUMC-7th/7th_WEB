@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { axiosInstance } from '../apis/axios-instance';
 
-const useFetchTodo = (url) => {
+const useGetTodo = (url) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -25,4 +25,4 @@ const useFetchTodo = (url) => {
   return { data, isLoading, isError };
 };
 
-export default useFetchTodo;
+export default useGetTodo;
