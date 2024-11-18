@@ -21,18 +21,24 @@ const TodoList = styled.li`
 
 const TodoContent = styled.div`
   padding-left: 10px;
-  width: 250px;
+  width: 150px;
   display: flex;
   flex-direction: column;
   gap: 3px;
 
-  h3 {
+  h5,
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     margin: 0;
-    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 15px;
   }
 
   p {
-    margin: 0;
     font-size: 13px;
   }
 
@@ -61,7 +67,7 @@ const TodoButton = styled.div`
 `;
 
 const EditBox = styled.div`
-  width: 100%;
+  width: 280px;
   display: flex;
   align-items: center;
 `;

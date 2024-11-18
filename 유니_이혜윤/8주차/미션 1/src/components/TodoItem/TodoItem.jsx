@@ -37,7 +37,7 @@ const TodoItem = ({
         </S.EditBox>
       ) : (
         <S.TodoContent onClick={() => navigate(`/todo/${todo.id}`)}>
-          <h3>{todo.title}</h3>
+          <h5>{todo.title}</h5>
           <p>{todo.content}</p>
         </S.TodoContent>
       )}
