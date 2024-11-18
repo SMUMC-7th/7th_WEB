@@ -4,9 +4,9 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 280px;
     align-items: center;
     gap: 10px;
+    margin-top: 150px;
 `;
 
 const Text = styled.div`
@@ -26,6 +26,7 @@ const Input = styled.input`
     width: 250px;
     height: 40px;
     border-radius: 5px;
+
     border: none;
     padding-left: 7px;
 `;
