@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { Input } from '../../components/Input/Input';
 import { Todo } from '../../components/todo/Todo';
 import * as S from './TodoList.style';
-import useFetchTodo from '../../hooks/useFetchTodo';
-import usePostTodo from '../../hooks/usePostTodo';
+import useFetchTodo from '../../hooks/useGetTodo';
+import usePostTodo from '../../hooks/useFetchTodo';
+import useGetTodo from '../../hooks/useGetTodo';
 
 function TodoList() {
   const [title, setTitle] = useState('');
@@ -20,10 +21,10 @@ function TodoList() {
 
   // todo post 요청 보내기
   const {
-    postTodo,
+    requestTodo,
     isLoading: postLoading,
     isError: postError,
-  } = usePostTodo('/todo');
+  } = useFetchTodo('/todo');
 
   // 1. 제목 및 내용 작성 후 버튼 클릭 시 투두 추가하기 (api 요청 보내기)
   const todoData = {
@@ -32,16 +33,17 @@ function TodoList() {
     checked: false,
   };
 
-  const handleAddTodo = () => {
-    postTodo(todoData);
+  const handleAddTodo = (e) => {
+    e.preventDefault();
+    requestTodo(todoData);
   };
 
   // todoList 불러오기
-  const { data: todoList, isLoading, isError } = useFetchTodo('/todo');
+  const { data: todoList, isLoading, isError } = useGetTodo('/todo');
 
   return (
     <S.Container>
-      <S.InputContainer onSubmit={() => handleAddTodo}>
+      <S.InputContainer onSubmit={(e) => handleAddTodo()}>
         <Input
           placeholder={'제목을 입력해주세요.'}
           value={title}
