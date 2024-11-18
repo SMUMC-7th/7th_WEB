@@ -1,7 +1,9 @@
 import * as S from './Input.style';
 
-const Input = ({ placeholder, value }) => {
-  return <S.Input placeholder={placeholder} value={value}></S.Input>;
+const Input = ({ placeholder, value, onChange }) => {
+  return (
+    <S.Input placeholder={placeholder} value={value} onChange={onChange} />
+  );
 };
 
 export { Input };
