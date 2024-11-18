@@ -14,9 +14,11 @@ const HomePage = () => {
     // console.log('rufrhk',movies.data?.results[0].id);
     if(isLoading){
         return (
-            <MovieCardContainer>
-                <CardListSkeleton num={20}/>
-            </MovieCardContainer>
+            <S.Container>
+                <MovieCardContainer>
+                    <CardListSkeleton num={20}/>
+                </MovieCardContainer>
+            </S.Container>
         )
     }
     if (isError){

@@ -7,6 +7,7 @@ const Container = styled.div`
   gap: 10px;
   margin: 15px;
   background-color: rgb(20, 20, 20);
+  width: 100%;
 `
 
 export {Container}

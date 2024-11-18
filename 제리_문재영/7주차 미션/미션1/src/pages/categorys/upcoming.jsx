@@ -11,9 +11,11 @@ const UpComing = () => {
     const {data:movies, isLoading, isError} = useCustomFetch(`3/movie/upcoming?language=ko`);
     if(isLoading){
         return (
-            <MovieCardContainer>
-                <CardListSkeleton num={20}/>
-            </MovieCardContainer>
+            <S.Container>
+                <MovieCardContainer>
+                    <CardListSkeleton num={20}/>
+                </MovieCardContainer>
+            </S.Container>
         )
     }
     if (isError){

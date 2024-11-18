@@ -11,9 +11,11 @@ const TopRated = () => {
     const {data:movies, isLoading, isError} = useCustomFetch(`/movie/top_rated?language=ko`);
     if(isLoading){
         return (
-            <MovieCardContainer>
-                <CardListSkeleton num={20}/>
-            </MovieCardContainer>
+            <S.Container>
+                <MovieCardContainer>
+                    <CardListSkeleton num={20}/>
+                </MovieCardContainer>
+            </S.Container>
         )
     }
     if (isError){

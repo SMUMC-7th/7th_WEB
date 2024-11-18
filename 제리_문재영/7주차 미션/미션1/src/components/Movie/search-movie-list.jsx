@@ -16,7 +16,7 @@ const SearchMovieList = () => {
     const {data:movies, isLoading, isError} = useCustomFetch(url);
     // console.log(movies);
 
-    if (isLoading){
+    if (!isLoading){
         return (
             <S.MovieCardContainer>
                 <CardListSkeleton num={20}/>
