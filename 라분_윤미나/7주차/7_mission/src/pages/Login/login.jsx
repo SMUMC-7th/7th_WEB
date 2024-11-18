@@ -3,14 +3,39 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorLottie from "../../components/Error/Error";
-import axios from "axios";
+//import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { loginContext } from "../../context/LoginContext";
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import postLogin from "../../hooks/queries/usePostLogin";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  const { mutate: postInfoMutation } = useMutation({
+    mutationFn: postLogin,
+    onSuccess: (response) => {
+      console.log("데이터 제출 성공 ");
+      if (!response) {
+        console.error("response가 없습니다.");
+        return;
+      }
+      console.log("API 응답: ", response);
+      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
+
+      setIsLogin(true);
+      setAccessToken(response.accessToken);
+      console.log(response.accessToken);
+
+      navigate("/");
+    },
+    onError: (error) => {
+      console.log("데이터 제출 실패: ", error);
+    },
+  });
 
   const [error, setError] = useState(false);
   let { setIsLogin, setAccessToken } = useContext(loginContext);
@@ -36,18 +61,11 @@ const LoginPage = () => {
   });
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/login",
-        data
-      );
-      console.log("API 응답: ", response.data);
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
-
-      setIsLogin(true);
-      setAccessToken(response.data.accessToken);
-
-      navigate("/"); //window.location.href('/'); -> 새로고침까지 해서 리로딩(?)
+      // const response = await axios.post(
+      //   "http://localhost:3000/auth/login",
+      //   data
+      // );
+      postInfoMutation({ data });
     } catch (error) {
       if (error.response) {
         setError(true);

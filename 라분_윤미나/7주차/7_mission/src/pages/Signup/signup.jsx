@@ -3,11 +3,27 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorLottie from "../../components/Error/Error";
-import axios from "axios";
+//import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+//import { queryClient } from "../../main";
+import postSignup from "../../hooks/queries/usePostSignup";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+
+  const { mutate: postInfoMutation } = useMutation({
+    mutationFn: postSignup,
+    onSuccess: (response) => {
+      console.log("데이터 제출 성공 ");
+      console.log("API 응답: ", response.data);
+      navigate("/login");
+    },
+    onError: (error) => {
+      console.log("데이터 제출 실패: ", error);
+    },
+  });
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -35,23 +51,16 @@ const SignUpPage = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/register", {
-        email: data.email,
-        password: data.password,
-        passwordCheck: data.password_check,
-      });
-
-      console.log("데이터 제출 : ", data);
-      console.log("API 응답: ", response.data);
-      navigate("/login");
+      // const response = await axios.post("http://localhost:3000/auth/register", {
+      //   email: data.email,
+      //   password: data.password,
+      //   passwordCheck: data.password_check,
+      // });
+      postInfoMutation({ data });
+      //console.log("데이터 제출 : ", data);
     } catch (error) {
-      if (error.response) {
-        <ErrorLottie />;
-        console.error("에러 발생:", error.response.data); // 서버가 제공하는 자세한 오류 메시지
-      } else {
-        <ErrorLottie />;
-        console.error("에러 발생:", error.message); // 기타 오류 메시지
-      }
+      <ErrorLottie />;
+      console.error("에러 발생:", error);
     }
   };
 

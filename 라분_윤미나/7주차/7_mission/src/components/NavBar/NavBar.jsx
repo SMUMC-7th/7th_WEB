@@ -26,6 +26,7 @@ const Navbar = () => {
       .then((response) => {
         const email = response.data.email;
         const nickname = email.split("@")[0];
+
         setUserName(nickname);
         setUsername(nickname);
         setIsLogin(true);
@@ -38,6 +39,7 @@ const Navbar = () => {
   if (accessToken) {
     userInfo(accessToken);
   }
+
   return (
     <S.Nav>
       <Link to={"/"} style={{ color: "rgb(255, 0, 119)" }}>
