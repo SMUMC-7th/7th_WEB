@@ -12,10 +12,10 @@ const LogIn = () => {
             email: '',
             password: '',
         },
-        validate: validateLogin()
+        validate: validateLogin,
     })
 
-    console.log(login.values, login.errors, login.touched);
+    // console.log(login.values, login.errors, login.touched);
     
     // const schema = yup.object().shape({
     //     email: yup.string().email().required('이메일을 반드시 입력해주세요'),
@@ -45,11 +45,12 @@ const LogIn = () => {
             />
             {login.touched.email && login.errors.email && <S.Error>{login.errors.email}</S.Error>}
             <S.Input
-                error = {login.touched.email && login.errors.email}
+                error = {login.touched.password && login.errors.password}
                 type={'password'}
                 placeholder={'비밀번호를 입력해주세요'}
                 {...login.getTextInputProps('password')}
             />
+            {login.touched.password && login.errors.password && <S.Error>{login.errors.password}</S.Error>}
             <S.Button onClick={handlePressLogin}>로그인</S.Button>
 
         </S.Container>
