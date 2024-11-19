@@ -12,4 +12,24 @@ const Container = styled.div`
   border-radius: 20px;
 `;
 
-export { Container };
+const SearchBox = styled.div`
+  display: flex;
+  gap: 5px;
+
+  input {
+    width: 160px;
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 5px;
+    cursor: pointer;
+  }
+
+  button {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+`;
+
+export { Container, SearchBox };

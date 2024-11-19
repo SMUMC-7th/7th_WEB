@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./TodoList.style";
 import TodoInput from "../../components/TodoInput/TodoInput";
@@ -12,7 +12,32 @@ const TodoList = () => {
   const [editingId, setEditingId] = useState(null); // 현재 수정 중인 To-Do id
   const [editTitle, setEditTitle] = useState(""); // 수정 중인 제목
   const [editContent, setEditContent] = useState(""); // 수정 중인 내용
+  const [searchTitle, setSearchTitle] = useState("");
   const navigate = useNavigate();
+
+  // 전체 조회 - get 요청
+  const fetchTodos = async (queryTitle = "") => {
+    try {
+      const res = await axios.get("http://localhost:3000/todo", {
+        params: queryTitle ? { title: queryTitle } : {}, // 쿼리 파라미터
+      });
+      console.log("todos:", res.data);
+      setTodos(res.data);
+    } catch (error) {
+      console.error("GET 요청 실패", error);
+      alert("Todo 조회에 실패했습니다 ㅠㅠ");
+    }
+  };
+
+  useEffect(() => {
+    fetchTodos(); // 전체 목록 조회
+  }, []);
+
+  // 검색 기능
+  const handleSearch = () => {
+    fetchTodos(searchTitle); // 검색어를 Parameter로 전달
+    setSearchTitle("");
+  };
 
   // todo 생성 - post
   const addTodo = async (title, content) => {
@@ -27,8 +52,10 @@ const TodoList = () => {
         content,
       });
       console.log(res);
-      const newTodo = res.data;
-      setTodos((prevTodos) => [...prevTodos, newTodo]);
+
+      const updatedTodos = await axios.get("http://localhost:3000/todo");
+      setTodos(updatedTodos.data);
+
       setTitle("");
       setContent("");
     } catch (error) {
@@ -42,7 +69,8 @@ const TodoList = () => {
     try {
       const res = await axios.delete(`http://localhost:3000/todo/${id}`);
       console.log(res);
-      setTodos(todos.filter((todo) => todo.id !== id));
+      const updatedTodos = await axios.get("http://localhost:3000/todo");
+      setTodos(updatedTodos.data);
     } catch (error) {
       console.error("delete 요청 실패", error);
       alert("Todo 삭제에 실패했습니다 ㅠㅠ");
@@ -68,13 +96,9 @@ const TodoList = () => {
       });
       console.log(res);
 
-      setTodos(
-        todos.map((todo) =>
-          todo.id === id
-            ? { ...todo, title: editTitle, content: editContent }
-            : todo
-        )
-      );
+      const updatedTodos = await axios.get("http://localhost:3000/todo");
+      setTodos(updatedTodos.data);
+
       setEditingId(null);
     } catch (error) {
       console.error("patch 요청 실패", error);
@@ -107,6 +131,18 @@ const TodoList = () => {
         navigate={navigate}
         startEditing={startEditing}
       />
+
+      {/* 검색 입력창 */}
+      <S.SearchBox>
+        <input
+          type="text"
+          placeholder="검색할 제목을 입력하세요 :)"
+          value={searchTitle}
+          onChange={(e) => setSearchTitle(e.target.value)}
+        />
+        <button onClick={handleSearch}>검색</button>
+        <button onClick={() => fetchTodos("")}>전체보기</button>
+      </S.SearchBox>
     </S.Container>
   );
 };

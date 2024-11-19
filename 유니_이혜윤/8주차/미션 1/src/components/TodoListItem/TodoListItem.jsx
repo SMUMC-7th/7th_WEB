@@ -14,9 +14,12 @@ const TodoListItem = ({
   navigate,
   startEditing,
 }) => {
+  console.log(todos[0]);
+  const todoArray = todos[0] || [];
+
   return (
     <S.Todo>
-      {todos.map((todo) => (
+      {todoArray.map((todo) => (
         <TodoItem
           key={todo.id}
           todo={todo}
