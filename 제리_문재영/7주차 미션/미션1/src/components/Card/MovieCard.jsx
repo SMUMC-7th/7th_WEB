@@ -8,7 +8,7 @@ function MovieCard(props){
     
     return(
         <S.Container to={`/movies/${id}`}>
-            <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="" />
+            <img src={`https://image.tmdb.org/t/p/w500${poster_path}&language=ko-KR`} alt="" />
             <S.Title>{title}</S.Title>
             <S.Release>{release_date}</S.Release>
         </S.Container>

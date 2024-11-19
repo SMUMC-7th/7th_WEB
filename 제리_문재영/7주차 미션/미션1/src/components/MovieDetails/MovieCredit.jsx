@@ -5,7 +5,7 @@ import Profile from "../Profile/Profile";
 
 const MovieCredit = ({ movieId }) => {
 
-    const {data: credit, isLoading, isError} = useCustomFetch(`movie/${movieId}/credits?language=ko`);
+    const {data: credit, isLoading, isError} = useCustomFetch(`movie/${movieId}/credits?language=ko-KR`);
     // console.log("credit",credit);
 
     if(isLoading){
