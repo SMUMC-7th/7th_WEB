@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
-import { validateLogin } from "../utils/validate";
 
-function useForm(initialValue, validate){
+function useForm({initialValue, validate}){
     const [values, setValues] = useState(initialValue)
-
     const [touched, setTouched] = useState({})
-
     const [errors, setErrors] = useState({})
-
+ 
     const handleChangeInput = (name, value) => {
         setValues({
             ...values,
@@ -30,7 +27,7 @@ function useForm(initialValue, validate){
         return {value, onChange, onBlur}
     }
 
-    useEffect(() => {
+    useEffect(() => {        
         const newErrors = validate(values); 
         console.log(newErrors);
         setErrors(newErrors);
