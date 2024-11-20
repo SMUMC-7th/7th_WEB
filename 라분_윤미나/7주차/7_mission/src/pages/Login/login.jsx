@@ -3,18 +3,20 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import ErrorLottie from "../../components/Error/Error";
-//import axios from "axios";
+import LoadingLottie from "../../components/Loding/Loding";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { loginContext } from "../../context/LoginContext";
-import { useState } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 import { useMutation } from "@tanstack/react-query";
 import postLogin from "../../hooks/queries/usePostLogin";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const { mutate: postInfoMutation } = useMutation({
+  const {
+    mutate: postInfoMutation,
+    isError,
+    isPending,
+  } = useMutation({
     mutationFn: postLogin,
     onSuccess: (response) => {
       console.log("데이터 제출 성공 ");
@@ -37,8 +39,8 @@ const LoginPage = () => {
     },
   });
 
-  const [error, setError] = useState(false);
-  let { setIsLogin, setAccessToken } = useContext(loginContext);
+  //const [error, setError] = useState(false);
+  let { setIsLogin, setAccessToken } = useAuthContext();
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -60,21 +62,13 @@ const LoginPage = () => {
     mode: "onChange",
   });
   const onSubmit = async (data) => {
-    try {
-      // const response = await axios.post(
-      //   "http://localhost:3000/auth/login",
-      //   data
-      // );
-      postInfoMutation({ data });
-    } catch (error) {
-      if (error.response) {
-        setError(true);
-        console.error("에러 발생:", error.response.data); // 서버가 제공하는 자세한 오류 메시지
-      }
-    }
+    postInfoMutation({ data });
   };
 
-  if (error) {
+  if (isPending) {
+    return <LoadingLottie />;
+  }
+  if (isError) {
     return <ErrorLottie />;
   }
 
