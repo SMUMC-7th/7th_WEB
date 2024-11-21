@@ -1,19 +1,12 @@
 import * as S from './home.style';
 import MovieCardBackdrop from '../../components/movieCard_backdrop/movieCardBackdrop';
-import { useQuery } from '@tanstack/react-query';
-import {
-    TMovieTotalResponse,
-    getTrendingMovie,
-    TMovieSingleResponse,
-} from '../../apis/movie';
+import { TMovieSingleResponse } from '../../apis/movie';
 
 import Error from '../../components/error/error';
 import CardListSkeleton from '../../components/movieCard_backdrop/Skeleton/card-list-skeleton';
+import useGetTrendingMovies from '../../hooks/queries/useGetTrendingMovies';
 const HomePage = () => {
-    const { data, error, isLoading } = useQuery<TMovieTotalResponse>({
-        queryKey: ['totalMovie'],
-        queryFn: () => getTrendingMovie(),
-    });
+    const { data, error, isLoading } = useGetTrendingMovies();
 
     if (isLoading) {
         return (
@@ -27,7 +20,6 @@ const HomePage = () => {
         console.log('데이터가 없습니다');
         return <Error />;
     }
-    console.log(data);
     return (
         <S.Container>
             <S.Title>Trending movies</S.Title>

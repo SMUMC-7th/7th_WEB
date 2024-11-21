@@ -6,8 +6,7 @@ import { useState, useEffect } from 'react';
 import SimilarMovie from '../../components/similarMovie/similarMovie';
 import Review from '../../components/review/review';
 import YoutubeModal from '../../components/youtubeModal/youtubeModal';
-import { getMovieVideos } from '../../apis/movie';
-import { useQuery } from '@tanstack/react-query';
+import useGetMovieVedio from '../../hooks/queries/useGetMovieVedio';
 
 const MovieDetail = () => {
     const { movieId } = useParams();
@@ -24,14 +23,8 @@ const MovieDetail = () => {
         setModalOpen(false);
     };
 
-    const { data } = useQuery({
-        queryKey: ['YouTubemovieId', movieId],
-        queryFn: () => getMovieVideos(movieId || ''),
-        enabled: !!movieId,
-    });
+    const { data } = useGetMovieVedio(movieId!);
     console.log(data);
-    console.log(data?.results?.[0]);
-
     useEffect(() => {
         if (modalOpen) {
             document.body.style.overflow = 'hidden';
@@ -48,7 +41,12 @@ const MovieDetail = () => {
             {data?.results?.[0] !== undefined ? (
                 <>
                     <S.PlayButton onClick={handleOpenModal} />
-                    {modalOpen && <YoutubeModal onClose={handleCloseModal} />}
+                    {modalOpen && (
+                        <YoutubeModal
+                            onClose={handleCloseModal}
+                            youtube={data?.results?.[0].key}
+                        />
+                    )}
                 </>
             ) : (
                 <></>

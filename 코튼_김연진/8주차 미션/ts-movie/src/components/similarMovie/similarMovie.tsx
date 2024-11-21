@@ -1,18 +1,11 @@
-import { getSimilarMovie } from '../../apis/movie';
 import * as S from './similarMovie.style';
-import { useQuery } from '@tanstack/react-query';
-import { TMovieTotalResponse } from '../../apis/movie';
 import MovieCard from '../movieCard/movieCard';
 import ClipLoader from 'react-spinners/ClipLoader';
 import Error from '../error/error';
+import useGetSimilarMovie from '../../hooks/queries/useGetSimilarMovie';
 
 const SimilarMovie = ({ id }: { id: string }) => {
-    console.log(id);
-    const { data, error, isLoading } = useQuery<TMovieTotalResponse>({
-        queryKey: ['SimilarMoive', id],
-        queryFn: () => getSimilarMovie(id),
-        enabled: !!id,
-    });
+    const { data, error, isLoading } = useGetSimilarMovie(id);
     if (error) {
         return <Error></Error>;
     }

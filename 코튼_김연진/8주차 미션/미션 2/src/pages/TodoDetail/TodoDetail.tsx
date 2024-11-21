@@ -22,7 +22,7 @@ const TodoDetail = () => {
         data: todo,
         isLoading,
         isError,
-        error: fetchError,
+        error,
     } = useQuery<TTodo, Error>({
         queryKey: ['todo', id],
         queryFn: () => getOneTodo(Number(id)),
@@ -30,15 +30,11 @@ const TodoDetail = () => {
     const [isEdit, setIsEdit] = useState(false);
     const [newTitle, setNewTitle] = useState<string>('');
     const [newContent, setNewContent] = useState<string>('');
-    const [newChecked, setNewChecked] = useState<boolean>(
-        todo?.checked || false
-    );
 
     useEffect(() => {
         if (todo) {
             setNewTitle(todo?.title);
             setNewContent(todo?.content);
-            setNewChecked(todo?.checked);
         }
     }, [todo]);
 
@@ -62,19 +58,17 @@ const TodoDetail = () => {
     });
 
     if (isLoading) return <Loading />;
-    if (isError) return <Error />;
-
+    if (isError || error) return <Error />;
     return (
         <S.Container>
             <S.Container1>
                 <S.Checkbox
                     type="checkbox"
                     checked={todo?.checked}
-                    onClick={() => setNewChecked(!newChecked)}
                     onChange={(e) => {
                         patchTodoMutation({
                             id: Number(id),
-                            checked: newChecked,
+                            checked: !todo?.checked,
                             title: todo?.title || '',
                             content: todo?.content || '',
                         });
@@ -117,7 +111,7 @@ const TodoDetail = () => {
                                 setIsEdit(false);
                                 patchTodoMutation({
                                     id: Number(id),
-                                    checked: newChecked,
+                                    checked: todo?.checked || false,
                                     title: newTitle,
                                     content: newContent,
                                 });

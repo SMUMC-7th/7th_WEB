@@ -1,10 +1,9 @@
 import * as S from './navbar.style';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { TMyInfoResponse, getMyInfo } from '../../apis/user';
 import { useAuthContext } from '../../context/LogInContext';
 import { FaSearch } from 'react-icons/fa';
 import { useSearchParams, useNavigate, useLocation } from 'react-router-dom';
+import useGetMyInfo from '../../hooks/queries/useGetMyInfo';
 
 interface UserData {
     email: string;
@@ -62,16 +61,7 @@ const Navbar = () => {
         }
     };
 
-    const { data, refetch } = useQuery<TMyInfoResponse | null>({
-        queryKey: ['myInfo'],
-        queryFn: () => {
-            if (accessToken) {
-                return getMyInfo({ accessToken });
-            }
-            return null;
-        },
-        enabled: !!accessToken,
-    });
+    const { data, refetch } = useGetMyInfo(accessToken);
 
     useEffect(() => {
         if (isLogin) {
@@ -88,7 +78,6 @@ const Navbar = () => {
     const logout = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        console.log('로그아웃');
         setIsLogin(false);
         window.location.reload();
     };

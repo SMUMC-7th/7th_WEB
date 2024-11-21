@@ -1,19 +1,14 @@
 import * as S from './movieInfoCard.style.js';
 import Error from '../error/error.jsx';
-import { getSingleMovie, TMovieSingleResponse } from '../../apis/movie';
-import { useQuery } from '@tanstack/react-query';
 import ClipLoader from 'react-spinners/ClipLoader';
+import useGetSingleMovie from '../../hooks/queries/useGetSingleMovie.js';
 
 interface Props {
     movieId: string;
 }
 function MovieInfoCard(props: Props) {
     const { movieId } = props;
-    const { data, error, isLoading } = useQuery<TMovieSingleResponse>({
-        queryKey: ['movieId', movieId],
-        queryFn: () => getSingleMovie(movieId || ''),
-        enabled: !!movieId,
-    });
+    const { data, error, isLoading } = useGetSingleMovie(movieId);
 
     if (error) {
         console.log('데이터가 없습니다');
@@ -50,7 +45,6 @@ function MovieInfoCard(props: Props) {
     } else {
         backgroundImageUrl = `https://image.tmdb.org/t/p/original${backdrop_path}`;
     }
-    console.log(data?.origin_country);
     const formattedReleaseDate = release_date?.slice(0, 4);
     const formattedRuntime = Math.floor(runtime / 60);
     const formattedRuntimeMin = runtime - formattedRuntime * 60;

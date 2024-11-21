@@ -1,21 +1,15 @@
 import * as S from './movieCeditDetail.style';
 import Profile from '../../components/profile/profile';
-import { useQuery } from '@tanstack/react-query';
-import { TMovieCreditResponse } from '../../apis/movie';
-import { getMovieCredit } from '../../apis/movie';
 import { useParams } from 'react-router-dom';
 import Error from '../../components/error/error';
 import Lottie from 'react-lottie-player';
 import loadingJson from '../../lottie/Animation-loading.json';
+import useGetCredit from '../../hooks/queries/useGetCredit';
 
 const MovieCreditDetail = () => {
-    const { movieID } = useParams();
+    const { movieID } = useParams<{ movieID: string }>();
 
-    const { data, error, isLoading } = useQuery<TMovieCreditResponse>({
-        queryKey: ['movieCredit', movieID],
-        queryFn: () => getMovieCredit(movieID || ''),
-        enabled: !!movieID,
-    });
+    const { data, error, isLoading } = useGetCredit(movieID!);
 
     if (error) {
         console.log('Error fetching data', error);
@@ -29,7 +23,6 @@ const MovieCreditDetail = () => {
             </S.Alert>
         );
     }
-    console.log(data);
     return (
         <S.Container>
             <S.Member>

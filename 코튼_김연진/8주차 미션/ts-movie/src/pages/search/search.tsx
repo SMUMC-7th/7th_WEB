@@ -1,18 +1,14 @@
 import * as S from './search.style';
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { KeyboardEvent } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import MovieCard from '../../components/movieCard/movieCard';
 import Error from '../../components/error/error';
 import Loading from '../../components/loading/loading';
-import {
-    getSearchMovie,
-    TMovieSingleResponse,
-    TMovieTotalResponse,
-} from '../../apis/movie';
+import { TMovieSingleResponse } from '../../apis/movie';
+import useGetSearchMovies from '../../hooks/queries/useGetSearchMovies';
 
 const Search = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [searchValue, setSearchValue] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
@@ -31,28 +27,7 @@ const Search = () => {
         };
     }, [searchValue, navigate, setSearchParams]);
 
-    const onChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(e.target.value);
-    };
-
-    const handleSearchMovie = () => {
-        if (mq === searchValue) return;
-        navigate(`/search?mq=${searchValue}`);
-    };
-
-    const handleSearchMovieWithKeyboard = (
-        e: KeyboardEvent<HTMLInputElement>
-    ) => {
-        if (e.key === 'Enter') {
-            handleSearchMovie();
-        }
-    };
-
-    const { data, error, isLoading } = useQuery<TMovieTotalResponse>({
-        queryKey: ['searchMovie', mq],
-        queryFn: () => getSearchMovie(mq, 1),
-        enabled: !!mq,
-    });
+    const { data, error, isLoading } = useGetSearchMovies(mq);
 
     if (isLoading) {
         return <Loading />;

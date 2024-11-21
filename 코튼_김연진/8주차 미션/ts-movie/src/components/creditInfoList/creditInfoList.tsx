@@ -1,20 +1,15 @@
 import Profile from '../profile/profile.jsx';
 import * as S from './creditInfoList.style.js';
 import Error from '../error/error.jsx';
-import { getMovieCredit, TMovieCreditResponse } from '../../apis/movie';
-import { useQuery } from '@tanstack/react-query';
 import ClipLoader from 'react-spinners/ClipLoader.js';
+import useGetCredit from '../../hooks/queries/useGetCredit.js';
 
 interface CreditInfoListProps {
     movieId: string;
 }
 
 const CreditInfoList = ({ movieId }: CreditInfoListProps) => {
-    const { data, error, isLoading } = useQuery<TMovieCreditResponse>({
-        queryKey: ['movieCredit', movieId],
-        queryFn: () => getMovieCredit(movieId || ''),
-        enabled: !!movieId,
-    });
+    const { data, error, isLoading } = useGetCredit(movieId);
 
     if (error) {
         console.log('Error fetching data', error);

@@ -15,8 +15,6 @@ const Todo = (props: {
     const [isEditing, setIsEditing] = useState(false);
     const [newTitle, setNewTitle] = useState<string>(title);
     const [newContent, setNewContent] = useState<string>(content);
-    const [newChecked, setNewChecked] = useState<boolean>(checked);
-
     const { mutate: deleteTodoMutation } = useMutation({
         mutationFn: deleteTodo,
         onSuccess: () => {
@@ -42,12 +40,11 @@ const Todo = (props: {
             <S.Checkbox
                 type="checkbox"
                 checked={checked}
-                onClick={() => setNewChecked(!newChecked)}
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 onChange={(e) => {
                     patchTodoMutation({
                         id: id,
-                        checked: newChecked,
+                        checked: !checked,
                         title: title,
                         content: content,
                     });

@@ -6,7 +6,7 @@ const Button = ({
     disabled,
 }: {
     text: string;
-    onClick: React.MouseEventHandler<HTMLButtonElement>;
+    onClick: () => void;
     disabled: boolean;
 }) => {
     return (
