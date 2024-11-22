@@ -23,8 +23,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useAuthContext, AuthProvider } from "./context/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { username } = useAuthContext();
-  if (username == null) {
+  const { userName } = useAuthContext();
+  if (userName == null) {
     alert("로그인을 해주세요.");
     return <Navigate to="/login" replace />;
   }

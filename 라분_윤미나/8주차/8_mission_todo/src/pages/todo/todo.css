@@ -1,0 +1,87 @@
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+form:nth-of-type(2) {
+  gap: 5px;
+}
+.SearchForm {
+  display: flex;
+  flex-direction: row;
+}
+.SearchForm_Input {
+  width: 340px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+.SearchForm_Button {
+  width: 60px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0 10px;
+
+  &:hover {
+    background-color: rgb(134, 134, 134);
+    color: white;
+  }
+}
+.InputText {
+  width: 400px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+.lists {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 10px;
+}
+.lists_container {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+}
+.lists_container_textbox {
+  display: flex;
+  gap: 20px;
+}
+.lists_container_inputContainer {
+  display: flex;
+  gap: 20px;
+}
+.lists_container_updateInputBox {
+  display: flex;
+  flex-direction: column;
+}
+.lists_container_buttonBox {
+  display: flex;
+  gap: 10px;
+}
+
+.Del_update_Button {
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0 10px;
+
+  :hover {
+    background-color: rgb(51, 51, 51);
+  }
+}
