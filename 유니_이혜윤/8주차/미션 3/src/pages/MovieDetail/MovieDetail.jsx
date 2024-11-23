@@ -6,6 +6,8 @@ import useGetMovieVideo from "@/hooks/queries/useGetMovieVideo";
 import { useQuery } from "@tanstack/react-query";
 import { MdOutlineSmartDisplay } from "react-icons/md";
 import { useState, useEffect, useRef } from "react";
+import YouTube from "react-youtube";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 const MovieDetail = () => {
   const { movieId } = useParams();
@@ -77,16 +79,20 @@ const MovieDetail = () => {
       {videoKey && (
         <D.VideoModal ref={modalRef}>
           <button onClick={closeModal} aria-label="Close">
-            닫기
+            <IoCloseCircleOutline />
           </button>
-          <iframe
-            width="560"
-            height="315"
-            src={`https://www.youtube.com/embed/${videoKey}`}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
+          <YouTube
+            videoId={videoKey} // YouTube 동영상 id
+            opts={{
+              height: "315",
+              width: "560",
+              playerVars: {
+                autoplay: 1, // 자동 재생
+                controls: 1, // 컨트롤러 표시
+              },
+            }}
+            onReady={(event) => event.target.playVideo()} // 동영상 로드 후 자동 재생
+          />
         </D.VideoModal>
       )}
     </D.DetailContainer>

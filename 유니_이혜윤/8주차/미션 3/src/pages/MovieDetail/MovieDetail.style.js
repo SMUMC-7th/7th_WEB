@@ -44,10 +44,6 @@ const VideoIcon = styled.div`
   width: 50px;
   cursor: pointer;
   font-size: 30px;
-
-  iframe {
-    border: none;
-  }
 `;
 
 const VideoModal = styled.div`
@@ -56,11 +52,19 @@ const VideoModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.9);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   z-index: 1000;
-  iframe {
+
+  button {
     border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    margin-bottom: 10px;
   }
 `;
 
