@@ -37,4 +37,31 @@ const BottomWrapper = styled.div`
   padding: 20px;
 `;
 
-export { DetailContainer, TopWrapper, BottomWrapper };
+const VideoIcon = styled.div`
+  position: fixed;
+  top: 10%;
+  right: 0;
+  width: 50px;
+  cursor: pointer;
+  font-size: 30px;
+
+  iframe {
+    border: none;
+  }
+`;
+
+const VideoModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  iframe {
+    border: none;
+  }
+`;
+
+export { DetailContainer, TopWrapper, BottomWrapper, VideoIcon, VideoModal };

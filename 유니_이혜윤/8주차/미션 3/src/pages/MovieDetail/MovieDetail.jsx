@@ -1,12 +1,17 @@
 import { useParams } from "react-router-dom";
-// import useCustomFetch from "@/hooks/useCustomFetch";
 import * as D from "./MovieDetail.style";
 import CreditWrapper from "@/components/CreditWrapper/CreditWrapper";
 import useGetMovieDetail from "@/hooks/queries/useGetMovieDetail";
+import useGetMovieVideo from "@/hooks/queries/useGetMovieVideo";
 import { useQuery } from "@tanstack/react-query";
+import { MdOutlineSmartDisplay } from "react-icons/md";
+import { useState, useEffect, useRef } from "react";
 
 const MovieDetail = () => {
   const { movieId } = useParams();
+  const [videoKey, setVideoKey] = useState(null);
+  const modalRef = useRef();
+
   const {
     data: movie,
     isLoading,
@@ -16,9 +21,38 @@ const MovieDetail = () => {
     queryFn: () => useGetMovieDetail({ movieId }),
   });
 
+  const fetchVideo = async () => {
+    try {
+      const { results } = await useGetMovieVideo({ movieId });
+      const trailer = results.find((video) => video.type === "Trailer");
+      if (trailer) setVideoKey(trailer.key);
+      else alert("영상 정보를 찾을 수 없습니다.");
+    } catch (error) {
+      console.error("Error fetching video:", error);
+      alert("영상을 가져오는 데 실패했습니다.");
+    }
+  };
+
+  const closeModal = () => {
+    setVideoKey(null);
+  };
+
+  // 모달 바깥 클릭 감지
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target)) {
+        closeModal(); // 모달 외부 클릭 시 모달 닫기
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   if (isLoading) return <p>Loading ...</p>;
   if (isError) return <p>Error occurred 😭</p>;
-  console.log(movie);
 
   return (
     <D.DetailContainer>
@@ -37,6 +71,24 @@ const MovieDetail = () => {
       <D.BottomWrapper>
         <CreditWrapper movieId={movieId} />
       </D.BottomWrapper>
+      <D.VideoIcon onClick={fetchVideo}>
+        <MdOutlineSmartDisplay />
+      </D.VideoIcon>
+      {videoKey && (
+        <D.VideoModal ref={modalRef}>
+          <button onClick={closeModal} aria-label="Close">
+            닫기
+          </button>
+          <iframe
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${videoKey}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </D.VideoModal>
+      )}
     </D.DetailContainer>
   );
 };

@@ -13,6 +13,7 @@ import {
   TopRated,
   UpComing,
   MovieDetail,
+  Subscription,
 } from "@/pages/index";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "movies/:movieId",
         element: <MovieDetail />,
+      },
+      {
+        path: "subscription",
+        element: <Subscription />,
       },
     ],
   },

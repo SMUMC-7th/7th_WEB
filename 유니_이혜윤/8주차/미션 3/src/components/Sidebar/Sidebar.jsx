@@ -1,6 +1,6 @@
 import * as S from "./Sidebar.style";
 import { Link } from "react-router-dom";
-import { BiSearch, BiMoviePlay } from "react-icons/bi";
+import { BiSearch, BiMoviePlay, BiDollarCircle } from "react-icons/bi";
 
 const Sidebar = () => {
   return (
@@ -12,6 +12,10 @@ const Sidebar = () => {
       <Link to={"/category"}>
         <BiMoviePlay />
         영화
+      </Link>
+      <Link to={"/subscription"}>
+        <BiDollarCircle />
+        구독
       </Link>
     </S.Container>
   );

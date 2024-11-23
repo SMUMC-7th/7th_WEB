@@ -8,3 +8,4 @@ export { default as SearchPage } from "./Search/SearchPage";
 export { default as TopRated } from "./TopRated";
 export { default as UpComing } from "./UpComing";
 export { default as MovieDetail } from "./MovieDetail/MovieDetail";
+export { default as Subscription } from "./Subscription/Subscription";
