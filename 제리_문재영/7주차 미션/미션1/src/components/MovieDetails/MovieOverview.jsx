@@ -2,7 +2,7 @@ import useCustomFetch from "../../hooks/useCustomFetch";
 import * as S from "./MovieDetails.styled"
 
 const MovieOverview = ({ movieId }) => {
-    const {data: movie, isLoading, isError} = useCustomFetch(`movie/${movieId}?language=ko`);
+    const {data: movie, isLoading, isError} = useCustomFetch(`movie/${movieId}?language=ko-KR`);
     // console.log(movie,'11');
     
     if(isLoading){

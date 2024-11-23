@@ -14,6 +14,8 @@ import TopRated from './pages/categorys/toprated'
 import UpComing from './pages/categorys/upcoming'
 import MoviesDetails from './pages/moviesDetails/MoviesDetails'
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from './../node_modules/@tanstack/react-query-devtools/src/production';
 
 const router = createBrowserRouter([
   {
@@ -65,12 +67,14 @@ const router = createBrowserRouter([
   }
 ])
 
+const queryClient = new QueryClient()
 function App() {
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router}/>
-    </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   )
 }
 
