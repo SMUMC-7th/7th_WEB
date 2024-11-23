@@ -16,7 +16,6 @@ const LogIn = () => {
 
     const handlePressLogin = () => {
         console.log(login.values.email, login.values.password);
-
     }
     return (
         <S.Container>
