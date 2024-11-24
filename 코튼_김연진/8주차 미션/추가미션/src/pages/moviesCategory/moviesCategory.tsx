@@ -45,7 +45,14 @@ const MoviesCategory = () => {
     }, [inView, isFetching, hasNextPage, fetchNextPage]);
 
     if (isPending || isLoading) {
-        return <Loading />;
+        return (
+            <div className="flex flex-col w-full items-center">
+                <div className="flex text-white justify-start w-full text-[25px] ml-[20px]">
+                    {koreanTranslation}
+                </div>
+                <Loading />;
+            </div>
+        );
     }
 
     if (error) {

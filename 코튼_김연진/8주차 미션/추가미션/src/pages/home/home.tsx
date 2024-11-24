@@ -5,12 +5,17 @@ import CardListSkeleton from '../../components/movieCard_backdrop/Skeleton/card-
 import useGetTrendingMovies from '../../hooks/queries/useGetTrendingMovies';
 
 const HomePage = () => {
-    const { data, error, isLoading } = useGetTrendingMovies();
+    const { data, error, isLoading, isPending } = useGetTrendingMovies();
 
-    if (isLoading) {
+    if (isLoading || isPending) {
         return (
-            <div className="flex m-5 gap-5 flex-wrap justify-center">
-                <CardListSkeleton number={20}></CardListSkeleton>
+            <div className="flex flex-col items-center border-t border-solid border-[#202020]">
+                <div className="flex text-white text-xl w-[90%] mt-5">
+                    Trending movies
+                </div>
+                <div className="flex m-5 gap-5 flex-wrap justify-center">
+                    <CardListSkeleton number={20}></CardListSkeleton>
+                </div>
             </div>
         );
     }
@@ -24,17 +29,11 @@ const HomePage = () => {
             <div className="flex text-white text-xl w-[90%] mt-5">
                 Trending movies
             </div>
-            {isLoading ? (
-                <div className="flex m-5 gap-5 flex-wrap justify-center">
-                    <CardListSkeleton number={20}></CardListSkeleton>
-                </div>
-            ) : (
-                <div className="flex m-5 gap-5 flex-wrap justify-center">
-                    {data.results.map((movie: TMovieSingleResponse) => (
-                        <MovieCardBackdrop key={movie.id} {...movie} />
-                    ))}
-                </div>
-            )}
+            <div className="flex m-5 gap-5 flex-wrap justify-center">
+                {data.results.map((movie: TMovieSingleResponse) => (
+                    <MovieCardBackdrop key={movie.id} {...movie} />
+                ))}
+            </div>
         </div>
     );
 };
