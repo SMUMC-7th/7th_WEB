@@ -1,11 +1,15 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { todoContext } from "../../context/todoContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function TodoDetailPage({ todo }) {
-  const { title, content, id } = todo;
+function TodoDetailPage() {
+  const { state } = useLocation(); // state라는 이름의 객체로 받아짐 -> 구분할
+  console.log(state);
+  const { title, content, id } = state;
   const { deleteTodo, modifyTodo, loading, error } = useContext(todoContext);
+
+  const [newChecked, setNewChecked] = useState(state.checked);
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
@@ -18,7 +22,7 @@ function TodoDetailPage({ todo }) {
       const newTodo = {
         title: newTitle,
         content: newContent,
-        checked: todo.checked,
+        checked: state.checked,
       };
       modifyTodo(id, newTodo);
     }
@@ -27,11 +31,11 @@ function TodoDetailPage({ todo }) {
   };
 
   const handleDeleteClick = () => {
-    deleteTodo(todo.id);
+    deleteTodo(state.id);
   };
 
   const handleCheckClick = () => {
-    modifyTodo(todo.id, { ...todo, checked: !todo.checked });
+    modifyTodo(state.id, { ...state, checked: !state.checked });
   };
 
   return (
@@ -52,11 +56,15 @@ function TodoDetailPage({ todo }) {
           <button onClick={() => handleModifyClick()}>수정완료</button>
         )}
         <button onClick={() => handleDeleteClick()}>삭제</button>
-        <input type="checkbox" />
+        <input
+          checked={newChecked}
+          type="checkbox"
+          onChange={() => handleCheckClick()}
+        />
       </div>
       <div>
         {!isEditing ? (
-          <h1>{todo.title}</h1>
+          <h1>{state.title}</h1>
         ) : (
           <input
             value={newTitle}
@@ -66,7 +74,7 @@ function TodoDetailPage({ todo }) {
       </div>
       <div>
         {!isEditing ? (
-          <div>{todo.content}</div>
+          <div>{state.content}</div>
         ) : (
           <textarea
             value={newContent}

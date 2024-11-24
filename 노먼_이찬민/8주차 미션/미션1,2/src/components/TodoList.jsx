@@ -9,7 +9,7 @@ function TodoList() {
     <Container>
       {loading && <div>로딩중...</div>}
       {error && <div>에러: {error}</div>}
-      {todos.length > 0 &&
+      {todos?.length > 0 &&
         todos.map((todo, _) => {
           return <TodoItem key={todo.id} todo={todo}></TodoItem>;
         })}

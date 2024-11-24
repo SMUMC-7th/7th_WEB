@@ -1,40 +1,53 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { todoContext } from "../context/todoContext";
+import { useNavigate } from "react-router-dom";
 
 function TodoItem({ todo }) {
   const { title, content, id } = todo;
-  const { deleteTodo, modifyTodo } = useContext(todoContext);
+  const { deleteMutation, modifyMutation } = useContext(todoContext);
 
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
+  const [newChecked, setNewChecked] = useState(todo.checked);
+
+  const navigate = useNavigate();
 
   // 로직
   const handleModifyClick = () => {
     if (isEditing) {
-      const newTodo = {
+      const modTodo = {
         title: newTitle,
         content: newContent,
         checked: todo.checked,
       };
-      modifyTodo(id, newTodo);
+      modifyMutation.mutate({ id: id, modTodo: modTodo });
     }
 
     setIsEditing((prev) => !prev);
   };
 
   const handleDeleteClick = () => {
-    deleteTodo(todo.id);
+    deleteMutation.mutate(todo.id);
   };
 
   const handleCheckClick = () => {
-    modifyTodo(todo.id, { ...todo, checked: !todo.checked });
+    modifyMutation.mutate(todo.id, { ...todo, checked: !todo.checked });
+    setNewChecked(!newChecked);
   };
 
   return (
-    <Container>
-      <input type="checkbox" onClick={() => handleCheckClick()} />
+    <Container
+      onClick={() => {
+        // navigate(`/todo/${id}`, { state: todo });
+      }}
+    >
+      <input
+        checked={newChecked}
+        type="checkbox"
+        onChange={() => handleCheckClick()}
+      />
       {!isEditing ? (
         <MainBox>
           <p>{title}</p>
