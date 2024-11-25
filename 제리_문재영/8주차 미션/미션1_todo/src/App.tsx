@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './output.css';
 import './App.css'
-import styled from 'styled-components';
+import * as S from './styled/styled';
 
 function App() {
   const [title, setTitle] = useState("");
@@ -19,23 +19,23 @@ function App() {
     className='flex flex-col'
     onSubmit={handleSubmit}
     >
-      <input 
+      <S.Input
       className='p-2.5 border border-purple-500 rounded-lg'
       name='title'
       placeholder='제목을 입력해주세요..'
       value={title}
       onChange={(e) => setTitle(e.target.value)}
       />
-      <input 
+      <S.Input
       className='p-2.5 border border-purple-500 rounded-lg'
       name='content'
       placeholder='내용을 입력해주세요..'
       value={content} 
       onChange={(e) => setContent(e.target.value)}
       />
-      <button 
+      <S.Button 
       className='bg-black'
-      type='submit'>투두 생성</button>
+      type='submit'>투두 생성</S.Button>
 
     </form>
     
