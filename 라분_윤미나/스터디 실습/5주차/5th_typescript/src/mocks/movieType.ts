@@ -63,4 +63,5 @@ export type TMovieDetails = {
   tagline: string;
   overview: string;
   poster_path: string;
+  backdrop_path: string;
 };

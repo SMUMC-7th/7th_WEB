@@ -1,12 +1,11 @@
-import * as S from "./category.style";
 import CategoryCardList from "../../components/CCList/CCList";
 
 const CategoryPage = () => {
   return (
-    <S.Container>
-      <S.H3>카테고리</S.H3>
+    <div className="w-screen flex flex-col ml-5">
+      <h3 className="text-white">카테고리</h3>
       <CategoryCardList />
-    </S.Container>
+    </div>
   );
 };
 

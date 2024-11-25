@@ -1,19 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/NavBar/NavBar";
-import SideBar from "../components/SideBar/SideBar";
-import * as S from "./root-layout.style";
-
-//import * as S from "./root-layout.style";
 
 const RootLayout = () => {
   return (
-    <S.Container1>
+    <div className=" m-5">
       <Navbar />
-      <S.Container2>
-        <SideBar />
+      <div className="my-8 mr-[5%]">
         <Outlet />
-      </S.Container2>
-    </S.Container1>
+      </div>
+    </div>
   );
 };
 
