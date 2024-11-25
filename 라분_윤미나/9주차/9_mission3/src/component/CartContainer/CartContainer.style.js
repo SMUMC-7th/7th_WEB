@@ -9,7 +9,7 @@ const Section = styled.section`
   gap: 30px;
 `;
 const P = styled.p`
-  height: 600px;
+  min-height: 685px;
 `;
 
 const Footer = styled.footer`
