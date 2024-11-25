@@ -9,6 +9,7 @@ const useFetchTodo = (url, method = 'post') => {
     setIsLoading(true);
     try {
       const response = await axiosInstance[method](url, todoData);
+      alert('성공');
       return response.data;
     } catch (error) {
       setIsError(true);
