@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./CartContainer.style";
 import CartItem from "../CartItem/CartItem";
-import { clearCart } from "../../features/cart/cartSlice";
+import { openModal } from "../../features/modal/modalSlice";
 
 const CartContainer = () => {
   const dispatch = useDispatch();
@@ -20,9 +20,13 @@ const CartContainer = () => {
         <hr />
         <S.Total>
           <p>총 가격</p>
-          <p>{total}원</p>
+          <p>₩ {total}원</p>
         </S.Total>
-        <S.ClearButton onClick={() => dispatch(clearCart())}>
+        <S.ClearButton
+          onClick={() => {
+            dispatch(openModal());
+          }}
+        >
           장바구니 초기화
         </S.ClearButton>
       </footer>

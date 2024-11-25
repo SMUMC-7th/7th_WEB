@@ -14,7 +14,7 @@ const CartItem = ({ id, img, title, singer, price, amount }) => {
           <h4>
             {title} | {singer}
           </h4>
-          <p>{price}원</p>
+          <p>₩ {price}원</p>
         </div>
       </S.ItemBox>
       <S.Button>
