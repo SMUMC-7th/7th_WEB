@@ -1,9 +1,9 @@
-import { useStore } from '../../store/store';
+import { useCarStore } from '../../store/store';
 import { CartIcon } from './../../constants/icons';
 import * as S from './Navbar.style';
 
 const Navbar = () => {
-  const { amount } = useStore((state) => state);
+  const amount = useCarStore((state) => state.amount);
 
   return (
     <S.Nav>

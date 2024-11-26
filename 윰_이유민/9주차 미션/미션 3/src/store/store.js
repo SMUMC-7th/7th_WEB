@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import cartItems from './../constants/cartItems';
 
-export const useStore = create((set) => ({
+export const useCarStore = create((set) => ({
   // cartSLice.js에 정의했던 것들
   cartItems: cartItems,
   amount: 0,
@@ -36,7 +36,9 @@ export const useStore = create((set) => ({
       });
       return { amount, total };
     }),
+}));
 
+export const useModalStore = create((set) => ({
   // ModalSlice.js에 정의했던 것들
   isOpen: false,
   // 1. 모달을 열기

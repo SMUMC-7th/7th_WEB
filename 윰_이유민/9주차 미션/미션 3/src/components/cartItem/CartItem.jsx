@@ -1,11 +1,12 @@
 import { ChevronDown, ChevronUp } from '../../constants/icons';
-import { useStore } from '../../store/store';
+import { useCarStore } from '../../store/store';
 import * as S from './CartItem.style';
+import { useShallow } from 'zustand/react/shallow';
 
 const CartItem = (item) => {
   const { id, title, singer, price, img, amount } = item;
 
-  const { increase, removeItem, decrease } = useStore((state) => state);
+  const { increase, removeItem, decrease } = useCarStore(useShallow((state) => state));
 
   return (
     <S.Container>

@@ -1,9 +1,11 @@
-import { useStore } from '../../store/store';
+import { useCarStore, useModalStore } from '../../store/store';
+import { useShallow } from 'zustand/react/shallow';
 import { CartItem } from '../cartItem/CartItem';
 import * as S from './CartContainer.style';
 
 const CartContainer = () => {
-  const { cartItems, total, openModal } = useStore((state) => state);
+  const { cartItems, total } = useCarStore(useShallow((state) => state));
+  const openModal = useModalStore((state) => state.openModal);
 
   return (
     <S.Section>

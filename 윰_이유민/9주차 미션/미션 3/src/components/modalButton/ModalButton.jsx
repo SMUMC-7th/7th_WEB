@@ -1,8 +1,9 @@
-import { useStore } from '../../store/store';
+import { useCarStore, useModalStore } from '../../store/store';
 import * as S from './ModalButton.style';
 
 const ModalButton = () => {
-  const { clearCart, closeModal } = useStore((state) => state);
+  const clearCart = useCarStore((state) => state.clearCart);
+  const closeModal = useModalStore((state) => state.closeModal);
 
   return (
     <S.ButtonContainer>

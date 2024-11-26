@@ -5,14 +5,12 @@ import { useEffect } from 'react';
 import ModalPortal from './components/modalPortal/ModalPortal';
 import Modal from './components/modal/Modal';
 import Footer from './components/footer/Footer';
-import { useStore } from './store/store';
+import { useCarStore, useModalStore } from './store/store';
 
 function App() {
-  useStore((state) => console.log(state.cartItems));
-
-  const isOpen = useStore((state) => state.isOpen);
-  const cartItems = useStore((state) => state.cartItems);
-  const caculateTotals = useStore((state) => state.caculateTotals);
+  const isOpen = useModalStore((state) => state.isOpen);
+  const cartItems = useCarStore((state) => state.cartItems);
+  const caculateTotals = useCarStore((state) => state.caculateTotals);
 
   useEffect(() => {
     caculateTotals();
