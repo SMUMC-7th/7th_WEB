@@ -1,5 +1,5 @@
 import { useInView } from 'react-intersection-observer';
-import { UseGetInfiniteSimilarMovies } from '../../hooks/useGetInfiniteMovieData';
+import { useGetInfiniteSimilarMovies } from '../../hooks/useGetInfiniteMovieData';
 import { useEffect } from 'react';
 import { LoadingSpinner } from '../loadingSpinner';
 import { DataNotFound } from '../NotFound';
@@ -15,7 +15,7 @@ const SimilarMovies = ({ id }: { id: number }) => {
     fetchNextPage,
     isPending,
     isError,
-  } = UseGetInfiniteSimilarMovies(id);
+  } = useGetInfiniteSimilarMovies(id);
 
   const { ref, inView } = useInView({
     threshold: 0,

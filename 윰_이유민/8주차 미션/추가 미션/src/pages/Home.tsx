@@ -1,10 +1,10 @@
 import { DataNotFound } from '../components/NotFound';
 import { SkeletonTrendingMovieCard } from '../components/TrendingMovieCard/SkeletonTrendingMovieCard';
 import { TrendingMovieCard } from '../components/TrendingMovieCard/TrendingMovieCard';
-import { UseGetMovieList } from '../hooks/useGetData';
+import { useGetMovieList } from '../hooks/useGetData';
 
 function Home() {
-  const { data: movies, isLoading, isError } = UseGetMovieList('popular');
+  const { data: movies, isLoading, isError } = useGetMovieList('popular');
 
   if (isError) {
     return <DataNotFound />;

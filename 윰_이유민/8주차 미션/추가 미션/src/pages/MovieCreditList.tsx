@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { UseGetMovieCredit } from '../hooks/useGetData';
+import { useGetMovieCredit } from '../hooks/useGetData';
 import { MovieCreditCard } from '../components/MovieDetails/MovieCreditCard';
 import { LoadingSpinner } from '../components/loadingSpinner';
 import { DataNotFound } from '../components/NotFound';
@@ -8,7 +8,7 @@ function MovieCreditList() {
   const { movieId } = useParams();
   const id = movieId as unknown as number;
 
-  const { data: credit, isLoading, isError } = UseGetMovieCredit(id);
+  const { data: credit, isLoading, isError } = useGetMovieCredit(id);
 
   if (isLoading) {
     return <LoadingSpinner />;

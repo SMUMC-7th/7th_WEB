@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { UseGetMoviePreview } from '../../hooks/useGetData';
+import { useGetMoviePreview } from '../../hooks/useGetData';
 import { DataNotFound } from '../NotFound';
 import { LoadingSpinner } from '../loadingSpinner';
 
@@ -7,8 +7,7 @@ const MoviePreview = () => {
   const { movieId } = useParams();
   const id = movieId as unknown as number;
 
-  const { data: movie, isLoading, isError } = UseGetMoviePreview(id);
-  console.log(movie);
+  const { data: movie, isLoading, isError } = useGetMoviePreview(id);
 
   if (isLoading) {
     return <LoadingSpinner />;

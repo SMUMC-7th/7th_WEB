@@ -13,7 +13,7 @@ import {
 } from '../types/movie';
 import { getMovieList, getMovieReview, getSearchMovieList, getSimilarMovies } from '../apis/movie';
 
-function UseGetInfiniteMovieList(
+function useGetInfiniteMovieList(
   category: TMovieCategory,
   queryOptions?: UseInfiniteQueryOptions<
     TMovieListResponse,
@@ -36,7 +36,7 @@ function UseGetInfiniteMovieList(
   });
 }
 
-function UseGetInfiniteSearchMovieList(
+function useGetInfiniteSearchMovieList(
   mq: string,
   queryOptions?: UseInfiniteQueryOptions<
     TMovieListResponse,
@@ -59,7 +59,7 @@ function UseGetInfiniteSearchMovieList(
   });
 }
 
-function UseGetInfiniteMovieReview(
+function useGetInfiniteMovieReview(
   id: number,
   queryOptions?: UseInfiniteQueryOptions<
     TMovieReviewResponse,
@@ -82,7 +82,7 @@ function UseGetInfiniteMovieReview(
   });
 }
 
-function UseGetInfiniteSimilarMovies(
+function useGetInfiniteSimilarMovies(
   id: number,
   queryOptions?: UseInfiniteQueryOptions<
     TMovieSimilarResponse,
@@ -106,8 +106,8 @@ function UseGetInfiniteSimilarMovies(
 }
 
 export {
-  UseGetInfiniteMovieList,
-  UseGetInfiniteSearchMovieList,
-  UseGetInfiniteMovieReview,
-  UseGetInfiniteSimilarMovies,
+  useGetInfiniteMovieList,
+  useGetInfiniteSearchMovieList,
+  useGetInfiniteMovieReview,
+  useGetInfiniteSimilarMovies,
 };

@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { UseGetInfiniteSearchMovieList } from '../hooks/useGetInfiniteMovieData';
+import { useGetInfiniteSearchMovieList } from '../hooks/useGetInfiniteMovieData';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { DataNotFound } from '../components/NotFound';
@@ -19,7 +19,7 @@ function SearchMovies() {
     fetchNextPage,
     isPending,
     isError,
-  } = UseGetInfiniteSearchMovieList(mq);
+  } = useGetInfiniteSearchMovieList(mq);
 
   const { ref, inView } = useInView({
     threshold: 0,

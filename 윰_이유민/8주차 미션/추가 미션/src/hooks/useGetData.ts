@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getMovieCredit, getMovieList, getMoviePreview } from '../apis/movie';
 import { TMovieCategory } from '../types/movie';
 
-function UseGetMovieList(category: TMovieCategory) {
+function useGetMovieList(category: TMovieCategory) {
   return useQuery({
     queryKey: ['movies', category],
     queryFn: () =>
@@ -12,7 +12,7 @@ function UseGetMovieList(category: TMovieCategory) {
   });
 }
 
-function UseGetMoviePreview(id: number) {
+function useGetMoviePreview(id: number) {
   return useQuery({
     queryKey: ['movie', id],
     queryFn: () =>
@@ -22,7 +22,7 @@ function UseGetMoviePreview(id: number) {
   });
 }
 
-function UseGetMovieCredit(id: number) {
+function useGetMovieCredit(id: number) {
   return useQuery({
     queryKey: ['movie_credit', id],
     queryFn: () =>
@@ -32,4 +32,4 @@ function UseGetMovieCredit(id: number) {
   });
 }
 
-export { UseGetMovieList, UseGetMoviePreview, UseGetMovieCredit };
+export { useGetMovieList, useGetMoviePreview, useGetMovieCredit };

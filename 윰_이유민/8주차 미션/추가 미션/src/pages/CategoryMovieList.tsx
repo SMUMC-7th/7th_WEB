@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { TMovieCategory } from '../types/movie';
-import { UseGetInfiniteMovieList } from '../hooks/useGetInfiniteMovieData';
+import { useGetInfiniteMovieList } from '../hooks/useGetInfiniteMovieData';
 import { MovieCard } from '../components/MovieCard';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
@@ -19,7 +19,7 @@ function CategoryMovieList() {
     fetchNextPage,
     isPending,
     isError,
-  } = UseGetInfiniteMovieList(categoryType);
+  } = useGetInfiniteMovieList(categoryType);
 
   const { ref, inView } = useInView({
     threshold: 0,

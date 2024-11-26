@@ -1,5 +1,5 @@
 import { useInView } from 'react-intersection-observer';
-import { UseGetInfiniteMovieReview } from '../../hooks/useGetInfiniteMovieData';
+import { useGetInfiniteMovieReview } from '../../hooks/useGetInfiniteMovieData';
 import { useEffect } from 'react';
 import Lottie from 'react-lottie-player';
 import loadingAnimation from '../../assets/lottie/loadingAnimation.json';
@@ -14,7 +14,7 @@ const MovieReview = ({ id }: { id: number }) => {
     fetchNextPage,
     isPending,
     isError,
-  } = UseGetInfiniteMovieReview(id);
+  } = useGetInfiniteMovieReview(id);
 
   const { ref, inView } = useInView({
     threshold: 0,

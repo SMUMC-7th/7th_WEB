@@ -1,9 +1,19 @@
 import { Link } from 'react-router-dom';
-import { UseGetMovieCredit } from '../../hooks/useGetData';
+import { useGetMovieCredit } from '../../hooks/useGetData';
 import { MovieCreditCard } from './MovieCreditCard';
+import { LoadingSpinner } from '../loadingSpinner';
+import { DataNotFound } from '../NotFound';
 
 const MovieCredits = ({ id }: { id: number }) => {
-  const { data: credit, isLoading, isError } = UseGetMovieCredit(id);
+  const { data: credit, isLoading, isError } = useGetMovieCredit(id);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (isError) {
+    return <DataNotFound />;
+  }
 
   return (
     <div className='w-full flex flex-col gap-6'>
