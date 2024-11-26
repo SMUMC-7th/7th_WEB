@@ -3,6 +3,7 @@ import useGetMovieDetail from "../../hooks/useGetMovieDetail";
 import useGetCredit from "../../hooks/useGetCredit";
 import MovieInfo from "../../components/MovieInfo";
 import Credits from "../../components/Credits";
+import Reviews from "../../components/Reviews";
 
 const MovieDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -33,6 +34,7 @@ const MovieDetail = () => {
       ) : (
         <div className="text-red-500">Credit Error</div> // 기본 에러 메시지
       )}
+      <Reviews movieId={Number(id)} />
     </div>
   );
 };
