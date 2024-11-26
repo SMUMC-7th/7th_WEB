@@ -1,4 +1,5 @@
 import { axiosInstance } from "../../apis/axios-instance";
+//import { FetchResponse } from "../../mocks/movieType";
 
 const fetchGetSimilar = async (id: number) => {
   const { data } = await axiosInstance.get(

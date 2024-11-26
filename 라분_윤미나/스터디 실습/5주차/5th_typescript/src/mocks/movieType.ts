@@ -65,3 +65,16 @@ export type TMovieDetails = {
   poster_path: string;
   backdrop_path: string;
 };
+
+export type TMovieReview = {
+  author: string;
+  author_details: TAuthorDetails;
+  content: string;
+  id: number;
+};
+export type TAuthorDetails = {
+  name: string;
+  username: string;
+  avatar_path: string;
+  rating: number;
+};

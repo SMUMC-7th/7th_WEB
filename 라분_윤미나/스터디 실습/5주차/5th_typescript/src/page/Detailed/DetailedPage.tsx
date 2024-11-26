@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import MovieCredit from "../../components/MovieCredit/MovieCredit";
 import MovieDetailed from "../../components/MovieDetailed/MovieDetailed";
 import SimilarMovie from "../../components/SimilarMovie/SimilarMovie";
-import * as S from "./DetailedPage.style";
 import { useState } from "react";
 
 const DetailedPage = () => {
@@ -12,9 +11,9 @@ const DetailedPage = () => {
   const [movieInfo, setMovieInfo] = useState<boolean>(true);
 
   return (
-    <S.Container>
+    <div className="flex flex-col ml-[50px]">
       <MovieDetailed id={id} />
-      <hr />
+      <hr className="w-full border-['0.5px']" />
       <div className="flex justify-center gap-5 my-5 text-lg">
         <button
           className="border-none text-white bg-none"
@@ -30,7 +29,7 @@ const DetailedPage = () => {
         </button>
       </div>
       {movieInfo === true ? <MovieCredit id={id} /> : <SimilarMovie id={id} />}
-    </S.Container>
+    </div>
   );
 };
 

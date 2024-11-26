@@ -2,6 +2,9 @@ import useCustomFetch from "../../hooks/useCustomFetch.js";
 import Director from "../Director/Director.tsx";
 import { TCredit, TCreditCast } from "../../mocks/movieType.js";
 import { useState } from "react";
+import ErrorLottie from "../../components/Error/Error";
+import LoadingLottie from "../../components/Loding/Loding.tsx";
+import Review from "../Review/review.tsx";
 
 const MovieCredit = ({ id }: { id: number }) => {
   const {
@@ -19,10 +22,10 @@ const MovieCredit = ({ id }: { id: number }) => {
   };
 
   if (isLoading) {
-    return <h1 style={{ color: "white" }}>로딩중...</h1>;
+    return <LoadingLottie />;
   }
   if (isError || !credit) {
-    return <h1 style={{ color: "white" }}>Error</h1>;
+    return <ErrorLottie />;
   }
 
   return (
@@ -49,6 +52,7 @@ const MovieCredit = ({ id }: { id: number }) => {
           ))}
         </article>
       )}
+      <Review id={id} />
     </section>
   );
 };

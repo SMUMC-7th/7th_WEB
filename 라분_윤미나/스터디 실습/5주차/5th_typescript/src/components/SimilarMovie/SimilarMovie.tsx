@@ -1,4 +1,4 @@
-import fetchGetSimilar from "../../hooks/queries/useGetSimilar";
+import useCustomFetch from "../../hooks/useCustomFetch.js";
 import ErrorLottie from "../Error/Error";
 import CardListSkeleton from "../Moviecard/Skeleton/Card-List-Skeleton";
 import { FetchResponse, TMoviesDTO } from "../../mocks/movieType.js";
@@ -9,7 +9,7 @@ const SimilarMovie = ({ id }: { id: number }) => {
     data: movies,
     isLoading,
     isError,
-  } = fetchGetSimilar<FetchResponse>(id);
+  } = useCustomFetch<FetchResponse>(`/movie/${id}/similar?language=ko&page=1`);
 
   console.log("데이터: ", movies);
 
@@ -24,9 +24,9 @@ const SimilarMovie = ({ id }: { id: number }) => {
     );
   }
   return (
-    <div className="flex flex-col w-screen h-300">
-      <h1 className="text-white">비슷한 영화</h1>
-      <div className="w-full flex flex-wrap gap-5">
+    <div className="flex flex-col w-screen h-300 ">
+      <h1 className="text-white mb-9">비슷한 영화</h1>
+      <div className="w-full flex flex-wrap gap-5 ">
         {movies?.results?.map((movie: TMoviesDTO) => (
           <MovieCard key={movie.id} {...movie} />
         ))}
