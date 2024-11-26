@@ -9,16 +9,14 @@ export const useStore = create((set) => ({
 
   // 1. 증가
   increase: (itemId) =>
-    set((state) => {
-      const item = state.cartItems.find((cartItem) => cartItem.id === itemId);
-      if (item) item.amount += 1;
-    }),
+    set((state) => ({
+      cartItems: state.cartItems.map((e) => (e.id === itemId ? { ...e, amount: e.amount + 1 } : e)),
+    })),
   // 2. 감소
   decrease: (itemId) =>
-    set((state) => {
-      const item = state.cartItems.find((cartItem) => cartItem.id === itemId);
-      if (item) item.amount -= 1;
-    }),
+    set((state) => ({
+      cartItems: state.cartItems.map((e) => (e.id === itemId ? { ...e, amount: e.amount - 1 } : e)),
+    })),
   // 3. 아이템 제거
   removeItem: (itemId) =>
     set((state) => {
