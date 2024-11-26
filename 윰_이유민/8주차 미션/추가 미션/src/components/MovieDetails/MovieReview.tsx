@@ -3,6 +3,8 @@ import { UseGetInfiniteMovieReview } from '../../hooks/useGetInfiniteMovieData';
 import { useEffect } from 'react';
 import Lottie from 'react-lottie-player';
 import loadingAnimation from '../../assets/lottie/loadingAnimation.json';
+import { LoadingSpinner } from '../loadingSpinner';
+import { DataNotFound } from '../NotFound';
 
 const MovieReview = ({ id }: { id: number }) => {
   const {
@@ -27,6 +29,14 @@ const MovieReview = ({ id }: { id: number }) => {
   const defaultProfile =
     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
 
+  if (isPending) {
+    return <LoadingSpinner />;
+  }
+
+  if (isError) {
+    return <DataNotFound />;
+  }
+
   return (
     <div className='w-full flex flex-col gap-4'>
       <h2 className='text-xl'>리뷰</h2>
@@ -38,19 +48,19 @@ const MovieReview = ({ id }: { id: number }) => {
                 <img
                   src={
                     review.author_details?.avatar_path
-                      ? `https://image.tmdb.org/t/p/w500/${review.author_details.avatar_path}`
+                      ? `https://image.tmdb.org/t/p/w500/${review?.author_details.avatar_path}`
                       : defaultProfile
                   }
                   alt=''
                   className='w-10 h-10 rounded-full object-cover'
                 />
-                <p>{review.author_details.username}</p>
+                <p>{review.author_details?.username}</p>
                 <p className='text-sm text-gray-400'>
-                  {review.author_details.rating ? `평점 ${review.author_details.rating}` : ''}
+                  {review.author_details?.rating ? `평점 ${review?.author_details?.rating}` : ''}
                 </p>
-                <p className='text-sm text-gray-400'>{review.updated_at.split('T')[0]}</p>
+                <p className='text-sm text-gray-400'>{review?.updated_at?.split('T')[0]}</p>
               </div>
-              <div className='text-gray-300 text-sm'>{review.content}</div>
+              <div className='text-gray-300 text-sm'>{review?.content}</div>
             </div>
           )),
         )}
