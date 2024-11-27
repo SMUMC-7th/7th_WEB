@@ -1,6 +1,6 @@
 import * as S from "./MovieDetailed.style.js";
 import useCustomFetch from "../../hooks/useCustomFetch.js";
-import { TMovieDetails } from "../../mocks/movieType.js";
+import { TMovieDetails } from "../../type/movieType.js";
 
 const MovieDetailed = ({ id }: { id: number }) => {
   const {

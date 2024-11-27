@@ -1,7 +1,7 @@
 import useCustomFetch from "../../hooks/useCustomFetch.js";
 import ErrorLottie from "../../components/Error/Error";
 import LoadingLottie from "../../components/Loding/Loding.tsx";
-import { TMovieReview, FetchResponse } from "../../mocks/movieType.ts";
+import { TMovieReview, TReviewDTO } from "../../type/movieType.ts";
 import { FaCircleUser } from "react-icons/fa6";
 
 const Review = ({ id }: { id: number }) => {
@@ -9,9 +9,9 @@ const Review = ({ id }: { id: number }) => {
     data: reviews,
     isLoading,
     isError,
-  } = useCustomFetch<FetchResponse>(`/movie/${id}/reviews?language=en-US`);
+  } = useCustomFetch<TReviewDTO>(`/movie/${id}/reviews?language=en-US`);
 
-  console.log(reviews);
+  console.log("리뷰 응답 : ", reviews);
   if (isLoading) {
     return <LoadingLottie />;
   }
@@ -25,16 +25,18 @@ const Review = ({ id }: { id: number }) => {
       {reviews?.results.length === 0 ? (
         <h1 className="text-white">리뷰가 없습니다.</h1>
       ) : (
-        <article className="flex flex-col gap-9">
+        <article className="flex flex-col gap-9 w-full h-300 text-ellipsis">
           {reviews?.results.map((review: TMovieReview) => (
             <div key={review.id} className="flex">
               {review.author_details.avatar_path ? (
                 <img
-                  className="w-50 h-50 rounded-full"
+                  className="w-50 h-50 rounded-full mr-5"
                   src={`https://image.tmdb.org/t/p/original${review.author_details.avatar_path}`}
                 />
               ) : (
-                <FaCircleUser className="w-250 h-50" />
+                <div className="w-50 h-50 mr-5">
+                  <FaCircleUser className="w-50 h-50" />
+                </div>
               )}
 
               <div className="flex flex-col gap-2">

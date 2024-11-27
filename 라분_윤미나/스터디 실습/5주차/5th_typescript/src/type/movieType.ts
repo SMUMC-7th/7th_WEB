@@ -66,11 +66,19 @@ export type TMovieDetails = {
   backdrop_path: string;
 };
 
+export type TReviewDTO = {
+  results: TMovieReview[];
+  page: number;
+  total_pages: number;
+  total_results: number;
+};
+
 export type TMovieReview = {
   author: string;
   author_details: TAuthorDetails;
   content: string;
-  id: number;
+  create_at: string;
+  id: string;
 };
 export type TAuthorDetails = {
   name: string;

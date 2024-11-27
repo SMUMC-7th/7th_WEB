@@ -1,6 +1,6 @@
 import TrendingMovieCard from "../../components/TrendingMovie/TrendingMovieCard.tsx";
 import useCustomFetch from "../../hooks/useCustomFetch";
-import { TMoviesDTO, FetchResponse } from "../../mocks/movieType.ts";
+import { TMoviesDTO, FetchResponse } from "../../type/movieType.ts";
 import CardListSkeleton from "../../components/Moviecard/Skeleton/Card-List-Skeleton.tsx";
 //import ErrorLottie from "../../components/Error/Error";
 

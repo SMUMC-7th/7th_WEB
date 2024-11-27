@@ -1,6 +1,6 @@
 import useCustomFetch from "../../hooks/useCustomFetch.js";
 import Director from "../Director/Director.tsx";
-import { TCredit, TCreditCast } from "../../mocks/movieType.js";
+import { TCredit, TCreditCast } from "../../type/movieType.js";
 import { useState } from "react";
 import ErrorLottie from "../../components/Error/Error";
 import LoadingLottie from "../../components/Loding/Loding.tsx";
@@ -29,13 +29,10 @@ const MovieCredit = ({ id }: { id: number }) => {
   }
 
   return (
-    <section className="flex flex-col w-screen h-300 text-white">
+    <section className="flex flex-col h-300 text-white">
       <div className="flex justify-between">
         <h1 className="mb-9">감독/출연</h1>
-        <button
-          className="border-none bg-none mr-[10%]"
-          onClick={() => handleClick()}
-        >
+        <button className="border-none bg-none" onClick={() => handleClick()}>
           {buttonText}
         </button>
       </div>

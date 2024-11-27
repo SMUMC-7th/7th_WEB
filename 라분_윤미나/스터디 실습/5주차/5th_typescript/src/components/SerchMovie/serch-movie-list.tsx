@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import useCustomFetch from "../../hooks/useCustomFetch.ts";
 import MovieCard from "../Moviecard/MovieCard.tsx";
 import CardListSkeleton from "../Moviecard/Skeleton/Card-List-Skeleton.tsx";
-import { TMoviesDTO, FetchResponse } from "../../mocks/movieType.ts";
+import { TMoviesDTO, FetchResponse } from "../../type/movieType.ts";
 
 const SearchMovieList = () => {
   const [searchParams] = useSearchParams({

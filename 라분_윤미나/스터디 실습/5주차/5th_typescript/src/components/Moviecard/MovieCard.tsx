@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./MovieCard.style";
-import { TMoviesDTO } from "../../mocks/movieType";
+import { TMoviesDTO } from "../../type/movieType";
 
 function MovieCard(props: TMoviesDTO) {
   const { id, release_date, title, poster_path } = props;

@@ -2,7 +2,7 @@ import MovieCard from "../../components/Moviecard/MovieCard";
 import { Container } from "../../components/MovieList/MovieLIst.style";
 import useCustomFetch from "../../hooks/useCustomFetch";
 import * as S from "./movies.style";
-import { TMoviesDTO, FetchResponse } from "../../mocks/movieType.ts";
+import { TMoviesDTO, FetchResponse } from "../../type/movieType.ts";
 import CardListSkeleton from "../../components/Moviecard/Skeleton/Card-List-Skeleton.tsx";
 
 const MoviesPage = () => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TMoviesDTO } from "../../mocks/movieType";
+import { TMoviesDTO } from "../../type/movieType";
 
 function TrendingMovieCard(props: TMoviesDTO) {
   const { id, release_date, title, backdrop_path, vote_average } = props;

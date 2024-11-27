@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import ErrorLottie from "../../components/Error/Error";
-import { TMoviesDTO } from "../../mocks/movieType.js";
+import { TMoviesDTO } from "../../type/movieType.js";
 
 const MovieList = ({ category }: { category: string }) => {
   const {

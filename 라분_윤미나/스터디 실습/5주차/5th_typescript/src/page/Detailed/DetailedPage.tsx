@@ -13,7 +13,7 @@ const DetailedPage = () => {
   return (
     <div className="flex flex-col ml-[50px]">
       <MovieDetailed id={id} />
-      <hr className="w-full border-['0.5px']" />
+      <hr className="border-['0.5px']" />
       <div className="flex justify-center gap-5 my-5 text-lg">
         <button
           className="border-none text-white bg-none"
@@ -28,7 +28,7 @@ const DetailedPage = () => {
           관련 영화
         </button>
       </div>
-      {movieInfo === true ? <MovieCredit id={id} /> : <SimilarMovie id={id} />}
+      {movieInfo ? <MovieCredit id={id} /> : <SimilarMovie id={id} />}
     </div>
   );
 };

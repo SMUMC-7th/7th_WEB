@@ -1,7 +1,7 @@
 import useCustomFetch from "../../hooks/useCustomFetch.js";
 import ErrorLottie from "../Error/Error";
 import CardListSkeleton from "../Moviecard/Skeleton/Card-List-Skeleton";
-import { FetchResponse, TMoviesDTO } from "../../mocks/movieType.js";
+import { FetchResponse, TMoviesDTO } from "../../type/movieType.js";
 import MovieCard from "../Moviecard/MovieCard";
 
 const SimilarMovie = ({ id }: { id: number }) => {
@@ -24,7 +24,7 @@ const SimilarMovie = ({ id }: { id: number }) => {
     );
   }
   return (
-    <div className="flex flex-col w-screen h-300 ">
+    <div className="flex flex-col h-300 ">
       <h1 className="text-white mb-9">비슷한 영화</h1>
       <div className="w-full flex flex-wrap gap-5 ">
         {movies?.results?.map((movie: TMoviesDTO) => (
