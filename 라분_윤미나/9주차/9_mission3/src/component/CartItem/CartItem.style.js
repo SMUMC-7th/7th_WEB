@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Cart_Item = styled.article`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

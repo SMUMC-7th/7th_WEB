@@ -7,13 +7,14 @@ const Section = styled.section`
   align-items: center;
   margin-top: 30px;
   gap: 30px;
+  width: 100%;
 `;
 const P = styled.p`
   min-height: 685px;
 `;
 
 const Footer = styled.footer`
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +25,7 @@ const Footer = styled.footer`
 
   div {
     display: flex;
-    width: 100vw;
+    width: 100%;
     padding: 0px 22%;
     justify-content: space-between;
     margin: 20px;
