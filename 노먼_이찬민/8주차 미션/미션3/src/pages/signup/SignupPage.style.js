@@ -12,6 +12,7 @@ const MainBox = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   width: 50%;
   min-width: 80vw;
   height: 40%;
