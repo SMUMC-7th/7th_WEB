@@ -1,28 +1,62 @@
-import * as S from "./MovieLIst.style.ts";
-import MovieCard from "../../components/Moviecard/MovieCard.tsx";
-import useCustomFetch from "../../hooks/useCustomFetch.js";
-import { TMoviesDTO, FetchResponse } from "../../mocks/movieType.ts";
-import CardListSkeleton from "../Moviecard/Skeleton/Card-List-Skeleton.tsx";
+import * as S from "./MovieLIst.style.js";
+import MovieCard from "../Moviecard/MovieCard";
+import CardListSkeleton from "../Moviecard/Skeleton/Card-List-Skeleton";
+import { useGetInfiniteMovies } from "../../hooks/queries/useGetInfiniteMovies";
+import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
+import ErrorLottie from "../../components/Error/Error";
+import { TMoviesDTO } from "../../type/movieType.js";
+
 const MovieList = ({ category }: { category: string }) => {
   const {
     data: movies,
-    isLoading,
+    isPending,
     isError,
-  } = useCustomFetch<FetchResponse>(`/movie/${category}?language=ko&page=1`);
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+  } = useGetInfiniteMovies({ category });
 
-  if (isLoading) {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  useEffect(() => {
+    if (inView && !isFetching && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+
+  if (isPending) {
     return <CardListSkeleton number={20} />;
   }
-  if (isError || !movies) {
-    return <S.H1>Error</S.H1>;
+  if (isError) {
+    return (
+      <S.TextContainer>
+        <ErrorLottie />
+      </S.TextContainer>
+    );
   }
-  console.log("무비데이터: ", movies);
+
   return (
-    <S.Container>
-      {movies.results?.map((movie: TMoviesDTO) => (
-        <MovieCard key={movie.id} {...movie} />
-      ))}
-    </S.Container>
+    <S.Column>
+      <S.Container>
+        {movies?.pages?.map((page) => {
+          return page?.results?.map((movie: TMoviesDTO) => {
+            return <MovieCard key={movie.id} {...movie} />;
+          });
+        })}
+        {isFetching && (
+          <S.MovieContainer>
+            <CardListSkeleton number={20} />;
+          </S.MovieContainer>
+        )}
+      </S.Container>
+      <S.ScrollContainer ref={ref}>
+        {isFetching && <ClipLoader color="#fff" />}
+      </S.ScrollContainer>
+    </S.Column>
   );
 };
 

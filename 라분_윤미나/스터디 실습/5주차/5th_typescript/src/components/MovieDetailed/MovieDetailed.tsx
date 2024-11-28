@@ -1,6 +1,6 @@
 import * as S from "./MovieDetailed.style.js";
 import useCustomFetch from "../../hooks/useCustomFetch.js";
-import { TMovieDetails } from "../../mocks/movieType.js";
+import { TMovieDetails } from "../../type/movieType.js";
 
 const MovieDetailed = ({ id }: { id: number }) => {
   const {
@@ -21,21 +21,21 @@ const MovieDetailed = ({ id }: { id: number }) => {
   }
 
   return (
-    <S.Container>
-      <S.Article>
-        <h1>{movie.original_title}</h1>
-        <p>평균 {movie.vote_average}</p>
-        <p>{movie.release_date}</p>
-        <p>{movie.runtime}분</p>
-        <h2>
-          <i>{movie.tagline}</i>
-        </h2>
-        <p>{movie.overview}</p>
-      </S.Article>
-      <S.Img
-        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-      ></S.Img>
-    </S.Container>
+    <section className="flex flex-col relative w-full h-300 overflow-hidden">
+      <article className="w-600 absolute top-[20px] left-[20px] gap-10 text-white z-1">
+        <p className="text-40">{movie.original_title}</p>
+
+        <p className="text-14">
+          평균 {movie.vote_average} . {movie.release_date} . {movie.runtime}분
+        </p>
+
+        <p className="text-14 mt-5">{movie.overview}</p>
+      </article>
+      <img
+        className="w-500 right-[180px] rounded-2xl opacity-30 object-cover object-center absolute right-96"
+        src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+      ></img>
+    </section>
   );
 };
 

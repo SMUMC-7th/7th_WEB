@@ -63,4 +63,26 @@ export type TMovieDetails = {
   tagline: string;
   overview: string;
   poster_path: string;
+  backdrop_path: string;
+};
+
+export type TReviewDTO = {
+  results: TMovieReview[];
+  page: number;
+  total_pages: number;
+  total_results: number;
+};
+
+export type TMovieReview = {
+  author: string;
+  author_details: TAuthorDetails;
+  content: string;
+  create_at: string;
+  id: string;
+};
+export type TAuthorDetails = {
+  name: string;
+  username: string;
+  avatar_path: string;
+  rating: number;
 };
