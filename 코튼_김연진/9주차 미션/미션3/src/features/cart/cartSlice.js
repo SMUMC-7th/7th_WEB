@@ -7,22 +7,20 @@ export const useCartStore = create((set) => ({
     total: 0,
 
     increase: (itemId) =>
-        set((state) => {
-            const item = state.cartItems.find(
-                (cartItem) => cartItem.id === itemId
-            );
-            if (item) item.amount += 1;
-            return { cartItems: [...state.cartItems] };
-        }),
+        set((state) => ({
+            cartItems: state.cartItems.map((item) =>
+                item.id === itemId ? { ...item, amount: item.amount + 1 } : item
+            ),
+        })),
 
     decrease: (itemId) =>
-        set((state) => {
-            const item = state.cartItems.find(
-                (cartItem) => cartItem.id === itemId
-            );
-            if (item && item.amount > 1) item.amount -= 1;
-            return { cartItems: [...state.cartItems] };
-        }),
+        set((state) => ({
+            cartItems: state.cartItems.map((item) =>
+                item.id === itemId && item.amount > 1
+                    ? { ...item, amount: item.amount - 1 }
+                    : item
+            ),
+        })),
 
     removeItem: (itemId) =>
         set((state) => ({

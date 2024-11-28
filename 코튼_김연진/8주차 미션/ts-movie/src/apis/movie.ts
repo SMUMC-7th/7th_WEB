@@ -19,7 +19,17 @@ export type TMovieSingleResponse = {
     origin_country: string[];
 };
 
+export type TMovieCategory =
+    | 'now_playing'
+    | 'top_rated'
+    | 'popular'
+    | 'upcoming';
+
 export type TMovieTotalResponse = {
+    dates: {
+        maximum: string;
+        minimum: string;
+    };
     page: number;
     results: TMovieSingleResponse[];
     total_pages: number;

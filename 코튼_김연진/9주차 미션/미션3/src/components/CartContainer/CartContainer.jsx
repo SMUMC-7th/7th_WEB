@@ -4,7 +4,9 @@ import { useCartStore } from '../../features/cart/cartSlice';
 import { useModalStore } from '../../features/modal/modalSlice';
 
 const CartContainer = () => {
-    const { cartItems, total } = useCartStore();
+    const cartItems = useCartStore((state) => state.cartItems);
+    const total = useCartStore((state) => state.total);
+
     const { openModal } = useModalStore();
 
     return (
