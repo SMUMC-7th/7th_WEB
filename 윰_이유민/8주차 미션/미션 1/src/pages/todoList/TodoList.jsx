@@ -24,7 +24,7 @@ function TodoList() {
     requestTodo,
     isLoading: postLoading,
     isError: postError,
-  } = useFetchTodo('/todo');
+  } = usePostTodo('/todo');
 
   // 1. 제목 및 내용 작성 후 버튼 클릭 시 투두 추가하기 (api 요청 보내기)
   const todoData = {
@@ -36,6 +36,8 @@ function TodoList() {
   const handleAddTodo = (e) => {
     e.preventDefault();
     requestTodo(todoData);
+    setTitle('');
+    setContent('');
   };
 
   // todoList 불러오기
@@ -43,7 +45,7 @@ function TodoList() {
 
   return (
     <S.Container>
-      <S.InputContainer onSubmit={(e) => handleAddTodo()}>
+      <S.InputContainer onSubmit={(e) => handleAddTodo(e)}>
         <Input
           placeholder={'제목을 입력해주세요.'}
           value={title}
