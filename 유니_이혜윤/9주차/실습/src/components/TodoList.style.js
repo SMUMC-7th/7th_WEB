@@ -14,6 +14,9 @@ const TodoList = styled.li`
   gap: 10px;
   margin: 5px 0;
 
+  p {
+  text-decoration: ${({ complete }) => (complete ? "line-through" : "none")};
+
   button {
     width: 20px;
     height: 20px;

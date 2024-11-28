@@ -10,10 +10,7 @@ const TodoList = () => {
   return (
     <S.Container>
       {todos.map((todo) => (
-        <S.TodoList
-          key={todo.id}
-          style={{ textDecoration: todo.complete ? "line-through" : "none" }}
-        >
+        <S.TodoList key={todo.id} complete={todo.complete}>
           <p onClick={() => dispatch(complete(todo.id))}>{todo.text}</p>
           <button onClick={() => dispatch(remove(todo.id))}>
             <FaRegTrashCan />
