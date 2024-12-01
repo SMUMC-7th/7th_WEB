@@ -47,7 +47,6 @@ const Signup = () => {
     const { mutate: signupMutation } = useMutation({
         mutationFn: SignUp,
         onSuccess: () => {
-            console.log('회원가입 성공');
             navigate('/login');
         },
         onError: (error: AxiosError) => {

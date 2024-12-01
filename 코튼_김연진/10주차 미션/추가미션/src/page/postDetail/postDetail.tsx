@@ -134,7 +134,7 @@ const PostDetail = () => {
                     {data.content}
                 </div>
 
-                {data.author?.authorId === userId && (
+                {data?.authorId === userId && (
                     <div className="gap-[20px] flex w-full justify-center mb-[20px]">
                         <button
                             className="bg-slate-200 px-[20px] py-[5px] rounded-[8px]"

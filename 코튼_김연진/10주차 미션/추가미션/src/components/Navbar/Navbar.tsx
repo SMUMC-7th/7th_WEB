@@ -28,7 +28,6 @@ const Navbar = () => {
         mutationFn: LogOut,
         onSuccess: () => {
             setIsLogin(false);
-            console.log('로그아웃 성공');
         },
         onError: (error) => {
             console.error('Error logout:', error);
@@ -40,7 +39,6 @@ const Navbar = () => {
         setUserName('');
         setRole('');
         setIsLogin(false);
-        console.log(role);
     };
 
     useEffect(() => {
@@ -146,7 +144,7 @@ const Navbar = () => {
                                     </div>
                                     {role === 'admin' && (
                                         <div
-                                            className="flex p-[3px] xs:pl-[10px] hover:cursor-pointer"
+                                            className="flex p-[10px] xs:pl-[10px] hover:cursor-pointer hover:bg-gray-100 "
                                             onClick={() =>
                                                 (window.location.href =
                                                     '/admin')

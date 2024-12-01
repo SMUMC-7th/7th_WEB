@@ -73,8 +73,8 @@ const Write = () => {
     };
 
     return (
-        <div className="flex flex-col items-center h-full bg-slate-50">
-            <div className="flex w-[90%] bg-slate-50 h-[50px] fixed top-[60px] items-center z-10">
+        <div className="flex flex-col items-center h-full bg-slate-50 ">
+            <div className="flex w-[90%] bg-slate-50 h-[50px] fixed top-[62px] items-center z-10">
                 <div onClick={handleIconClick} className="ml-5 cursor-pointer">
                     <PiImageThin size={25} />
                 </div>
@@ -98,7 +98,7 @@ const Write = () => {
                     발행
                 </button>
             </div>
-            <hr className="border-gray w-[100vw] fixed top-[110px]" />
+            <hr className="border-gray w-[100vw] fixed top-[112px]" />
             <div className="w-full flex flex-col items-center mt-[110px] h-full">
                 <form
                     onSubmit={onSubmit}
@@ -118,9 +118,9 @@ const Write = () => {
                             <img
                                 src={`http://localhost:3000/public/temp/${uploadResponse}`}
                                 alt="Temporary preview"
-                                className="w-full"
+                                className="w-full z-0"
                             />
-                            <div className="absolute w-full hover:z-1 hover:bg-[rgba(0,0,0,0.8)] h-full inset-0 opacity-0 hover:opacity-100 flex justify-center items-center gap-[20px]">
+                            <div className="absolute w-full hover:z-1 hover:bg-[rgba(0,0,0,0.8)] h-full inset-0 opacity-0 hover:opacity-100 flex justify-center items-center gap-[20px] z-0">
                                 <LiaExchangeAltSolid
                                     size={30}
                                     color="white"
@@ -130,7 +130,12 @@ const Write = () => {
                                 <MdDeleteOutline
                                     size={33}
                                     color="white"
-                                    onClick={() => setUploadResponse(null)}
+                                    onClick={() => {
+                                        setUploadResponse(null);
+                                        if (fileInputRef.current) {
+                                            fileInputRef.current.value = ''; // 파일 입력 비우기
+                                        }
+                                    }}
                                 />
                             </div>
                         </div>

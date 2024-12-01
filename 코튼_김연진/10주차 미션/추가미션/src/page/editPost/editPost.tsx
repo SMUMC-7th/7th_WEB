@@ -35,7 +35,6 @@ const EditPost = () => {
             try {
                 const response = await uploadPngImg(file);
                 setUploadResponse(response.imageUrl);
-                console.log(response.imageUrl);
             } catch (error) {
                 console.error(error);
                 alert('Upload failed. Please try again.');
