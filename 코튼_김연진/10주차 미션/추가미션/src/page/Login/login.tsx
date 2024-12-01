@@ -7,10 +7,14 @@ import { LogIn } from '../../apis/auth';
 import { useAuthContext } from '../../context/LogInContext';
 import yupPassword from 'yup-password';
 import { TLogin } from '../../type/type';
+import axios from 'axios';
+
+interface ResponseDataType {
+    message: string;
+    code: number;
+}
 
 yupPassword(yup);
-
-// Validation schema
 const schema = yup.object().shape({
     email: yup
         .string()
@@ -54,8 +58,17 @@ const Login = () => {
             navigate('/');
         },
         onError: (error) => {
-            console.error('로그인 실패:', error);
-            alert('로그인에 실패하였습니다');
+            if (axios.isAxiosError<ResponseDataType>(error)) {
+                const message = error.response?.data?.message as string;
+                if (message) {
+                    alert('이메일 혹은 비밀번호가 일치하지 않습니다');
+                } else {
+                    alert('로그인 중 문제가 발생했습니다. 다시 시도해 주세요.');
+                }
+                console.error('Error signup:', error);
+            } else {
+                alert('예상치 못한 오류가 발생했습니다.');
+            }
         },
     });
 

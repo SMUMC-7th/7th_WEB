@@ -5,6 +5,13 @@ import { SignUp } from '../../apis/auth';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { TSignupNoRole } from '../../type/type';
+import { AxiosError } from 'axios';
+import axios from 'axios';
+
+interface ResponseDataType {
+    message: string;
+    code: number;
+}
 
 const schema = yup.object().shape({
     email: yup.string().email().required('이메일을 반드시 입력해주세요.'),
@@ -43,8 +50,20 @@ const Signup = () => {
             console.log('회원가입 성공');
             navigate('/login');
         },
-        onError: (error) => {
-            console.error('Error signup:', error);
+        onError: (error: AxiosError) => {
+            if (axios.isAxiosError<ResponseDataType>(error)) {
+                const message = error.response?.data?.message as string;
+                if (message) {
+                    alert(message);
+                } else {
+                    alert(
+                        '회원가입 중 문제가 발생했습니다. 다시 시도해 주세요.'
+                    );
+                }
+                console.error('Error signup:', error);
+            } else {
+                alert('예상치 못한 오류가 발생했습니다.');
+            }
         },
     });
 
