@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { MainPage, Login, SignUp, WritePost } from "./pages/index";
+import { MainPage, Login, SignUp, WritePost, PostDetail } from "./pages/index";
 import RootLayout from "./layout/root-layout";
 
 const router = createBrowserRouter([
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/writepost",
         element: <WritePost />,
+      },
+      {
+        path: "/posts/:postId",
+        element: <PostDetail />,
       },
     ],
   },

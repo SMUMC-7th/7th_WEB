@@ -2,10 +2,12 @@ import usePostStore from "../store/postStore";
 import { RiEmotionSadLine } from "react-icons/ri";
 import { useEffect } from "react";
 import axiosInstance from "../apis/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
-const MainPage = () => {
+const MainPage: React.FC = () => {
   const posts = usePostStore((state) => state.posts);
   const setPosts = usePostStore((state) => state.setPosts);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -20,15 +22,20 @@ const MainPage = () => {
         console.log(response.data.data);
         setPosts(response.data.data || []);
       } catch (error) {
-        console.error("Failed to fetch posts:", error);
+        console.error(error);
       }
     };
 
     fetchPosts();
   }, [setPosts]);
 
-  if (!posts) return null; // posts가 정의되지 않았을 때 안전하게 처리
+  if (!posts) return null;
   console.log(posts);
+
+  // 상세페이지 이동
+  const handlePostClick = (postId: string) => {
+    navigate(`/posts/${postId}`);
+  };
 
   return (
     <div className="p-8">
@@ -43,8 +50,9 @@ const MainPage = () => {
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {posts.map((post, index) => (
             <div
-              key={index}
+              key={`${post.id}-${index}`}
               className="border w-[320px] h-[330px] bg-white shadow-sm hover:shadow-md transition-shadow"
+              onClick={() => handlePostClick(post.id)}
             >
               {post.imageUrl && (
                 <img

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 
 interface Post {
+  id: string;
   title: string;
   content: string;
   imageUrl: string;
