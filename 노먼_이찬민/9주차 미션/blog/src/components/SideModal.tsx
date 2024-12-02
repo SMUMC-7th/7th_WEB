@@ -33,7 +33,7 @@ function SideModal() {
       >
         <div className="w-full h-[15%] flex flex-col flex-center">
           <button
-            className="w-3/5 bg-sky-100 rounded"
+            className="w-3/5 bg-sky-100 rounded hover:scale-110 cursor-pointer"
             onClick={() => closeModal()}
           >
             X

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getCookie } from "../../utils/cookie";
 import { authInstance } from "../../apis/axiosInstance";
 import usePosts from "../../hooks/usePosts";
@@ -6,20 +6,27 @@ import { TPost } from "../../types/post";
 import PostCard from "../../components/PostCard";
 
 function MainPage() {
-  const { data } = usePosts("/v1/posts?order[]=likeCount_DESC");
+  const { data, writeMutation } = usePosts("/v1/posts?order[]=likeCount_DESC");
+  const [title, setTitle] = useState<string>("");
+  const [content, setContent] = useState<string>("");
   const postList: TPost[] = data?.data;
   console.log(postList);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(e.target[0].value);
+    writeMutation.mutate({
+      title: e.target[0].value,
+      content: e.target[1].value,
+    });
+    setTitle("");
+    setContent("");
+  };
 
   return (
     <div className="w-full h-full flex flex-col flex-center">
       <form
-        onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
-          e.preventDefault();
-          const resApi = await authInstance.post("/v1/posts", {
-            title: e.target[0].value,
-            content: e.target[1].value,
-          });
-        }}
+        onSubmit={(e) => handleSubmit(e)}
         className="w-[80%] flex flex-col flex-center"
       >
         <p>빠르게 글 작성하기</p>
@@ -28,6 +35,8 @@ function MainPage() {
           <input
             id="title"
             type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             className="w-[70%] px-10 py-5 my-5 text-2xl inline-flex items-center rounded-md bg-blue-50 font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"
           />
         </div>
@@ -35,6 +44,8 @@ function MainPage() {
           <label htmlFor="content">내용:</label>
           <textarea
             id="content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             className="w-[70%] h-[30vh] px-10 py-5 my-5 text-2xl inline-flex items-center rounded-md bg-blue-50 font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20"
           />
         </div>
