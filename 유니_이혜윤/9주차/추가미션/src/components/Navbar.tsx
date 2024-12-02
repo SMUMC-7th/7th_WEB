@@ -88,7 +88,9 @@ const Navbar = () => {
         <Link to="writepost">
           <CgPen className="text-[20px] cursor-pointer" />
         </Link>
-        <CgUser className="text-[20px] cursor-pointer" />
+        <Link to="mypage">
+          <CgUser className="text-[20px] cursor-pointer" />
+        </Link>
 
         {isLoggedIn ? (
           <button
