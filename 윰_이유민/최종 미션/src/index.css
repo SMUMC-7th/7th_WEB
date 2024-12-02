@@ -18,6 +18,6 @@
 
 @layer components {
   .pageLayout {
-    @apply py-16 px-32 flex flex-col;
+    @apply py-14 px-32 flex flex-col;
   }
 }

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../layout/root-layout';
-import { WritePost, EditPost, Home, Login, PostDetails, Signup } from '../pages';
+import { WritePost, EditPost, Home, Login, PostDetails, Signup, SearchPosts } from '../pages/index';
 
 const Router = createBrowserRouter([
   {
@@ -24,11 +24,15 @@ const Router = createBrowserRouter([
         element: <WritePost />,
       },
       {
-        path: '/post/:postId',
+        path: '/posts',
+        element: <SearchPosts />,
+      },
+      {
+        path: '/posts/:postId',
         element: <PostDetails />,
       },
       {
-        path: '/post/:postId/edit',
+        path: '/posts/:postId/edit',
         element: <EditPost />,
       },
     ],

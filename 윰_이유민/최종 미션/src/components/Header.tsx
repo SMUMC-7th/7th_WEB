@@ -1,18 +1,21 @@
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../context/LoginContext';
 import { useContext } from 'react';
+import { SearchBar } from './SearchBar';
 
 const Header = () => {
   const nav = useNavigate();
   const { isLogin } = useContext(LoginContext);
 
   return (
-    <header className='w-full h-16 bg-green-primary text-white px-6 py-4'>
+    <header className='w-full h-16 bg-green-primary text-white px-10 py-4'>
       <div className='w-full flex justify-between'>
         <div onClick={() => nav('/')} className='text-2xl font-extrabold cursor-pointer'>
           Blogme
         </div>
         <div className='flex gap-6 font-bold'>
+          <SearchBar />
+
           {isLogin ? (
             <button>로그아웃</button>
           ) : (
