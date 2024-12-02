@@ -77,7 +77,7 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col items-center w-full h-full gap-5 mt-[10%]">
+        <div className="flex flex-col items-center w-full h-full gap-5 mt-[120px]">
             <h1 className="text-2xl font-semibold">로그인</h1>
             <form
                 className="flex flex-col gap-2"

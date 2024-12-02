@@ -76,7 +76,12 @@ const PostDetail = () => {
         if (postId) {
             deletePost(postId)
                 .then(() => navigate('/'))
-                .catch((error) => console.error('삭제 실패:', error));
+                .catch((error) => {
+                    console.error(error);
+                    alert(
+                        '누군가가 좋아요 혹은 싫어요를 눌렀기 때문에 삭제가 불가능합니다'
+                    );
+                });
         }
     };
 

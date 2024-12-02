@@ -72,7 +72,7 @@ const Signup = () => {
     };
 
     return (
-        <div className="flex w-full h-full flex-col items-center gap-[20px] mt-[10%]">
+        <div className="flex w-full h-full flex-col items-center gap-[20px] mt-[120px]">
             <div className="text-[25px] font-[600]">회원가입</div>
             <form
                 action="submit"

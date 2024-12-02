@@ -154,7 +154,7 @@ const Navbar = () => {
                                         </div>
                                     )}
                                     <button
-                                        className="w-full text-left p-[10px] hover:bg-gray-100 cursor-pointer"
+                                        className="w-full text-left p-[10px] hover:bg-gray-100 cursor-pointer "
                                         onClick={handleLogout}
                                     >
                                         로그아웃
@@ -166,13 +166,13 @@ const Navbar = () => {
                         <>
                             <a
                                 href={'/login'}
-                                className="flex p-[3px] xs:pl-[10px] hover:cursor-pointer"
+                                className="flex p-[3px] xs:pl-[10px] hover:cursor-pointe text-nowrap"
                             >
                                 로그인
                             </a>
                             <a
                                 href={'/signup'}
-                                className="flex p-[3px] xs:pl-[10px] hover:cursor-pointer"
+                                className="flex p-[3px] xs:pl-[10px] hover:cursor-pointer text-nowrap"
                             >
                                 회원가입
                             </a>
