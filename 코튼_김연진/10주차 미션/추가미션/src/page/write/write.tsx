@@ -21,10 +21,12 @@ const Write = () => {
             textarea.current.style.height =
                 textarea.current.scrollHeight + 'px';
         }
+        //textarea.current.scrollHeight는 텍스트 영역에 입력된 텍스트가 차지하는 높이를 계산하여 반환, 이를 픽셀 단위로 지정하여 텍스트 영역의 높이가 자동으로 늘어나게 됨.
     };
 
     const handleIconClick = () => {
         fileInputRef.current?.click();
+        //input박스가 안예뻐서 icon이 클릭되면 input이 클릭된 것과 똑같은 기능을 하게 하려고 설정
     };
 
     const handleFileChange = async (
