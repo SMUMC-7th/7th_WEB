@@ -38,7 +38,7 @@ const PostWriting = async (data: TPost) => {
 };
 
 const PostImage = async (url: string) => {
-  const response = await axiosInstance.post("/v1/posts", {
+  const response = await axiosInstance.post("/v1/common/image", {
     image: url,
   });
   //console.log("사전 이미지 업로드 API 응답 : ", response.data);

@@ -13,7 +13,7 @@ import { BiDislike } from "react-icons/bi";
 import { useEffect, useState } from "react";
 
 const DetailedPage = () => {
-  const { userId } = useAuthContext();
+  const { userId, isLogin } = useAuthContext();
   const { id } = useParams();
   const detailId = Number(id);
 
@@ -38,9 +38,26 @@ const DetailedPage = () => {
     },
   });
 
+  const handleLikeUp = async () => {
+    const response = await LikeUp(detailId);
+    if (response === true) {
+      setLikeCount((prev) => prev + 1);
+    }
+  };
+  const handleDisLikeUp = async () => {
+    const response = await DisLikeUp(detailId);
+    if (response === true) {
+      setDislikeCount((prev) => prev + 1);
+    }
+  };
+
   const handleDeletePosts = async () => {
-    await DeletePost(detailId);
-    nav("/");
+    try {
+      await DeletePost(detailId);
+      nav("/");
+    } catch (error) {
+      console.error("삭제 실패:", error);
+    }
   };
 
   useEffect(() => {
@@ -72,20 +89,24 @@ const DetailedPage = () => {
         </div>
         <p>{contents.content}</p>
       </div>
-      <div className="flex gap-6 w-full mt-[-20px]">
-        <div className="flex text-left items-center gap-2">
-          <button onClick={() => LikeUp(detailId)}>
-            <BiLike />
-          </button>
-          <p>좋아요 {likeCount}</p>
+      {isLogin ? (
+        <div className="flex gap-6 w-full mt-[-20px]">
+          <div className="flex text-left items-center gap-2">
+            <button onClick={handleLikeUp}>
+              <BiLike />
+            </button>
+            <p>좋아요 {likeCount}</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={handleDisLikeUp}>
+              <BiDislike />
+            </button>
+            <p>싫어요 {dislikeCount}</p>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button onClick={() => DisLikeUp(detailId)}>
-            <BiDislike />
-          </button>
-          <p>싫어요 {dislikeCount}</p>
-        </div>
-      </div>
+      ) : (
+        <></>
+      )}
 
       {contents.authorId === userId ? (
         <div className="flex gap-5">
