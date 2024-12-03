@@ -1,17 +1,19 @@
 import { useRef, useState, useEffect } from 'react';
 import { PiImageThin } from 'react-icons/pi';
-import { uploadPngImg, getPostDetail, patchPost } from '../../apis/post';
+import { uploadPngImg, patchPost } from '../../apis/post';
 import { useNavigate } from 'react-router-dom';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { LiaExchangeAltSolid } from 'react-icons/lia';
 import { MdDeleteOutline } from 'react-icons/md';
+import usePostStore from '../../feature/postSlice';
 const EditPost = () => {
     const navigate = useNavigate();
     const params = useParams();
     const textarea1 = useRef<HTMLTextAreaElement | null>(null);
     const textarea2 = useRef<HTMLTextAreaElement | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
+    const { postDetail } = usePostStore();
 
     const [uploadResponse, setUploadResponse] = useState<string | null>(null);
 
@@ -44,25 +46,19 @@ const EditPost = () => {
         }
     };
 
-    const { data } = useQuery({
-        queryKey: ['postDetail', params.id],
-        queryFn: () => getPostDetail(Number(params.id)),
-        enabled: !!params.id,
-    });
-
     useEffect(() => {
-        if (data?.title && textarea1.current) {
-            textarea1.current.value = data.title; // 기본값 설정
+        if (postDetail?.title && textarea1.current) {
+            textarea1.current.value = postDetail.title; // 기본값 설정
             handleResize(textarea1); // 높이 조정
         }
-        if (data?.content && textarea2.current) {
-            textarea2.current.value = data.content; // 기본값 설정
+        if (postDetail?.content && textarea2.current) {
+            textarea2.current.value = postDetail.content; // 기본값 설정
             handleResize(textarea2); // 높이 조정
         }
-        if (data?.imageUrl) {
-            setUploadResponse(data.imageUrl);
+        if (postDetail?.imageUrl) {
+            setUploadResponse(postDetail.imageUrl);
         }
-    }, [data]);
+    }, [postDetail]);
 
     const { mutate: uploadPostMutation } = useMutation({
         mutationFn: patchPost,

@@ -11,6 +11,7 @@ import { format, toZonedTime } from 'date-fns-tz';
 import Loading from '../../components/loading/loading';
 import Error from '../../components/error/error';
 import { IoMdHeart, IoMdHeartDislike } from 'react-icons/io';
+import usePostStore from '../../feature/postSlice';
 
 const PostDetail = () => {
     const { userId } = useAuthContext();
@@ -19,14 +20,14 @@ const PostDetail = () => {
     const queryClient = useQueryClient();
 
     const postId = Number(id);
-
+    const { setPostDetail } = usePostStore();
     // 게시글 상세 정보 가져오기
     const { data, isLoading, isError } = useQuery({
         queryKey: ['postDetail', postId],
         queryFn: () => getPostDetail(postId),
         enabled: !!id,
     });
-
+    // console.log(data);
     //좋아요
     const { mutate: likeMutation } = useMutation({
         mutationFn: addLike,
@@ -143,7 +144,10 @@ const PostDetail = () => {
                     <div className="gap-[20px] flex w-full justify-center mb-[20px]">
                         <button
                             className="bg-slate-200 px-[20px] py-[5px] rounded-[8px]"
-                            onClick={() => navigate(`/edit/${id}`)}
+                            onClick={() => {
+                                navigate(`/edit/${id}`);
+                                setPostDetail(data);
+                            }}
                         >
                             수정
                         </button>
