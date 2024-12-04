@@ -14,10 +14,18 @@
   * {
     @apply m-0 p-0 box-border font-[Pretendard-Regular];
   }
+
+  body {
+    @apply bg-gray-100;
+  }
 }
 
 @layer components {
   .pageLayout {
     @apply py-14 px-32 flex flex-col;
+  }
+
+  .pageLayoutRow {
+    @apply py-14 px-32 flex flex-row;
   }
 }
