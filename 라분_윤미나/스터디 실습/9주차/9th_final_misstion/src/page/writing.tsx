@@ -3,11 +3,15 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation } from "@tanstack/react-query";
-import { PostWriting } from "../hook/blog";
+import { PostWriting, PostCommonImage } from "../hook/blog";
 import { TPost } from "../type/Type";
+import { useState } from "react";
 
 const WritingPage = () => {
   const navigate = useNavigate();
+
+  //const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageURL, setImageURL] = useState<string | null>(null);
   const {
     mutate: postMutation,
     isError,
@@ -19,10 +23,18 @@ const WritingPage = () => {
       navigate("/");
     },
   });
+
+  const { mutate: PostImage } = useMutation({
+    mutationFn: PostCommonImage,
+    onSuccess: (response) => {
+      console.log("사전 이미지 업로드", response);
+      setImageURL(response["imageUrl"]);
+    },
+  });
+
   const schema = yup.object().shape({
     title: yup.string().required(),
     content: yup.string().required(),
-    imageUrl: yup.string(),
   });
 
   const {
@@ -34,8 +46,20 @@ const WritingPage = () => {
     mode: "onChange",
   });
 
+  const onUpLoadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = e.target.files?.[0];
+
+      if (file) {
+        PostImage(file);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const onSubmit = async (data: TPost) => {
-    postMutation(data);
+    postMutation({ ...data, imageUrl: imageURL?.toString() });
   };
 
   if (isPending) {
@@ -66,8 +90,10 @@ const WritingPage = () => {
             />
 
             <input
-              placeholder="이미지 url을 입력해주세요."
-              {...register("imageUrl")}
+              type="file"
+              accept="image/png"
+              multiple
+              onChange={onUpLoadImage}
               className=" px-2 pt-5 border-t-[1px] outline-none"
             />
           </div>

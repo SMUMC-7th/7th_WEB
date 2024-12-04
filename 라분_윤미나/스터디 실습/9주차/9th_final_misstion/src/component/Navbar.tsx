@@ -22,6 +22,13 @@ const Navbar = () => {
       });
   };
 
+  const handleLogout = async () => {
+    await PostLogout();
+    setUserName(null);
+    setIsLogin(false);
+    setUserId(null);
+  };
+
   userInfo();
 
   //console.log("유저닉네임 : ", userName);
@@ -40,14 +47,7 @@ const Navbar = () => {
           ) : (
             <Link to="/me">마이페이지</Link>
           )}
-          <button
-            onClick={() => {
-              PostLogout();
-              setUserName(null);
-              setIsLogin(false);
-              setUserId(null);
-            }}
-          >
+          <button onClick={handleLogout}>
             <span>로그아웃</span>
           </button>
         </div>

@@ -58,7 +58,7 @@ const SignUpPage = () => {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="w-full flex justify-center items-center">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         <input
           type="email"

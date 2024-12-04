@@ -11,7 +11,7 @@ export type TSignUp = {
 export type TPost = {
   title: string;
   content: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
 };
 
 export type TPostList = {
@@ -75,7 +75,7 @@ export type TUpdatePostData = {
   id: number;
   title: string;
   content: string;
-  imageUrl: string | null;
+  imageUrl?: string | null;
 };
 
 export type TUserInfo = {

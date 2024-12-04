@@ -6,8 +6,6 @@ import {
   PropsWithChildren,
 } from "react";
 
-import Cookies from "universal-cookie";
-
 type TAuthContext = {
   isLogin: boolean;
   setIsLogin: (state: boolean) => void;
@@ -17,8 +15,6 @@ type TAuthContext = {
   setUserId: (id: number | null) => void;
   myPostNumber: number | null;
   setMyPostNumber: (number: number | null) => void;
-  getCookie: (cookie: string) => string;
-  token: string;
 };
 
 const AuthContext = createContext<TAuthContext | null>(null);
@@ -28,12 +24,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [userName, setUserName] = useState<string | null>(null);
   const [userId, setUserId] = useState<number | null>(null);
   const [myPostNumber, setMyPostNumber] = useState<number | null>(null);
-
-  const cookies = new Cookies();
-  const getCookie = (name: string) => {
-    return cookies.get(name);
-  };
-  const token = getCookie("accessToken");
 
   useEffect(() => {
     if (userName) {
@@ -54,9 +44,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         setUserId,
         myPostNumber,
         setMyPostNumber,
-
-        getCookie,
-        token,
       }}
     >
       {children}

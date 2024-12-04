@@ -3,14 +3,21 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQuery } from "@tanstack/react-query";
-
-import { UpdatePostContent, GetPostDetail } from "../hook/blog";
+import { useState } from "react";
+import {
+  UpdatePostContent,
+  GetPostDetail,
+  PostCommonImage,
+} from "../hook/blog";
 import { TPost } from "../type/Type";
 
 const UpdatePage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const detailId = Number(id);
+
+  const [imageURL, setImageURL] = useState<string | null>(null);
+
   const {
     mutate: UpdateMutation,
     isError,
@@ -23,6 +30,14 @@ const UpdatePage = () => {
     },
   });
 
+  const { mutate: PostImage } = useMutation({
+    mutationFn: PostCommonImage,
+    onSuccess: (response) => {
+      console.log("사전 이미지 업로드", response);
+      setImageURL(response["imageUrl"]);
+    },
+  });
+
   const { data: contents } = useQuery({
     queryFn: () => GetPostDetail(detailId),
     queryKey: ["contents"],
@@ -30,7 +45,6 @@ const UpdatePage = () => {
   const schema = yup.object().shape({
     title: yup.string().required(),
     content: yup.string().required(),
-    imageUrl: yup.string(),
   });
 
   const {
@@ -42,8 +56,24 @@ const UpdatePage = () => {
     mode: "onChange",
   });
 
+  const onUpLoadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = e.target.files?.[0];
+
+      if (file) {
+        PostImage(file);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const onSubmit = async (data: TPost) => {
-    await UpdateMutation({ ...data, id: detailId });
+    await UpdateMutation({
+      ...data,
+      imageUrl: imageURL?.toString(),
+      id: detailId,
+    });
   };
 
   if (isPending) {
@@ -68,17 +98,24 @@ const UpdatePage = () => {
             className="bg-gray-200 rounded-sm p-2 outline-none"
           />
           <div className="flex flex-col py-7 px-1 border-[1px] rounded-sm h-[90%]">
-            <textarea
-              placeholder="내용을 입력하세요."
-              defaultValue={contents.content}
-              {...register("content")}
-              className="h-600 p-2 outline-none resize-none"
-            />
+            <div className="h-600">
+              <textarea
+                placeholder="내용을 입력하세요."
+                defaultValue={contents.content}
+                {...register("content")}
+                className=" p-2 outline-none resize-none"
+              />
+              <img
+                src={`http://localhost:3000/${contents.imageUrl}`}
+                className=" w-[20%]"
+              ></img>
+            </div>
 
             <input
-              placeholder="이미지 url을 입력해주세요."
-              defaultValue={contents.imageUrl}
-              {...register("imageUrl")}
+              type="file"
+              accept="image/png"
+              multiple
+              onChange={onUpLoadImage}
               className=" px-2 pt-5 border-t-[1px] outline-none"
             />
           </div>

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   GetPostDetail,
   DeletePost,
@@ -18,6 +18,7 @@ const DetailedPage = () => {
   const detailId = Number(id);
 
   const nav = useNavigate();
+  const queryClient = useQueryClient();
 
   const [likeCount, setLikeCount] = useState(0);
   const [dislikeCount, setDislikeCount] = useState(0);
@@ -88,6 +89,10 @@ const DetailedPage = () => {
           </div>
         </div>
         <p>{contents.content}</p>
+        <img
+          src={`http://localhost:3000/${contents.imageUrl}`}
+          className=" w-[20%]"
+        ></img>
       </div>
       {isLogin ? (
         <div className="flex gap-6 w-full mt-[-20px]">

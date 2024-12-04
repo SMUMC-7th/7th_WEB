@@ -37,12 +37,31 @@ const PostWriting = async (data: TPost) => {
   return response.data;
 };
 
-const PostImage = async (url: string) => {
-  const response = await axiosInstance.post("/v1/common/image", {
-    image: url,
-  });
-  //console.log("사전 이미지 업로드 API 응답 : ", response.data);
-  return response.data;
+const PostCommonImage = async (img: File) => {
+  const formData = new FormData();
+  formData.append("image", img);
+  //if (img) Array.from(img).forEach((i) => formData.append("image", i));
+
+  try {
+    const response = await axiosInstance.post("/v1/common/image", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    //console.log("사전 이미지 업로드 API 응답 : ", response);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const PostRefresh = async () => {
+  try {
+    const response = await axiosInstance.post("/v1/auth/refresh");
+    console.log("토큰 재발급", response.data);
+  } catch (error) {
+    console.log("토큰 재발급", error);
+  }
 };
 
 const GetUserInfo = async () => {
@@ -141,7 +160,8 @@ export {
   PostSignUp,
   PostLogout,
   PostWriting,
-  PostImage,
+  PostCommonImage,
+  PostRefresh,
   GetUserInfo,
   GetUserList,
   GetPostList,
