@@ -21,7 +21,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className='w-60 h-8 bg-gray-600 flex gap-2 px-1 rounded-md items-center'>
+    <div className='w-60 h-8 bg-gray-50 text-gray-700 flex gap-2 px-1 rounded-md items-center'>
       <IoIosSearch onClick={handleSearchMovie} size='1.5rem' />
       <input
         className='bg-transparent w-full text-sm'
