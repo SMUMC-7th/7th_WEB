@@ -1,13 +1,15 @@
 import { TAuthBody } from './auth';
 
 export type TPostQuery = {
-  cursor: number;
-  order: TPostOrderQuery[];
-  take: number;
-  title: string;
+  cursor?: number;
+  order?: TPostOrderQuery[];
+  title?: string;
+  nowTrending?: TPostQuery;
 };
 
-export type TPostOrderQuery = 'likeCount_DESC' | 'likeCount_ASC' | 'id_ASC';
+export type TPostNav = 'now_trending' | 'recent' | 'popular';
+
+export type TPostOrderQuery = 'likeCount_DESC' | 'likeCount_ASC' | 'id_ASC' | 'id_DESC';
 
 export type TPostBody = {
   title?: string;
@@ -33,8 +35,12 @@ export type TPost = {
   likeUsers?: TLikeUsers;
 };
 
-export type TPostResponse = {
+type TPostData = {
   data: TPost[];
+};
+
+export type TPostResponse = {
+  data: TPostData;
   nextCursor: number;
   hasNextPage: boolean;
 };
