@@ -58,9 +58,9 @@ const PostCommonImage = async (img: File) => {
 const PostRefresh = async () => {
   try {
     const response = await axiosInstance.post("/v1/auth/refresh");
-    console.log("토큰 재발급", response.data);
+    console.log("토큰 재발급 성공", response.data);
   } catch (error) {
-    console.log("토큰 재발급", error);
+    console.log("토큰 재발급 실패", error);
   }
 };
 

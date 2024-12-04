@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { GetUserInfo } from "../hook/blog";
+import { GetUserInfo, PostRefresh } from "../hook/blog";
 import { FaUserCircle } from "react-icons/fa";
 
 const MyPage = () => {
@@ -22,7 +22,7 @@ const MyPage = () => {
   return (
     <div className="flex flex-col items-center gap-10 w-1000 min-h-[800px]">
       <h1 className="text-25">상세페이지</h1>
-      <div className="w-full h-full flex flex-col  items-center gap-4 py-5 px-3 border-[1px] border-gray-400 rounded-md">
+      <div className="w-full h-full flex flex-col justify-between items-center gap-4 py-5 px-3 border-[1px] border-gray-400 rounded-md">
         <div className="flex justify-center items-center gap-5 rounded-lg shadow-md w-300 py-5 px-8">
           <FaUserCircle className="w-100 h-100" />
           <div>
@@ -30,6 +30,15 @@ const MyPage = () => {
             <p>email : {infos.email}</p>
             <p>role : {infos.role}</p>
           </div>
+        </div>
+        <div className="flex flex-col items-center gap-3">
+          <p>* access token이 만료되었을 때 사용하세요</p>
+          <button
+            onClick={PostRefresh}
+            className="py-1 px-3 bg-pink-200 rounded-md"
+          >
+            토큰 재발급
+          </button>
         </div>
       </div>
     </div>

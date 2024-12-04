@@ -29,7 +29,7 @@ const DetailedPage = () => {
     isError,
   } = useQuery({
     queryFn: () => GetPostDetail(detailId),
-    queryKey: ["contents"],
+    queryKey: ["contents", detailId],
   });
 
   const { mutate: UpdateMutation } = useMutation({
