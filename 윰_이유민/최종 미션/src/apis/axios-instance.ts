@@ -1,9 +1,14 @@
 import axios from 'axios';
+import { Cookies } from 'react-cookie';
+
+const cookies = new Cookies();
+const accessToken = cookies.get('accessToken') || null;
 
 const axiosInstance = axios.create({
-  // headers: {
-  //   Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
-  // },
+  withCredentials: true,
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+  },
   baseURL: import.meta.env.VITE_API_URL,
 });
 
