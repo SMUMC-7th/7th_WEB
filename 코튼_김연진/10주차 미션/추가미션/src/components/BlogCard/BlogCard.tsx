@@ -2,6 +2,7 @@ import { TBlogPost } from '../../type/type';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { FaHeart } from 'react-icons/fa';
 import { timeDifferenceText } from '../../utils/timeDifferenceText';
+import { Viewer } from '@toast-ui/react-editor';
 const BlogCard = ({
     authorId,
     content,
@@ -24,18 +25,19 @@ const BlogCard = ({
                 />
             )}
             <div className="flex flex-col gap-[5px] p-[15px] pb-[5px] ">
-                <div className="text-[18px] font-semibold overflow-hidden max-h-[4rem] w-full text-overflow4">
+                <div className="text-[18px] font-semibold overflow-hidden max-h-[4rem] w-full text-overflow">
                     {title}
                 </div>
                 <div
-                    className={`font-thin text-[15px] ${
+                    className={`overflow-hidden ${
                         imageUrl
-                            ? 'text-overflow1'
-                            : 'text-overflow2 max-h-[9rem]'
+                            ? 'h-[90px] blogCard1-Img'
+                            : 'h-[250px] blogCard1-noImg'
                     }`}
                 >
-                    {content}
+                    <Viewer initialValue={content} />
                 </div>
+
                 <div className="flex flex-col absolute bottom-[10px] w-[90%]">
                     <div className="text-[12px] font-thin">
                         {timeDifferenceText(createdAt)}

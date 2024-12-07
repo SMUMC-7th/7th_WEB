@@ -2,6 +2,7 @@ import { FaHeart } from 'react-icons/fa';
 import { IoPersonCircleOutline } from 'react-icons/io5';
 import { TBlogPost } from '../../type/type';
 import { timeDifferenceText } from '../../utils/timeDifferenceText';
+import { Viewer } from '@toast-ui/react-editor';
 const BlogCard2 = ({
     authorId,
     content,
@@ -21,7 +22,7 @@ const BlogCard2 = ({
             <div className="flex flex-col ml-[5px] mt-[10px]">
                 <div className="flex items-center text-[16px]">{authorId}</div>
                 <div className="flex text-[12px] font-thin">
-                    {timeDifferenceText(createdAt)}
+                    {timeDifferenceText(createdAt)} | {createdAt} | {id}
                 </div>
             </div>
         </div>
@@ -29,11 +30,11 @@ const BlogCard2 = ({
 
     const renderContent = () => (
         <div className="flex flex-col w-full h-full gap-[5px] p-[10px]">
-            <div className="flex text-[24px] overflow-hidden max-h-[4rem] text-overflow4">
+            <div className="flex text-[24px] overflow-hidden max-h-[4rem] text-overflow">
                 {title}
             </div>
-            <div className="flex-1">
-                <div className="text-overflow5 font-thin">{content}</div>
+            <div className="h-[100px] overflow-hidden blogCard2">
+                <Viewer initialValue={content}></Viewer>
             </div>
             <div className="h-[20px]">
                 <div className="flex items-center gap-[3px] text-[13px] absolute bottom-[20px]">

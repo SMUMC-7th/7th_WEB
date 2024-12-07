@@ -1,14 +1,14 @@
 import { create } from 'zustand';
-import { TBlogPost } from '../type/type';
+import { TPost } from '../type/type';
 
 type TusePostStore = {
-    postDetail: TBlogPost | null;
-    setPostDetail: (data: TBlogPost) => void;
+    postDetail: TPost | null;
+    setPostDetail: (data: TPost) => void;
 };
 
 const usePostStore = create<TusePostStore>((set) => ({
     postDetail: null,
-    setPostDetail: (data: TBlogPost) => set({ postDetail: data }),
+    setPostDetail: (data: TPost) => set({ postDetail: data }),
 }));
 
 export default usePostStore;

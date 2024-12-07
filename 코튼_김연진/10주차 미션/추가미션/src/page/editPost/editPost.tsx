@@ -1,20 +1,23 @@
 import { useRef, useState, useEffect } from 'react';
 import { PiImageThin } from 'react-icons/pi';
 import { uploadPngImg, patchPost } from '../../apis/post';
-import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { LiaExchangeAltSolid } from 'react-icons/lia';
-import { MdDeleteOutline } from 'react-icons/md';
 import usePostStore from '../../feature/postSlice';
+import { Editor } from '@toast-ui/react-editor';
+import color from '@toast-ui/editor-plugin-color-syntax';
+import 'tui-color-picker/dist/tui-color-picker.css';
+import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
+import { queryClient } from '../../main';
+
 const EditPost = () => {
-    const navigate = useNavigate();
     const params = useParams();
     const textarea1 = useRef<HTMLTextAreaElement | null>(null);
-    const textarea2 = useRef<HTMLTextAreaElement | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
-    const { postDetail } = usePostStore();
+    const editorRef = useRef<Editor>(null);
 
+    const { postDetail } = usePostStore();
+    console.log(postDetail);
     const [uploadResponse, setUploadResponse] = useState<string | null>(null);
 
     const handleResize = (textarea: React.RefObject<HTMLTextAreaElement>) => {
@@ -25,8 +28,27 @@ const EditPost = () => {
         }
     };
 
-    const handleIconClick = () => {
-        fileInputRef.current?.click();
+    const handleImageUpload = async (
+        blob: File,
+        callback: (url: string, altText?: string) => void
+    ) => {
+        if (blob.type !== 'image/png') {
+            alert('PNG 파일만 업로드 가능합니다.');
+            return;
+        }
+        try {
+            const response = await uploadPngImg(blob);
+            const imageUrl = response.imageUrl;
+            setUploadResponse(imageUrl);
+            console.log(response);
+            callback(
+                `http://localhost:3000/public/temp/${imageUrl}`,
+                'Uploaded Image'
+            );
+        } catch (error) {
+            console.error('이미지 업로드 실패:', error);
+            alert('이미지 업로드 중 오류가 발생했습니다.');
+        }
     };
 
     const handleFileChange = async (
@@ -51,10 +73,6 @@ const EditPost = () => {
             textarea1.current.value = postDetail.title; // 기본값 설정
             handleResize(textarea1); // 높이 조정
         }
-        if (postDetail?.content && textarea2.current) {
-            textarea2.current.value = postDetail.content; // 기본값 설정
-            handleResize(textarea2); // 높이 조정
-        }
         if (postDetail?.imageUrl) {
             setUploadResponse(postDetail.imageUrl);
         }
@@ -63,7 +81,10 @@ const EditPost = () => {
     const { mutate: uploadPostMutation } = useMutation({
         mutationFn: patchPost,
         onSuccess: () => {
-            navigate(`/post/${params.id}`);
+            queryClient.invalidateQueries({
+                queryKey: ['postDetail', params.id],
+            }); // 서버에서 수정된 데이터를 다시 불러오기
+            window.location.href = `/post/${params.id}`;
         },
         onError: () => {
             alert('Post submission failed.');
@@ -73,7 +94,8 @@ const EditPost = () => {
     const onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const title = textarea1.current?.value || '';
-        const content = textarea2.current?.value || '';
+        const content = editorRef.current?.getInstance().getHTML() || '';
+
         if (!title.trim() || !content.trim()) {
             alert('Title and content cannot be empty.');
             return;
@@ -90,14 +112,13 @@ const EditPost = () => {
             alert('Invalid post ID.');
             return;
         }
-
         uploadPostMutation({ postId, postData });
     };
 
     return (
         <div className="flex flex-col items-center h-full bg-slate-50">
             <div className="flex w-full bg-white h-12 fixed top-[60px] items-center border-b border-gray z-10">
-                <div onClick={handleIconClick} className="ml-5 cursor-pointer">
+                <div className="ml-5 cursor-pointer">
                     <PiImageThin size={25} />
                 </div>
                 <input
@@ -136,63 +157,27 @@ const EditPost = () => {
                     <hr className="border-gray w-[95%]" />
                     {uploadResponse != null &&
                         (uploadResponse.includes('public') ? (
-                            <div className="w-full relative">
-                                <img
-                                    src={`http://localhost:3000/${uploadResponse}`}
-                                    alt="Uploaded preview"
-                                    className="w-full pl-[20px] pr-[20px]"
-                                />
-                                <div className="absolute w-full pl-[20px] pr-[20px] hover:z-1 hover:bg-[rgba(0,0,0,0.8)] h-full inset-0 opacity-0 hover:opacity-100 flex justify-center items-center gap-[20px]">
-                                    <LiaExchangeAltSolid
-                                        size={30}
-                                        color="white"
-                                        strokeWidth={1}
-                                        onClick={handleIconClick}
-                                    />
-                                    <MdDeleteOutline
-                                        size={33}
-                                        color="white"
-                                        onClick={() => setUploadResponse(null)}
-                                    />
-                                </div>
-                            </div>
+                            <img
+                                src={`http://localhost:3000/${uploadResponse}`}
+                                alt="Uploaded preview"
+                                className="w-[100px] h-[100px] object-cover"
+                            />
                         ) : (
-                            <div className="flex flex-col w-full">
-                                <span className="text-center">
-                                    {'<== 미리보기 이미지 ==>'}
-                                </span>
-                                <div className="relative w-full">
-                                    <img
-                                        src={`http://localhost:3000/public/temp/${uploadResponse}`}
-                                        alt="Temporary preview"
-                                        className="w-full pl-[20px] pr-[20px]"
-                                    />
-                                    <div className="absolute w-full pl-[20px] pr-[20px] hover:z-1 hover:bg-[rgba(0,0,0,0.8)] h-full inset-0 opacity-0 hover:opacity-100 flex justify-center items-center gap-[20px]">
-                                        <LiaExchangeAltSolid
-                                            size={30}
-                                            color="white"
-                                            strokeWidth={1}
-                                            onClick={handleIconClick}
-                                        />
-                                        <MdDeleteOutline
-                                            size={33}
-                                            color="white"
-                                            onClick={() =>
-                                                setUploadResponse(null)
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                            </div>
+                            <img
+                                src={`http://localhost:3000/public/temp/${uploadResponse}`}
+                                alt="Temporary preview"
+                                className="w-full pl-[20px] pr-[20px]"
+                            />
                         ))}
-
-                    <textarea
-                        ref={textarea2}
-                        className="resize-none w-full p-5 text-xl font-light focus:outline-none"
-                        placeholder="내용을 입력하세요"
-                        rows={10}
-                        onChange={() => handleResize(textarea2)}
-                    />
+                    <Editor
+                        ref={editorRef}
+                        initialValue={postDetail?.content || ''}
+                        initialEditType="wysiwyg"
+                        hideModeSwitch={true}
+                        plugins={[color]}
+                        height="100%"
+                        hooks={{ addImageBlobHook: handleImageUpload }}
+                    ></Editor>
                 </form>
             </div>
         </div>

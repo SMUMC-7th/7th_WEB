@@ -1,14 +1,13 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { getPosts } from '../../apis/post';
-import BlogCard from '../../components/BlogCard/BlogCard';
-import BlogCard2 from '../../components/BlogCard2/BlogCard2';
-import { TBlogPost } from '../../type/type';
-import ClipLoader from 'react-spinners/ClipLoader';
-import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 import { LuLayoutGrid } from 'react-icons/lu';
 import { TbLayoutList } from 'react-icons/tb';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { useInView } from 'react-intersection-observer';
+
+import BlogCard from '../../components/BlogCard/BlogCard';
+import BlogCard2 from '../../components/BlogCard2/BlogCard2';
 import Loading from '../../components/loading/loading';
+import useGetPosts from '../../hooks/posts/queries/useGetPosts';
 
 const Home = () => {
     const [order, setOrder] = useState('id_DESC');
@@ -17,16 +16,15 @@ const Home = () => {
 
     useEffect(() => {
         const savedLayout = localStorage.getItem('layout');
-        setLayout(savedLayout === 'true' || savedLayout === null);
-
         const savedOrder = localStorage.getItem('homeOrder');
+
+        setLayout(savedLayout === 'true' || savedLayout === null);
         if (savedOrder) {
             setOrder(savedOrder);
             setIsClicked(getOrderIndex(savedOrder));
         } else {
             localStorage.setItem('homeOrder', order);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getOrderIndex = (order: string) => {
@@ -56,27 +54,21 @@ const Home = () => {
         localStorage.setItem('homeOrder', value);
     };
 
-    const { data, fetchNextPage, hasNextPage, isLoading, isFetching } =
-        useInfiniteQuery({
-            queryKey: ['posts', order],
-            queryFn: ({ pageParam = null }) =>
-                getPosts({
-                    cursor: pageParam,
-                    title: null,
-                    order: [order],
-                }),
-            getNextPageParam: (lastPage) =>
-                lastPage.hasNextPage ? lastPage.nextCursor : undefined,
-            initialPageParam: null,
+    const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+        useGetPosts({
+            cursor: null,
+            // order: null,
+            order: [order],
+            title: null,
         });
 
     const { ref, inView } = useInView({ threshold: 0 });
 
     useEffect(() => {
-        if (inView && !isFetching && hasNextPage) {
+        if (inView && !isFetchingNextPage && hasNextPage) {
             fetchNextPage();
         }
-    }, [inView, isFetching, hasNextPage, fetchNextPage]);
+    }, [inView, isFetchingNextPage, hasNextPage, fetchNextPage]);
 
     if (isLoading) return <Loading />;
 
@@ -97,9 +89,7 @@ const Home = () => {
                                     ? 'font-semibold text-black'
                                     : 'text-gray-600'
                             }`}
-                            onClick={() => {
-                                handleOrderChange(item.value);
-                            }}
+                            onClick={() => handleOrderChange(item.value)}
                         >
                             {item.label}
                         </button>
@@ -123,13 +113,14 @@ const Home = () => {
                     )}
                 </div>
             </div>
+
             <div
                 className={`flex gap-[10px] flex-wrap mt-[20px] justify-center w-[80%] ${
                     layout ? 'max-w-[1000px]' : ''
                 }`}
             >
                 {data?.pages.map((page) =>
-                    page.data.map((post: TBlogPost) =>
+                    page.data.map((post) =>
                         layout ? (
                             <BlogCard2 key={post.id} {...post} />
                         ) : (
@@ -151,7 +142,7 @@ const Home = () => {
                     ref={ref}
                     className="flex items-center justify-center w-full h-[50px]"
                 >
-                    {isFetching && <ClipLoader className="mt-[20px]" />}
+                    {isFetchingNextPage && <ClipLoader className="mt-[20px]" />}
                 </div>
             )}
         </div>

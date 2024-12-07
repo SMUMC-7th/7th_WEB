@@ -1,30 +1,30 @@
-import { format, toZonedTime } from 'date-fns-tz';
+import { format } from 'date-fns';
+import {
+    differenceInDays,
+    differenceInHours,
+    differenceInMinutes,
+} from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
 
 export const timeDifferenceText = (createdAt: string) => {
-    const formattedDate = createdAt.slice(0, 10);
-    const formattedNowDate = format(new Date(), 'yyyy-MM-dd');
-    const zonedDate = toZonedTime(createdAt, 'Asia/Seoul');
-    const now = new Date();
-    const createHours = zonedDate.getHours();
-    const createMinutes = zonedDate.getMinutes();
-    const createMonth = zonedDate.getMonth();
-    const createDate = zonedDate.getDay();
+    const timeZone = 'Asia/Seoul';
+    const zonedCreatedAt = toZonedTime(createdAt, timeZone); // createdAt을 Asia/Seoul 시간대로 변환
+    const now = toZonedTime(new Date(), timeZone); // 현재 시간을 Asia/Seoul 시간대로 변환
 
-    const nowHours = now.getHours();
-    const nowMinutes = now.getMinutes();
-    const nowMonth = now.getMonth();
-    const nowDate = now.getDay();
+    const daysDiff = differenceInDays(now, zonedCreatedAt); // 날짜 차이 계산
+    const hoursDiff = differenceInHours(now, zonedCreatedAt); // 시간 차이 계산
+    const minutesDiff = differenceInMinutes(now, zonedCreatedAt); // 분 차이 계산
 
-    if (formattedDate === formattedNowDate) {
-        if (nowHours - createHours !== 0) {
-            return `약 ${nowHours - createHours}시간 전`;
+    if (daysDiff === 0) {
+        if (hoursDiff > 0) {
+            return `약 ${hoursDiff}시간 전`;
         }
-        return `${nowMinutes - createMinutes}분 전`;
+        return `${minutesDiff}분 전`;
     }
 
-    if (nowMonth === createMonth && nowDate - createDate <= 7) {
-        return `${nowDate - createDate}일 전`;
+    if (daysDiff <= 7) {
+        return `${daysDiff}일 전`;
     }
 
-    return format(formattedDate, 'yyyy년 MM월 dd일');
+    return format(zonedCreatedAt, 'yyyy년 MM월 dd일');
 };

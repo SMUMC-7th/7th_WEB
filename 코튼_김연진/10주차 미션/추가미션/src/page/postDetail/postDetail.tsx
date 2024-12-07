@@ -12,6 +12,7 @@ import Loading from '../../components/loading/loading';
 import Error from '../../components/error/error';
 import { IoMdHeart, IoMdHeartDislike } from 'react-icons/io';
 import usePostStore from '../../feature/postSlice';
+import { Viewer } from '@toast-ui/react-editor';
 
 const PostDetail = () => {
     const { userId } = useAuthContext();
@@ -21,13 +22,14 @@ const PostDetail = () => {
 
     const postId = Number(id);
     const { setPostDetail } = usePostStore();
+
     // 게시글 상세 정보 가져오기
     const { data, isLoading, isError } = useQuery({
         queryKey: ['postDetail', postId],
         queryFn: () => getPostDetail(postId),
         enabled: !!id,
     });
-    // console.log(data);
+
     //좋아요
     const { mutate: likeMutation } = useMutation({
         mutationFn: addLike,
@@ -94,6 +96,11 @@ const PostDetail = () => {
         new Date(zonedDate),
         'yyyy년 MM월 dd일 HH시 mm분'
     );
+    const postData = {
+        title: data?.title,
+        content: data?.content,
+        imageUrl: data?.imageUrl,
+    };
 
     return (
         <div className="mt-[60px] w-full flex items-center flex-col bg-slate-50 h-full">
@@ -101,7 +108,6 @@ const PostDetail = () => {
                 <div className="border-b border-gray w-full h-auto text-4xl flex p-[20px] font-bold">
                     {data.title}
                 </div>
-
                 <div className="pl-[20px] pt-[10px] pr-[20px] pb-[10px] flex gap-[10px] items-center">
                     <span className="font-bold">
                         {data.author.email.split('@')[0]}
@@ -127,7 +133,6 @@ const PostDetail = () => {
                         </div>
                     </div>
                 </div>
-
                 {data.imageUrl && (
                     <img
                         src={`http://localhost:3000/${data.imageUrl}`}
@@ -135,9 +140,8 @@ const PostDetail = () => {
                         className="pl-[20px] pr-[20px]"
                     />
                 )}
-
-                <div className="w-full min-h-[250px] text-xl p-[20px] font-thin whitespace-pre-wrap">
-                    {data.content}
+                <div className="p-[20px]">
+                    <Viewer initialValue={data.content} />
                 </div>
 
                 {data?.authorId === userId && (
@@ -145,8 +149,8 @@ const PostDetail = () => {
                         <button
                             className="bg-slate-200 px-[20px] py-[5px] rounded-[8px]"
                             onClick={() => {
+                                setPostDetail(postData);
                                 navigate(`/edit/${id}`);
-                                setPostDetail(data);
                             }}
                         >
                             수정

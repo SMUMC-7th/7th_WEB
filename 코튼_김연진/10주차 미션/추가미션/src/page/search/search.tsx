@@ -1,9 +1,8 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import BlogCard from '../../components/BlogCard/BlogCard';
-import { getPosts } from '../../apis/post';
+import useGetPosts from '../../hooks/posts/queries/useGetPosts';
 import { TBlogPost } from '../../type/type';
 import ClipLoader from 'react-spinners/ClipLoader';
 import { IoSearchOutline } from 'react-icons/io5';
@@ -46,19 +45,11 @@ const Search = () => {
         }
     }, [mq]);
 
-    const { data, fetchNextPage, hasNextPage, isLoading, isFetching } =
-        useInfiniteQuery({
-            queryKey: ['posts', mq, order],
-            queryFn: ({ pageParam = null }) =>
-                getPosts({
-                    cursor: pageParam,
-                    title: mq,
-                    order: [order],
-                }),
-            enabled: !!mq,
-            getNextPageParam: (lastPage) =>
-                lastPage.hasNextPage ? lastPage.nextCursor : undefined,
-            initialPageParam: null,
+    const { data, isLoading, fetchNextPage, hasNextPage, isFetching } =
+        useGetPosts({
+            cursor: null,
+            order: [order],
+            title: mq,
         });
 
     const { ref, inView } = useInView({

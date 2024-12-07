@@ -1,6 +1,6 @@
 import { axiosInstance } from './axiosInstance';
 import { TPost, TGetPostParams } from '../type/type';
-
+import { TResponseGetPosts } from '../type/type';
 const cleanParams = (params: TGetPostParams) => {
     return Object.fromEntries(
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -8,17 +8,13 @@ const cleanParams = (params: TGetPostParams) => {
     );
 };
 
-const getPosts = async (params: TGetPostParams) => {
+const getPosts = async (params: TGetPostParams): Promise<TResponseGetPosts> => {
     const cleanedParams = cleanParams(params);
-    const { data } = await axiosInstance.get('/v1/posts', {
+    const { data } = await axiosInstance.get('/v1/posts?&take=8', {
         params: cleanedParams,
     });
 
-    return {
-        data: data?.data,
-        nextCursor: data?.nextCursor,
-        hasNextPage: data?.hasNextPage,
-    };
+    return data;
 };
 
 const uploadPngImg = async (img: File) => {
