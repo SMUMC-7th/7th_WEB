@@ -33,6 +33,7 @@ const Part = styled.div`
 `;
 
 const Content = styled.div`
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,12 +51,6 @@ const ImgContainer = styled.div`
     justify-content: center;
     align-items: ceenter;
     height: 11rem;
-    img {
-        margin: 40px;
-        width: 110px;
-        height: 110px;
-        object-fit: cover;
-    }
 `;
 
 const GithubIcon = styled(FaGithub)`
@@ -66,8 +61,23 @@ const GithubIcon = styled(FaGithub)`
 
 const GitLink = styled(Link)`
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 185px;
+    left: 10px;
+`;
+
+const Img = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+`;
+const AlternativeImg = styled.img`
+    margin: 40px;
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
 `;
 export {
     Container,
@@ -78,4 +88,6 @@ export {
     ImgContainer,
     GithubIcon,
     GitLink,
+    Img,
+    AlternativeImg,
 };

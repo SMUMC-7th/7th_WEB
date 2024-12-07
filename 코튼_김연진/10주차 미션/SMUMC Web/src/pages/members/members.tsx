@@ -1,14 +1,14 @@
+import { useContext, useState, useMemo } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 import Profile from '../../components/members/profile/profile';
 import * as S from './members.style';
 import { MEMBERS } from '../../mocks/profile';
-import { useContext, useState, useMemo } from 'react';
-import { ThemeContext } from '../../context/ThemeContext';
 
 const Members = () => {
     const { theme } = useContext(ThemeContext);
     const [isClicked, setIsClicked] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedYear, setSelectedYear] = useState(6);
+    const [selectedYear, setSelectedYear] = useState(7);
 
     const handleYearSelect = (year: number) => {
         setSelectedYear(year);
@@ -46,7 +46,7 @@ const Members = () => {
                     islight={theme}
                     onClick={() => {
                         setIsClicked(0);
-                        setSelectedYear(6);
+                        setSelectedYear(7);
                     }}
                     isclicked={isClicked === 0}
                 >
@@ -75,7 +75,7 @@ const Members = () => {
                         ></S.ArrowDown>
                         {isOpen && (
                             <S.Options>
-                                {[6, 5, 4, 3, 2].map((year) => (
+                                {[7, 6, 5, 4, 3, 2].map((year) => (
                                     <S.Option
                                         key={year}
                                         onClick={() => handleYearSelect(year)}

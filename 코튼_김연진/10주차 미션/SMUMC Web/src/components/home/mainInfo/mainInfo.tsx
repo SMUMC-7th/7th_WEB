@@ -45,7 +45,6 @@ const MainInfo = () => {
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setIsVisible(true);
-                    // observer.disconnect();
                 } else {
                     setIsVisible(false);
                 }
@@ -113,7 +112,7 @@ const MainInfo = () => {
                         <S.Explain>현재 회원 수</S.Explain>
                         <S.Number>
                             <AnimatedNumber
-                                targetNumber={44}
+                                targetNumber={38}
                                 isVisible={isVisible}
                             />
                             명
