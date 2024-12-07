@@ -22,7 +22,7 @@ const BlogCard2 = ({
             <div className="flex flex-col ml-[5px] mt-[10px]">
                 <div className="flex items-center text-[16px]">{authorId}</div>
                 <div className="flex text-[12px] font-thin">
-                    {timeDifferenceText(createdAt)} | {createdAt} | {id}
+                    {timeDifferenceText(createdAt)} | {id}
                 </div>
             </div>
         </div>
