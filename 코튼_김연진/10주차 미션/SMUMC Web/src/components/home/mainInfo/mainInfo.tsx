@@ -102,7 +102,7 @@ const MainInfo = () => {
                         <S.Explain>역대 SMUMC 멤버수</S.Explain>
                         <S.Number>
                             <AnimatedNumber
-                                targetNumber={187}
+                                targetNumber={216}
                                 isVisible={isVisible}
                             />
                             명

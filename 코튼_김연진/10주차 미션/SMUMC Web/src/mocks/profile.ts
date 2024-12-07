@@ -2142,7 +2142,7 @@ const MEMBERS = [
         name: '정혜원',
         part: 'WEB',
         position: '파트장',
-        github: 'hijoy',
+        github: 'hijjoy',
         sex: 'w',
         project: null,
         skill: ['HTML', 'CSS', 'JS', 'React'],
