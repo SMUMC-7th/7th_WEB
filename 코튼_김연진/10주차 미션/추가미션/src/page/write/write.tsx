@@ -73,14 +73,14 @@ const Write = () => {
         const postData = {
             title,
             content,
-            imageUrl: uploadResponse || undefined,
+            imageUrl: uploadResponse || null,
         };
 
         uploadPostMutation(postData);
     };
 
     return (
-        <div className="flex flex-col items-center h-auto bg-slate-50 ">
+        <div className="flex flex-col items-center bg-slate-50 h-full">
             <div className="flex w-[90%] bg-slate-50 h-[50px] fixed top-[62px] items-center z-10">
                 <div onClick={handleIconClick} className="ml-5 cursor-pointer">
                     <PiImageThin size={25} />
@@ -100,7 +100,7 @@ const Write = () => {
             <div className="w-full flex flex-col items-center mt-[110px] h-full">
                 <form
                     onSubmit={onSubmit}
-                    className="w-3/5 min-w-[400px] flex flex-col bg-white border-b border-l border-r border-gray min-h-full"
+                    className="w-3/5 min-w-[400px] flex flex-col bg-white border-b border-l border-r border-gray h-full"
                     data-color-mode="light"
                 >
                     <textarea
@@ -123,7 +123,8 @@ const Write = () => {
                         initialEditType="wysiwyg"
                         hideModeSwitch={true}
                         plugins={[color]}
-                        height="500px"
+                        initialValue=" "
+                        height="100%"
                         hooks={{ addImageBlobHook: handleImageUpload }}
                     ></Editor>
                 </form>

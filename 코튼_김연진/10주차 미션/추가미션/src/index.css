@@ -66,3 +66,7 @@ body {
     width: 0;
     height: 0;
 }
+
+.toastui-editor-contents {
+    height: 100%;
+}
