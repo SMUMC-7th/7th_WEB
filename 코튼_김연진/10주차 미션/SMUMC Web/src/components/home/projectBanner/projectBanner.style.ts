@@ -46,17 +46,30 @@ const Container = styled.div<ContainerProps>`
     .slick-dots {
         bottom: 0px;
         position: absolute;
+
+        @media (max-width: 970px) {
+            display: none;
+        }
     }
     .slick-dots li.slick-active button:before {
         color: var(--color-green-main);
         opacity: 0.8;
+        @media (max-width: 970px) {
+            display: none;
+        }
     }
     .slick-dots li button:before {
         color: var(--color-grey-main);
         opacity: 0.8;
+        @media (max-width: 970px) {
+            display: none;
+        }
     }
     .slick-dots li {
         transform: scale(1.5);
+        @media (max-width: 970px) {
+            display: none;
+        }
     }
     .slick-track {
         width: 300px;
