@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(248 250 252);
+}
+
+.text-overflow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.source-code-pro {
+    font-family: 'Source Code Pro', monospace;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.toastui-editor-contents p,
+.toastui-editor-contents h1,
+.toastui-editor-contents h2,
+.toastui-editor-contents h3,
+.toastui-editor-contents h4,
+.toastui-editor-contents h5,
+.toastui-editor-contents h6 {
+    margin: 0px !important;
+}
+
+.blogCard1-Img .toastui-editor-contents {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.blogCard1-noImg .toastui-editor-contents {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+}
+
+.blogCard2 .toastui-editor-contents {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.toastui-editor-contents img {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toastui-editor-contents {
+    height: 100%;
+}
